@@ -1,0 +1,26 @@
+{
+  "name": "statabs-data",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:statistikstadtzuerich/statabs-data.git"
+  },
+  "dependencies": {
+    "barnard59": "git+https://github.com/zazuko/barnard59.git#master",
+    "duplexify": "^3.5.4",
+    "slug": "^0.9.1"
+  },
+  "devDependencies": {
+    "standard": "^11.0.1"
+  },
+  "scripts": {
+    "fetch": "node scripts/fetch",
+    "generate-config": "node scripts/generate-config",
+    "generate-csv-metadata": "node scripts/generate-csv-metadata",
+    "convert": "node --trace-warnings scripts/convert",
+    "test": "standard",
+    "to-ntriples": "node scripts/to-ntriples"
+  }
+}

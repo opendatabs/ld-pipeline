@@ -1,0 +1,48 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "dialect": {
+    "delimiter": "\t"
+  },
+  "tableSchema": {
+    "aboutUrl": "http://ld.statistik.bs.ch/observation/6502/{Wohnviertel}",
+    "columns": [
+      {
+        "titles": "Wohnviertel",
+        "propertyUrl": "http://ld.statistik.bs.ch/property/wohnviertel"
+      },
+      {
+        "titles": "0-19",
+        "propertyUrl": "http://ld.statistik.bs.ch/property/0-19"
+      },
+      {
+        "titles": "20-39",
+        "propertyUrl": "http://ld.statistik.bs.ch/property/20-39"
+      },
+      {
+        "titles": "40-59",
+        "propertyUrl": "http://ld.statistik.bs.ch/property/40-59"
+      },
+      {
+        "titles": "60-79",
+        "propertyUrl": "http://ld.statistik.bs.ch/property/60-79"
+      },
+      {
+        "titles": "80-99",
+        "propertyUrl": "http://ld.statistik.bs.ch/property/80-99"
+      },
+      {
+        "titles": "100 u. ä.",
+        "propertyUrl": "http://ld.statistik.bs.ch/property/100-u.-a."
+      },
+      {
+        "titles": "Total\r",
+        "propertyUrl": "http://ld.statistik.bs.ch/property/total"
+      },
+      {
+        "virtual": true,
+        "propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "valueUrl": "http://purl.org/linked-data/cube#Observation"
+      }
+    ]
+  }
+}

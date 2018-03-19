@@ -1,0 +1,80 @@
+{
+  "tasks": {
+    "2952": {
+      "url": "https://raw.githubusercontent.com/StataBS/indikatoren/master/data/2952.tsv",
+      "input": "tmp/2952.tsv",
+      "csv-metadata": "input/2952.csv-metadata.json",
+      "output": "target/2952.nt",
+      "steps": [
+        {
+          "operation": "file.read",
+          "arguments": [
+            "${this.input}"
+          ]
+        },
+        {
+          "operation": "csvw.parse",
+          "arguments": [
+            "${this['csv-metadata']}"
+          ]
+        },
+        {
+          "operation": "filter",
+          "arguments": [
+            "./input/filter-not-undefined.js"
+          ]
+        },
+        {
+          "operation": "ntriples.serialize"
+        },
+        {
+          "operation": "file.write",
+          "arguments": [
+            "${this.output}"
+          ]
+        }
+      ]
+    },
+    "6502": {
+      "url": "https://raw.githubusercontent.com/StataBS/indikatoren/master/data/6502.tsv",
+      "input": "tmp/6502.tsv",
+      "csv-metadata": "input/6502.csv-metadata.json",
+      "output": "target/6502.nt",
+      "steps": [
+        {
+          "operation": "file.read",
+          "arguments": [
+            "${this.input}"
+          ]
+        },
+        {
+          "operation": "csvw.parse",
+          "arguments": [
+            "${this['csv-metadata']}"
+          ]
+        },
+        {
+          "operation": "filter",
+          "arguments": [
+            "./input/filter-not-undefined.js"
+          ]
+        },
+        {
+          "operation": "map",
+          "arguments": [
+            "./input/map-wohnviertel.js"
+          ]
+        },
+        {
+          "operation": "ntriples.serialize"
+        },
+        {
+          "operation": "file.write",
+          "arguments": [
+            "${this.output}"
+          ]
+        }
+      ]
+    }
+  }
+}
