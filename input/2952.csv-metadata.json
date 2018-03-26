@@ -4,12 +4,12 @@
     "delimiter": "\t"
   },
   "tableSchema": {
-    "aboutUrl": "http://ld.statistik.bs.ch/observation/2952/{Jahr}",
+    "aboutUrl": "http://ld.statistik.bs.ch/dataset/2952/{Jahr}",
     "columns": [
       {
         "titles": "Jahr",
         "propertyUrl": "http://ld.statistik.bs.ch/property/jahr",
-        "datatype":"gYear"
+        "datatype": "gYear"
       },
       {
         "titles": "Schweiz",

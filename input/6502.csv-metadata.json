@@ -4,7 +4,7 @@
     "delimiter": "\t"
   },
   "tableSchema": {
-    "aboutUrl": "http://ld.statistik.bs.ch/observation/6502/{Wohnviertel}",
+    "aboutUrl": "http://ld.statistik.bs.ch/dataset/6502/{Wohnviertel}",
     "columns": [
       {
         "titles": "Wohnviertel",
