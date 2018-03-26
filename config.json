@@ -1,4 +1,11 @@
 {
+  "columns": {
+    "Jahr": {
+      "titles": "Jahr",
+      "propertyUrl": "http://ld.statistik.bs.ch/property/jahr",
+      "datatype":"gYear"
+    }
+  },
   "tasks": {
     "2952": {
       "url": "https://raw.githubusercontent.com/StataBS/indikatoren/master/data/2952.tsv",
