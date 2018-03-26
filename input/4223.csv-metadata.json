@@ -1,0 +1,41 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "dialect": {
+    "delimiter": "\t"
+  },
+  "tableSchema": {
+    "aboutUrl": "http://ld.statistik.bs.ch/dataset/4223/{Jahr}",
+    "columns": [
+      {
+        "titles": "Jahr",
+        "propertyUrl": "http://ld.statistik.bs.ch/property/jahr",
+        "datatype": "gYear"
+      },
+      {
+        "titles": "Holz",
+        "propertyUrl": "http://ld.statistik.bs.ch/property/holz"
+      },
+      {
+        "titles": "Umweltwärme",
+        "propertyUrl": "http://ld.statistik.bs.ch/property/umweltwarme"
+      },
+      {
+        "titles": "Sonnenenergie",
+        "propertyUrl": "http://ld.statistik.bs.ch/property/sonnenenergie"
+      },
+      {
+        "titles": "Kehrricht und Klärschlamm",
+        "propertyUrl": "http://ld.statistik.bs.ch/property/kehrricht-und-klarschlamm"
+      },
+      {
+        "titles": "Deponie-  Klär-  Biogas",
+        "propertyUrl": "http://ld.statistik.bs.ch/property/deponie-klar-biogas"
+      },
+      {
+        "virtual": true,
+        "propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "valueUrl": "http://purl.org/linked-data/cube#Observation"
+      }
+    ]
+  }
+}

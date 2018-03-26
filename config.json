@@ -3,7 +3,7 @@
     "Jahr": {
       "titles": "Jahr",
       "propertyUrl": "http://ld.statistik.bs.ch/property/jahr",
-      "datatype":"gYear"
+      "datatype": "gYear"
     }
   },
   "tasks": {
@@ -12,6 +12,41 @@
       "input": "tmp/2952.tsv",
       "csv-metadata": "input/2952.csv-metadata.json",
       "output": "target/2952.nt",
+      "steps": [
+        {
+          "operation": "file.read",
+          "arguments": [
+            "${this.input}"
+          ]
+        },
+        {
+          "operation": "csvw.parse",
+          "arguments": [
+            "${this['csv-metadata']}"
+          ]
+        },
+        {
+          "operation": "filter",
+          "arguments": [
+            "./input/filter-not-undefined.js"
+          ]
+        },
+        {
+          "operation": "ntriples.serialize"
+        },
+        {
+          "operation": "file.write",
+          "arguments": [
+            "${this.output}"
+          ]
+        }
+      ]
+    },
+    "4223": {
+      "url": "https://raw.githubusercontent.com/StataBS/indikatoren/master/data/4223.tsv",
+      "input": "tmp/4223.tsv",
+      "csv-metadata": "input/4223.csv-metadata.json",
+      "output": "target/4223.nt",
       "steps": [
         {
           "operation": "file.read",
