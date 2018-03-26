@@ -21,6 +21,6 @@
     "generate-csv-metadata": "node scripts/generate-csv-metadata",
     "convert": "node --trace-warnings scripts/convert",
     "test": "standard",
-    "to-ntriples": "node scripts/to-ntriples"
+    "upload": "node scripts/upload"
   }
 }
