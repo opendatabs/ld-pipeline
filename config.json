@@ -7,42 +7,6 @@
     }
   },
   "tasks": {
-    "2952": {
-      "url": "https://raw.githubusercontent.com/StataBS/indikatoren/master/data/2952.tsv",
-      "input": "tmp/2952.tsv",
-      "csv-metadata": "input/2952.csv-metadata.json",
-      "output": "target/2952.nt",
-      "steps": [
-        {
-          "operation": "file.read",
-          "arguments": [
-            "${this.input}"
-          ]
-        },
-        {
-          "operation": "csvw.parse",
-          "arguments": [
-            "${this['csv-metadata']}",
-            "${this.input.match(/[^/]*\\.tsv/)}"
-          ]
-        },
-        {
-          "operation": "filter",
-          "arguments": [
-            "./input/filter-not-undefined.js"
-          ]
-        },
-        {
-          "operation": "ntriples.serialize"
-        },
-        {
-          "operation": "file.write",
-          "arguments": [
-            "${this.output}"
-          ]
-        }
-      ]
-    },
     "4223": {
       "url": "https://raw.githubusercontent.com/StataBS/indikatoren/master/data/4223.tsv",
       "input": "tmp/4223.tsv",
@@ -59,7 +23,7 @@
           "operation": "csvw.parse",
           "arguments": [
             "${this['csv-metadata']}",
-            "${this.input.match(/[^/]*\\.tsv/)}"
+            "file://${this.input.match(/[^/]*\\.tsv/)}"
           ]
         },
         {
@@ -95,7 +59,7 @@
           "operation": "csvw.parse",
           "arguments": [
             "${this['csv-metadata']}",
-            "${this.input.match(/[^/]*\\.tsv/)}"
+            "file://${this.input.match(/[^/]*\\.tsv/)}"
           ]
         },
         {
