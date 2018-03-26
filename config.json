@@ -22,7 +22,8 @@
         {
           "operation": "csvw.parse",
           "arguments": [
-            "${this['csv-metadata']}"
+            "${this['csv-metadata']}",
+            "${this.input.match(/[^/]*\\.tsv/)}"
           ]
         },
         {
@@ -57,7 +58,8 @@
         {
           "operation": "csvw.parse",
           "arguments": [
-            "${this['csv-metadata']}"
+            "${this['csv-metadata']}",
+            "${this.input.match(/[^/]*\\.tsv/)}"
           ]
         },
         {
@@ -92,7 +94,8 @@
         {
           "operation": "csvw.parse",
           "arguments": [
-            "${this['csv-metadata']}"
+            "${this['csv-metadata']}",
+            "${this.input.match(/[^/]*\\.tsv/)}"
           ]
         },
         {
