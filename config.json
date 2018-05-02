@@ -7,6 +7,42 @@
     }
   },
   "tasks": {
+    "4132": {
+      "url": "https://raw.githubusercontent.com/StataBS/indikatoren/master/data/4132.tsv",
+      "input": "tmp/4132.tsv",
+      "csv-metadata": "input/4132.csv-metadata.json",
+      "output": "target/4132.nt",
+      "steps": [
+        {
+          "operation": "file.read",
+          "arguments": [
+            "${this.input}"
+          ]
+        },
+        {
+          "operation": "csvw.parse",
+          "arguments": [
+            "${this['csv-metadata']}",
+            "file://${this.input.match(/[^/]*\\.tsv/)}"
+          ]
+        },
+        {
+          "operation": "filter",
+          "arguments": [
+            "./input/filter-not-undefined.js"
+          ]
+        },
+        {
+          "operation": "ntriples.serialize"
+        },
+        {
+          "operation": "file.write",
+          "arguments": [
+            "${this.output}"
+          ]
+        }
+      ]
+    },
     "4223": {
       "url": "https://raw.githubusercontent.com/StataBS/indikatoren/master/data/4223.tsv",
       "input": "tmp/4223.tsv",
