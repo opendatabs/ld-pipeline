@@ -39,7 +39,8 @@ Object.keys(config.tasks).forEach(key => {
     }, {
       operation: 'csvw.parse',
       arguments: [
-        '${this[\'csv-metadata\']}' // eslint-disable-line no-template-curly-in-string
+        '${this[\'csv-metadata\']}', // eslint-disable-line no-template-curly-in-string
+        'file://${this.input.match(/[^/]*\\.tsv/)}' // eslint-disable-line no-template-curly-in-string
       ]
     }, {
       operation: 'filter',
