@@ -4,7 +4,7 @@
     "delimiter": "\t"
   },
   "tableSchema": {
-    "aboutUrl": "http://ld.statistik.bs.ch/dataset/4223/{Jahr}",
+    "aboutUrl": "http://ld.statistik.bs.ch/dataset/4223/observation/{Jahr}",
     "columns": [
       {
         "titles": "Jahr",
@@ -35,6 +35,11 @@
         "virtual": true,
         "propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
         "valueUrl": "http://purl.org/linked-data/cube#Observation"
+      },
+      {
+        "virtual": true,
+        "propertyUrl": "http://purl.org/linked-data/cube#dataSet",
+        "valueUrl": "http://ld.statistik.bs.ch/dataset/4223"
       }
     ]
   }

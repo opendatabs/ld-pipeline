@@ -4,7 +4,7 @@
     "delimiter": "\t"
   },
   "tableSchema": {
-    "aboutUrl": "http://ld.statistik.bs.ch/dataset/6502/{Wohnviertel}",
+    "aboutUrl": "http://ld.statistik.bs.ch/dataset/6502/observation/{Wohnviertel}",
     "columns": [
       {
         "titles": "Wohnviertel",
@@ -42,6 +42,11 @@
         "virtual": true,
         "propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
         "valueUrl": "http://purl.org/linked-data/cube#Observation"
+      },
+      {
+        "virtual": true,
+        "propertyUrl": "http://purl.org/linked-data/cube#dataSet",
+        "valueUrl": "http://ld.statistik.bs.ch/dataset/6502"
       }
     ]
   }
