@@ -4,17 +4,22 @@
     "delimiter": "\t"
   },
   "tableSchema": {
-    "aboutUrl": "http://ld.statistik.bs.ch/dataset/4132/observation/{Datum}",
+    "aboutUrl": "http://ld.data-bs.ch/dataset/4132/observation/{Datum}",
     "columns": [
       {
         "titles": "Datum",
-        "propertyUrl": "http://ld.statistik.bs.ch/property/datum",
+        "propertyUrl": "http://ld.data-bs.ch/property/datum",
         "datatype": "date"
       },
       {
         "titles": "Bevölkerung",
-        "propertyUrl": "http://ld.statistik.bs.ch/property/bevoelkerung",
+        "propertyUrl": "http://ld.data-bs.ch/property/bevoelkerung",
         "datatype": "integer"
+      },
+      {
+        "virtual": true,
+        "propertyUrl": "http://ld.data-bs.ch/property/raum",
+        "valueUrl": "http://ld.data-bs.ch/raum/bs"
       },
       {
         "virtual": true,
@@ -24,7 +29,7 @@
       {
         "virtual": true,
         "propertyUrl": "http://purl.org/linked-data/cube#dataSet",
-        "valueUrl": "http://ld.statistik.bs.ch/dataset/4132"
+        "valueUrl": "http://ld.data-bs.ch/dataset/4132"
       }
     ]
   }

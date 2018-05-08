@@ -5,9 +5,9 @@ The following query fetches all values from the Basel dataset:
 ```
 SELECT * WHERE {
   GRAPH <https://linked.opendata.swiss/graph/bs/statistics> {    
-    ?observation <http://purl.org/linked-data/cube#dataSet> <http://ld.statistik.bs.ch/dataset/4132> .
-    ?observation <http://ld.statistik.bs.ch/property/datum> ?zeit .
-    ?observation <http://ld.statistik.bs.ch/property/bevolkerung> ?bew .
+    ?observation <http://purl.org/linked-data/cube#dataSet> <http://ld.data-bs.ch/dataset/4132> .
+    ?observation <http://ld.data-bs.ch/property/datum> ?zeit .
+    ?observation <http://ld.data-bs.ch/property/bevoelkerung> ?bew .
   }
 }
 ```

@@ -9,7 +9,7 @@ function mapWohnviertel (quad) {
   let subject = quad.subject
   let object = quad.object
 
-  if (subject.value.startsWith('http://ld.statistik.bs.ch/observation/')) {
+  if (subject.value.startsWith('http://ld.data-bs.ch/observation/')) {
     // last part after / of the subject IRI
     const term = decodeURIComponent(quad.subject.value.split('/').pop())
 
@@ -20,8 +20,8 @@ function mapWohnviertel (quad) {
     subject = p.rdf.namedNode(base + '/' + mapString(term))
   }
 
-  if (object.value === 'http://ld.statistik.bs.ch/property/wohnviertel') {
-    object = p.rdf.namedNode('http://ld.statistik.bs.ch/code/wohnviertel/' + mapString(quad.object.value))
+  if (object.value === 'http://ld.data-bs.ch/property/wohnviertel') {
+    object = p.rdf.namedNode('http://ld.data-bs.ch/code/wohnviertel/' + mapString(quad.object.value))
   }
 
   return p.rdf.quad(subject, quad.predicate, object)

@@ -4,39 +4,39 @@
     "delimiter": "\t"
   },
   "tableSchema": {
-    "aboutUrl": "http://ld.statistik.bs.ch/dataset/6502/observation/{Wohnviertel}",
+    "aboutUrl": "http://ld.data-bs.ch/dataset/6502/observation/{Wohnviertel}",
     "columns": [
       {
         "titles": "Wohnviertel",
-        "propertyUrl": "http://ld.statistik.bs.ch/property/wohnviertel"
+        "propertyUrl": "http://ld.data-bs.ch/property/wohnviertel"
       },
       {
         "titles": "0-19",
-        "propertyUrl": "http://ld.statistik.bs.ch/property/0-19"
+        "propertyUrl": "http://ld.data-bs.ch/property/0-19"
       },
       {
         "titles": "20-39",
-        "propertyUrl": "http://ld.statistik.bs.ch/property/20-39"
+        "propertyUrl": "http://ld.data-bs.ch/property/20-39"
       },
       {
         "titles": "40-59",
-        "propertyUrl": "http://ld.statistik.bs.ch/property/40-59"
+        "propertyUrl": "http://ld.data-bs.ch/property/40-59"
       },
       {
         "titles": "60-79",
-        "propertyUrl": "http://ld.statistik.bs.ch/property/60-79"
+        "propertyUrl": "http://ld.data-bs.ch/property/60-79"
       },
       {
         "titles": "80-99",
-        "propertyUrl": "http://ld.statistik.bs.ch/property/80-99"
+        "propertyUrl": "http://ld.data-bs.ch/property/80-99"
       },
       {
         "titles": "100 u. ä.",
-        "propertyUrl": "http://ld.statistik.bs.ch/property/100-u.-a."
+        "propertyUrl": "http://ld.data-bs.ch/property/100-u.-a."
       },
       {
         "titles": "Total",
-        "propertyUrl": "http://ld.statistik.bs.ch/property/total"
+        "propertyUrl": "http://ld.data-bs.ch/property/total"
       },
       {
         "virtual": true,
@@ -46,7 +46,7 @@
       {
         "virtual": true,
         "propertyUrl": "http://purl.org/linked-data/cube#dataSet",
-        "valueUrl": "http://ld.statistik.bs.ch/dataset/6502"
+        "valueUrl": "http://ld.data-bs.ch/dataset/6502"
       }
     ]
   }

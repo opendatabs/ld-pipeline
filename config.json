@@ -2,7 +2,7 @@
   "columns": {
     "Jahr": {
       "titles": "Jahr",
-      "propertyUrl": "http://ld.statistik.bs.ch/property/jahr",
+      "propertyUrl": "http://ld.data-bs.ch/property/jahr",
       "datatype": "gYear"
     }
   },

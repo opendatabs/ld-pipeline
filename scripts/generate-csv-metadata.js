@@ -23,8 +23,8 @@ Object.keys(config.tasks).forEach(key => {
 
   // generate the CSVW Metadata object with the given base IRIs
   const metadata = createCsvMetadata(task.input,
-    'http://ld.statistik.bs.ch/dataset/',
-    'http://ld.statistik.bs.ch/property/', {
+    'http://ld.data-bs.ch/dataset/',
+    'http://ld.data-bs.ch/property/', {
       columns: config.columns
     })
 
