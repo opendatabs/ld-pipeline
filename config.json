@@ -120,6 +120,42 @@
           ]
         }
       ]
+    },
+    "6623": {
+      "url": "https://raw.githubusercontent.com/StataBS/indikatoren/master/data/6623.tsv",
+      "input": "tmp/6623.tsv",
+      "csv-metadata": "input/6623.csv-metadata.json",
+      "output": "target/6623.nt",
+      "steps": [
+        {
+          "operation": "file.read",
+          "arguments": [
+            "${this.input}"
+          ]
+        },
+        {
+          "operation": "csvw.parse",
+          "arguments": [
+            "${this['csv-metadata']}",
+            "file://${this.input.match(/[^/]*\\.tsv/)}"
+          ]
+        },
+        {
+          "operation": "filter",
+          "arguments": [
+            "./input/filter-not-undefined.js"
+          ]
+        },
+        {
+          "operation": "ntriples.serialize"
+        },
+        {
+          "operation": "file.write",
+          "arguments": [
+            "${this.output}"
+          ]
+        }
+      ]
     }
   }
 }
