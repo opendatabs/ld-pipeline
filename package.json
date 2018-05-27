@@ -9,18 +9,19 @@
   },
   "dependencies": {
     "barnard59": "git+https://github.com/zazuko/barnard59.git#master",
-    "duplexify": "^3.5.4",
-    "slug": "^0.9.1"
+    "bluebird": "^3.5.1",
+    "duplexify": "^3.6.0",
+    "slug": "^0.9.1",
+    "wellknown": "^0.5.0"
   },
   "devDependencies": {
     "standard": "^11.0.1"
   },
   "scripts": {
-    "fetch": "node scripts/fetch",
-    "generate-config": "node scripts/generate-config",
+    "fetch": "node scripts/fetch test",
     "generate-csv-metadata": "node scripts/generate-csv-metadata",
     "convert": "node --trace-warnings scripts/convert",
     "test": "standard",
-    "upload": "node scripts/upload"
+    "upload": "node scripts/upload test && scripts/upload.sh"
   }
 }

@@ -1,21 +1,30 @@
-const config = require('../lib/config').read()
+const c = require('../lib/config')
 const fs = require('fs')
 const p = require('barnard59')
-const upload = require('../lib/upload')
+// const upload = require('../lib/upload')
 
-const input = p.concat(Object.keys(config.tasks).map(key => {
-  const task = config.tasks[key]
+const target = process.argv[2] || 'test'
 
-  return () => {
-    return fs.createReadStream(task.output)
-  }
-}))
+c.read().then(config => {
+  const input = p.concat(Object.keys(config.tasks).filter(key => config.tasks[key].output).map(key => {
+    const task = config.tasks[key]
 
-const output = upload('https://test.lindas-data.ch:8443/lindas', 'https://linked.opendata.swiss/graph/bs/statistics', {
-  authentication: {
-    user: process.env.SPARQL_ENDPOINT_USER,
-    password: process.env.SPARQL_ENDPOINT_PASSWORD
-  }
+    return () => {
+      return fs.createReadStream(task.output)
+    }
+  }))
+
+  // TODO: not working, curl says: "Signaling end of chunked upload via terminating chunk."
+  /*
+  const output = upload(config.upload[target].graphStoreEndpoint, config.upload[target].namedGraph, {
+    authentication: {
+      user: process.env.SPARQL_USER,
+      password: process.env.SPARQL_PASSWORD
+    }
+  })
+  */
+
+  const output = fs.createWriteStream('tmp/output.nt')
+
+  input.pipe(output)
 })
-
-input.pipe(output)

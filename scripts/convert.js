@@ -1,25 +1,39 @@
-const config = require('../lib/config').read()
+const c = require('../lib/config')
 const p = require('barnard59')
 const pipeline = require('../lib/pipeline')
 
-p.shell.mkdir('-p', 'target/')
+c.read().then(config => {
+  p.shell.mkdir('-p', 'target/')
 
-p.run(() => {
-  // run one task after another
-  return p.Promise.serially(Object.keys(config.tasks), key => {
-    const task = config.tasks[key]
+  return p.run(() => {
+    // run one task after another
+    return p.Promise.serially(Object.keys(config.tasks), key => {
+      const task = config.tasks[key]
 
-    // ignore tasks without steps
-    if (!task.steps) {
-      return
-    }
+      // ignore abstract tasks
+      if (task.abstract) {
+        return
+      }
 
-    console.log(`processing task ${key}`)
+      let steps = task.steps
 
-    // build the pipeline...
-    return pipeline(task.steps, task).then(stream => {
-      // ...and run it
-      return p.run(stream)
+      // if steps is a string, load steps from another task with the given key
+      if (typeof steps === 'string') {
+        steps = config.tasks[steps].steps
+      }
+
+      // ignore tasks without steps
+      if (!steps) {
+        return
+      }
+
+      console.log(`processing task ${key}`)
+
+      // build the pipeline...
+      return pipeline(steps, task).then(stream => {
+        // ...and run it
+        return p.run(stream)
+      })
     })
   })
 }).then(() => {

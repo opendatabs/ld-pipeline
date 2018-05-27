@@ -1,33 +1,43 @@
-const config = require('../lib/config').read()
+const c = require('../lib/config')
 const createCsvMetadata = require('../lib/csv-metadata').create
 const filename = require('../lib/filename')
 const fs = require('fs')
 const p = require('barnard59')
 
-p.shell.mkdir('-p', 'input/')
+c.read().then(config => {
+  p.shell.mkdir('-p', 'tmp/input-metadata')
 
-Object.keys(config.tasks).forEach(key => {
-  const task = config.tasks[key]
+  Object.keys(config.tasks).forEach(key => {
+    const task = config.tasks[key]
 
-  // only create new CSVW Metadata files
-  if (p.shell.test('-f', filename(task['csv-metadata']))) {
-    return
-  }
+    // ignore abstract tasks
+    if (task.abstract) {
+      return
+    }
 
-  // the input file is required to generate the CSVW Metadata file
-  if (!p.shell.test('-f', task.input)) {
-    return console.error(`file ${task.input} does not exist`)
-  }
+    // ignore tasks which don't point to a JSON description
+    if (!task['json-data']) {
+      return
+    }
 
-  console.log(`generate csv-metadata for ${key}`)
+    // JSON description file
+    const json = JSON.parse(fs.readFileSync(task['json-data']).toString())
 
-  // generate the CSVW Metadata object with the given base IRIs
-  const metadata = createCsvMetadata(task.input,
-    'http://ld.data-bs.ch/dataset/',
-    'http://ld.data-bs.ch/property/', {
-      columns: config.columns
-    })
+    // read delimiter from JSON description file
+    const delimiter = json.delimiter
 
-  // resolve the absolute path and store the CSVW Metadata object
-  fs.writeFileSync(filename(task['csv-metadata']), JSON.stringify(metadata, null, '  '))
+    // read table schema from JSON description file
+    const tableSchema = json.tableSchema
+
+    // generate the CSVW Metadata object with the given base IRIs
+    const metadata = createCsvMetadata(task.input,
+      'http://ld.data-bs.ch/dataset/',
+      'http://ld.data-bs.ch/property/', {
+        delimiter,
+        tableSchema
+      })
+
+    // resolve the absolute path and store the CSVW Metadata object
+    fs.writeFileSync(filename(task['csv-metadata']), JSON.stringify(metadata, null, '  '))
+  })
 })

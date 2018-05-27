@@ -1,0 +1,61 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "dialect": {
+    "delimiter": "\t"
+  },
+  "tableSchema": {
+    "aboutUrl": "http://ld.data-bs.ch/code/raum/Wohnbezirk{wohnbezirk_id}",
+    "columns": [
+      {
+        "titles": "wohnbezirk_name",
+        "propertyUrl": "http://www.w3.org/2000/01/rdf-schema#label"
+      },
+      {
+        "titles": "wohnbezirk_id",
+        "propertyUrl": "http://www.w3.org/2004/02/skos/core#notation"
+      },
+      {
+        "titles": "wohnviertel_name",
+        "suppressOutput": true
+      },
+      {
+        "titles": "wohnviertel_name_kurz",
+        "suppressOutput": true
+      },
+      {
+        "titles": "wohnviertel_id",
+        "propertyUrl": "http://www.w3.org/2004/02/skos/core#broader",
+        "valueUrl": "http://ld.data-bs.ch/code/raum/Wohnviertel{wohnviertel_id}"
+      },
+      {
+        "titles": "gemeinde_name",
+        "suppressOutput": true
+      },
+      {
+        "titles": "gemeinde_id_bfs",
+        "suppressOutput": true
+      },
+      {
+        "titles": "kanton_name",
+        "suppressOutput": true
+      },
+      {
+        "titles": "kanton_name_kurz",
+        "suppressOutput": true
+      },
+      {
+        "titles": "kanton_id_bfs",
+        "suppressOutput": true
+      },
+      {
+        "titles": "sort_order",
+        "suppressOutput": true
+      },
+      {
+        "virtual": true,
+        "propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "valueUrl": "http://www.w3.org/2004/02/skos/core#Concept"
+      }
+    ]
+  }
+}

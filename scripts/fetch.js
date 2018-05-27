@@ -1,16 +1,9 @@
 const p = require('barnard59')
-const config = require('../lib/config').read()
+const c = require('../lib/config')
 
-p.shell.mkdir('-p', 'tmp')
+const target = process.argv[2] || 'test'
 
-Object.keys(config.tasks).forEach(key => {
-  const task = config.tasks[key]
-
-  // ignore tasks without URL
-  if (!task.url) {
-    return
-  }
-
-  // fetch the URLs using curl and store the result in the file defined in task.input
-  p.shell.exec(`curl -o "${task.input}" "${task.url}"`)
+c.read({skipExpand: true}).then(config => {
+  p.shell.mkdir('-p', 'tmp')
+  p.shell.exec(`git clone --depth=1 ${config.fetch[target].repository} tmp/input-data`)
 })

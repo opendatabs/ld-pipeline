@@ -1,0 +1,82 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "dialect": {
+    "delimiter": "\t"
+  },
+  "tableSchema": {
+    "aboutUrl": "http://ld.data-bs.ch/code/raum/Kanton",
+    "columns": [
+      {
+        "titles": "wohnbezirk_name",
+        "suppressOutput": true
+      },
+      {
+        "titles": "wohnbezirk_id",
+        "suppressOutput": true
+      },
+      {
+        "titles": "wohnviertel_name",
+        "suppressOutput": true
+      },
+      {
+        "titles": "wohnviertel_name_kurz",
+        "suppressOutput": true
+      },
+      {
+        "titles": "wohnviertel_id",
+        "suppressOutput": true
+      },
+      {
+        "titles": "gemeinde_name",
+        "suppressOutput": true
+      },
+      {
+        "titles": "gemeinde_id_bfs",
+        "propertyUrl": "http://www.w3.org/2004/02/skos/core#narrower",
+        "valueUrl": "http://ld.data-bs.ch/code/raum/Gemeinde{gemeinde_id_bfs}"
+      },
+      {
+        "titles": "kanton_name",
+        "propertyUrl": "http://www.w3.org/2000/01/rdf-schema#label"
+      },
+      {
+        "titles": "kanton_name_kurz",
+        "suppressOutput": true
+      },
+      {
+        "titles": "kanton_id_bfs",
+        "propertyUrl": "http://www.w3.org/2004/02/skos/core#notation"
+      },
+      {
+        "titles": "sort_order",
+        "suppressOutput": true
+      },
+      {
+        "titles": "effective_from",
+        "suppressOutput": true
+      },
+      {
+        "titles": "effective_to",
+        "suppressOutput": true
+      },
+      {
+        "titles": "wohnbezirk_flaeche_m2",
+        "suppressOutput": true
+      },
+      {
+        "titles": "wohnviertel_flaeche_m2",
+        "suppressOutput": true
+      },
+      {
+        "virtual": true,
+        "propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "valueUrl": "http://www.w3.org/2004/02/skos/core#Concept"
+      },
+      {
+        "virtual": true,
+        "propertyUrl": "http://www.w3.org/2004/02/skos/core#broader",
+        "valueUrl": "http://ld.data-bs.ch/code/raum/Kanton"
+      }
+    ]
+  }
+}
