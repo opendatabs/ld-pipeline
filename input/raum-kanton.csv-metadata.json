@@ -69,13 +69,13 @@
       },
       {
         "virtual": true,
-        "propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-        "valueUrl": "http://www.w3.org/2004/02/skos/core#Concept"
+        "propertyUrl": "http://www.w3.org/2002/07/owl#sameAs",
+        "valueUrl": "https://ld.geo.admin.ch/boundaries/canton/{kanton_id_bfs}"
       },
       {
         "virtual": true,
-        "propertyUrl": "http://www.w3.org/2004/02/skos/core#broader",
-        "valueUrl": "http://ld.data-bs.ch/code/raum/Kanton"
+        "propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "valueUrl": "http://www.w3.org/2004/02/skos/core#Concept"
       }
     ]
   }
