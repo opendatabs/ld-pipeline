@@ -1,9 +1,10 @@
 const c = require('../lib/config')
 const fs = require('fs')
 const p = require('barnard59')
+const path = require('path')
 // const upload = require('../lib/upload')
 
-const target = process.argv[2] || 'test'
+const target = process.argv[2] || 'staging'
 
 c.read().then(config => {
   const input = p.concat(Object.keys(config.tasks).filter(key => config.tasks[key].output).map(key => {
@@ -26,5 +27,9 @@ c.read().then(config => {
 
   const output = fs.createWriteStream('tmp/output.nt')
 
-  input.pipe(output)
+  return p.run(input.pipe(output)).then(() => {
+    const configTarget = config.upload[target]
+
+    p.shell.exec(`ENDPOINT=${configTarget.graphStoreEndpoint} USER=$SPARQL_USER:$SPARQL_PASSWORD GRAPH=${configTarget.namedGraph} INPUT=tmp/output.nt ${path.join(__dirname, 'upload.sh')}`)
+  })
 })

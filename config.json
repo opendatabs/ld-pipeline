@@ -1,13 +1,20 @@
 {
   "fetch": {
-    "test": {
+    "staging": {
+      "repository": "https://github.com/bergos/indikatoren.git"
+    },
+    "production": {
       "repository": "https://github.com/StataBS/indikatoren.git"
     }
   },
   "upload": {
-    "test": {
+    "staging": {
       "namedGraph": "https://linked.opendata.swiss/graph/bs/statistics",
       "graphStoreEndpoint": "http://data.zazuko.com/statabs"
+    },
+    "production": {
+      "namedGraph": "https://linked.opendata.swiss/graph/bs/statistics",
+      "graphStoreEndpoint": "https://lindas-data.ch:8443/lindas"
     }
   },
   "tasks": {
@@ -84,7 +91,7 @@
       "steps": "raum"
     },
     "raum-gemeinde-geojson": {
-      "inputGeoJson": "tmp/input-data/geojson/Gemeinde_Basel.json",
+      "inputGeoJson": "tmp/input-data/geojson/Gemeinden.json",
       "subjectGeoJson": "http://ld.data-bs.ch/code/raum/Gemeinde${R2_BFSNR}",
       "output": "target/raum-gemeinde-geojson.nt",
       "steps": "raum-geojson"

@@ -1,7 +1,7 @@
 const p = require('barnard59')
 const c = require('../lib/config')
 
-const target = process.argv[2] || 'test'
+const target = process.argv[2] || 'staging'
 
 c.read({skipExpand: true}).then(config => {
   p.shell.mkdir('-p', 'tmp')
