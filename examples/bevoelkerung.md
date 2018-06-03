@@ -57,6 +57,10 @@ SELECT ?zeit (?bew AS ?bev) ?raumLabel WHERE {{
 }} ORDER BY ?zeit ?raum
 ```
 
+To show the data in a chart click on `Pivot Table` and configure the columns like shown in the picture:
+
+![YASGUI Chart Config](https://cdn.rawgit.com/StataBS/ld-pipeline/master/examples/yasgui-chart-config.png)
+
 If the geometry is also selected, the map can be used to display the data:
 
 ```
