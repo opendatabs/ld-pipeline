@@ -161,6 +161,15 @@
           ]
         },
         {
+          "operation": "map",
+          "arguments": [
+            "./input/map-observation-from-dataset.js"
+          ]
+        },
+        {
+          "operation": "flatten"
+        },
+        {
           "operation": "custom.jsonData",
           "arguments": [
             "${this['json-data']}",
