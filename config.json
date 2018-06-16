@@ -18,6 +18,30 @@
     }
   },
   "tasks": {
+    "base": {
+      "input": "tmp/input-data/metadata/lod.ttl",
+      "output": "target/base.nt",
+      "steps": [
+        {
+          "operation": "file.read",
+          "arguments": [
+            "${this.input}"
+          ]
+        },
+        {
+          "operation": "turtle.parse"
+        },
+        {
+          "operation": "ntriples.serialize"
+        },
+        {
+          "operation": "file.write",
+          "arguments": [
+            "${this.output}"
+          ]
+        }
+      ]
+    },
     "raum-geojson": {
       "abstract": true,
       "steps": [
