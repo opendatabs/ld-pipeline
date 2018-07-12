@@ -1,4 +1,4 @@
-const c = require('../lib/config')
+const c = require('../lib/indikatoren-config')
 const p = require('barnard59')
 const pipeline = require('../lib/pipeline')
 

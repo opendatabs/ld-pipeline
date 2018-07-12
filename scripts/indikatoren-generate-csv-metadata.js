@@ -1,11 +1,11 @@
-const c = require('../lib/config')
+const c = require('../lib/indikatoren-config')
 const createCsvMetadata = require('../lib/csv-metadata').create
 const filename = require('../lib/filename')
 const fs = require('fs')
 const p = require('barnard59')
 
 c.read().then(config => {
-  p.shell.mkdir('-p', 'tmp/input-metadata')
+  p.shell.mkdir('-p', 'tmp/indikatoren-input-metadata')
 
   Object.keys(config.tasks).forEach(key => {
     const task = config.tasks[key]

@@ -1,4 +1,4 @@
-const c = require('../lib/config')
+const c = require('../lib/indikatoren-config')
 const fs = require('fs')
 const p = require('barnard59')
 const path = require('path')
@@ -25,11 +25,11 @@ c.read().then(config => {
   })
   */
 
-  const output = fs.createWriteStream('tmp/output.nt')
+  const output = fs.createWriteStream('tmp/indikatoren-output.nt')
 
   return p.run(input.pipe(output)).then(() => {
     const configTarget = config.upload[target]
 
-    p.shell.exec(`ENDPOINT=${configTarget.graphStoreEndpoint} USER=$SPARQL_USER:$SPARQL_PASSWORD GRAPH=${configTarget.namedGraph} INPUT=tmp/output.nt ${path.join(__dirname, 'upload.sh')}`)
+    p.shell.exec(`ENDPOINT=${configTarget.graphStoreEndpoint} USER=$SPARQL_USER:$SPARQL_PASSWORD GRAPH=${configTarget.namedGraph} INPUT=tmp/indikatoren-output.nt ${path.join(__dirname, 'upload.sh')}`)
   })
 })

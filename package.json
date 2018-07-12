@@ -18,12 +18,12 @@
     "standard": "^11.0.1"
   },
   "scripts": {
-    "fetch-staging": "node scripts/fetch staging",
-    "fetch-production": "node scripts/fetch production",
-    "generate-csv-metadata": "node scripts/generate-csv-metadata",
-    "convert": "node --trace-warnings scripts/convert",
+    "indikatoren-fetch-staging": "node scripts/indikatoren-fetch staging",
+    "indikatoren-fetch-production": "node scripts/indikatoren-fetch production",
+    "indikatoren-generate-csv-metadata": "node scripts/indikatoren-generate-csv-metadata",
+    "indikatoren-convert": "node --trace-warnings scripts/indikatoren-convert",
     "test": "standard",
-    "upload-staging": "node scripts/upload staging",
-    "upload-production": "node scripts/upload production"
+    "indikatoren-upload-staging": "node scripts/indikatoren-upload staging",
+    "indikatoren-upload-production": "node scripts/indikatoren-upload production"
   }
 }

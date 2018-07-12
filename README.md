@@ -11,29 +11,29 @@ All scripts are configured as `npm` scripts and can be run like:
 npm run $script
 ```
 
-The `config.json` files contains details about the pipeline steps, file patterns, URL patterns etc.
+The `*-config.json` files contain details about the pipeline steps, file patterns, URL patterns etc.
 
 ## Scripts
 
-### fetch-production, fetch-staging
+### indikatoren-fetch-production, indikatoren-fetch-staging
 
-The `fetch-` script clones the [Indikatoren repository](#indikatoren) into the local folder `tmp/input-data`.
+The `indikatoren-fetch-` script clones the [Indikatoren repository](#indikatoren) into the local folder `tmp/indikatoren-input-data`.
 The actual repository URL is read from the [config](#config) from the property `fetch/$TARGET/repository`.
 
-### generate-csv-metadata
+### indikatoren-generate-csv-metadata
 
-The `generate-csv-metadata` script generates CSVW Metadata files based on [Indikatoren metadata](#indikatoren-metadata).
+The `indikatoren-generate-csv-metadata` script generates CSVW Metadata files based on [Indikatoren metadata](#indikatoren-metadata).
 Based on the [publishLod](#publishLod) flag the CSVW Metadata file are generated.
-The generated CSVW Metadata files are stored at `tmp/input-metadata`.
+The generated CSVW Metadata files are stored at `tmp/indikatoren-input-metadata`.
 
-### convert
+### indikatoren-convert
 
-The `convert` script runs all steps defined in the [config](#config) with the property `task/*`.
+The `indikatoren-convert` script runs all steps defined in the [config](#config) with the property `task/*`.
 Tasks with the `abstract` property and boolean true value are ignored.
 Based on the [publishLod](#publishLod) flag tasks are added during runtime.
-For details see the code in `lib/expand-config.js`.
+For details see the code in `lib/indikatoren-expand-config.js`.
 
-### upload-production, upload-staging
+### indikatoren-upload-production, indikatoren-upload-staging
 
 These scripts combine all files from all task defined in the property `output` to a single file (`tmp/output.nt`).
 Dynamic tasks based on the [publishLod](#publishLod) flag are also included.
@@ -122,8 +122,8 @@ For Literal objects, the property `datatype` can be defined to use a specific da
 
 ### Config
 
-The configuration is read from the file `config.json`.
-Based on the [publishLod](#publishLod) flag, the configuration is dynamically extended.
+The configuration is read from the file `*-config.json`.
+The Indikatoren config is dynamically extended based on the [publishLod](#publishLod) flag.
 
 ### Indikatoren
 
