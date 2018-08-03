@@ -1,0 +1,112 @@
+{
+  "ftp-server": {
+    "staging": {
+      "host": "localhost",
+      "port": 8020
+    },
+    "production": {
+      "host": "rues.data-bs.ch"
+    }
+  },
+  "upload": {
+    "staging": {
+      "namedGraph": "https://linked.opendata.swiss/graph/bs/rhein-ues-weil",
+      "graphStoreEndpoint": "http://data.zazuko.com/statabs"
+    },
+    "production": {
+      "namedGraph": "https://linked.opendata.swiss/graph/bs/rhein-ues-weil",
+      "graphStoreEndpoint": "https://lindas-data.ch:8443/lindas"
+    }
+  },
+  "tasks": {
+    "rhein-ues-weil": {
+      "inputPath": "onlinedaten/roh/archiv_sql",
+      "steps": [
+        {
+          "operation": "ftp.list",
+          "arguments": [
+            "${this.inputPath}",
+            "${JSON.stringify(this.global['ftp-server'][this.global.target])}"
+          ]
+        }, {
+          "operation": "pipeline.forEach",
+          "arguments": [
+            "rhein-ues-weil-loop",
+            "filename"
+          ]
+        }, {
+          "operation": "stdout"
+        }
+      ]
+    },
+    "rhein-ues-weil-loop": {
+      "csv-metadata": "input/rhein-ues-weil.csv-metadata.json",
+      "steps": [
+        {
+          "operation": "ftp.read",
+          "arguments": [
+            "${this.filename}",
+            "${JSON.stringify(this.global['ftp-server'][this.global.target])}"
+          ]
+        },
+        {
+          "operation": "csvw.parse",
+          "arguments": [
+            "${this['csv-metadata']}",
+            "http://localhost/"
+          ]
+        },
+        {
+          "operation": "filter",
+          "arguments": [
+            "./input/filter-not-csvw.js"
+          ]
+        },
+        {
+          "operation": "map",
+          "arguments": [
+            "./input/map-subject-to-iso-date.js"
+          ]
+        },
+        {
+          "operation": "map",
+          "arguments": [
+            "./input/map-object-to-iso-date.js"
+          ]
+        },
+        {
+          "operation": "map",
+          "arguments": [
+            "./input/map-observation-from-dataset.js"
+          ]
+        },
+        {
+          "operation": "flatten"
+        },
+        {
+          "operation": "ntriples.serialize"
+        },
+        {
+          "operation": "file.write",
+          "arguments": [
+            "target/rhein-ues-weil/${this.filename.split('/').pop()}.nt"
+          ]
+        },
+        {
+          "operation": "bash.cmd",
+          "arguments": [
+            "ENDPOINT=${this.global.upload[this.global.target].graphStoreEndpoint} USER=$SPARQL_USER:$SPARQL_PASSWORD GRAPH=${this.global.upload[this.global.target].namedGraph} INPUT=target/rhein-ues-weil/${this.filename.split('/').pop()}.nt ./scripts/upload-append.sh"
+          ]
+        },
+        {
+          "operation": "ftp.rename",
+          "arguments": [
+            "${this.filename}",
+            "onlinedaten/roh/archiv_lod/${this.filename.split('/').pop()}",
+            "${JSON.stringify(this.global['ftp-server'][this.global.target])}"
+          ]
+        }
+      ]
+    }
+  }
+}

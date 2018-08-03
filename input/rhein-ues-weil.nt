@@ -1,0 +1,44 @@
+<http://ld.data-bs.ch/dataset/rhein-ues-weil> <http://www.w3.org/2000/01/rdf-schema#label> "Messwerte der Rheinüberwachungsstation Weil am Rhein (RÜS)" .
+<http://ld.data-bs.ch/dataset/rhein-ues-weil> <http://www.w3.org/2000/01/rdf-schema#description> "Leitfähigkeit, Sauerstoffgehalt, pH-Wert, Temperatur an der Rheinüberwachungsstation Weil am Rhein" .
+<http://ld.data-bs.ch/dataset/rhein-ues-weil> <http://purl.org/linked-data/cube#structure> <http://ld.data-bs.ch/dataset/rhein-ues-weil/structure> .
+<http://ld.data-bs.ch/dataset/rhein-ues-weil> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#DataSet> .
+<http://ld.data-bs.ch/dataset/rhein-ues-weil> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#Slice> .
+<http://ld.data-bs.ch/dataset/rhein-ues-weil/structure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#DataStructureDefinition> .
+<http://ld.data-bs.ch/dataset/rhein-ues-weil/structure> <http://purl.org/linked-data/cube#component> <http://ld.data-bs.ch/property/start> .
+<http://ld.data-bs.ch/dataset/rhein-ues-weil/structure> <http://purl.org/linked-data/cube#component> <http://ld.data-bs.ch/property/end> .
+<http://ld.data-bs.ch/dataset/rhein-ues-weil/structure> <http://purl.org/linked-data/cube#component> <http://ld.data-bs.ch/property/electrical-conductivity> .
+<http://ld.data-bs.ch/dataset/rhein-ues-weil/structure> <http://purl.org/linked-data/cube#component> <http://ld.data-bs.ch/property/oxygen-saturation> .
+<http://ld.data-bs.ch/dataset/rhein-ues-weil/structure> <http://purl.org/linked-data/cube#component> <http://ld.data-bs.ch/property/ph> .
+<http://ld.data-bs.ch/dataset/rhein-ues-weil/structure> <http://purl.org/linked-data/cube#component> <http://ld.data-bs.ch/property/temperature> .
+<http://ld.data-bs.ch/dataset/rhein-ues-weil/structure> <http://purl.org/linked-data/cube#component> <http://ld.data-bs.ch/property/observedBy> .
+<http://ld.data-bs.ch/object/rhein-ues-weil> <http://www.w3.org/2000/01/rdf-schema#label> "Rheinüberwachungsstation Weil am Rhein (RÜS)" .
+<http://ld.data-bs.ch/object/rhein-ues-weil> <http://www.w3.org/2000/01/rdf-schema#description> "Rheinüberwachungsstation Weil am Rhein (Träger: Schweizerischen Eidgenossenschaft; Bundesamt für Umwelt (BAFU) & Land Baden-Württemberg; Ministerium für Umwelt, Klima und Energiewirtschaft / Landesanstalt für Umwelt, Messungen und Naturschutz Baden-Württemberg (LUBW))" .
+<http://ld.data-bs.ch/object/rhein-ues-weil> <http://www.opengis.net/ont/geosparql#hasGeometry> "POINT (7.594868 47.601299)" .
+<http://ld.data-bs.ch/property/start> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#ComponentSpecification> .
+<http://ld.data-bs.ch/property/start> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#DimensionProperty> .
+<http://ld.data-bs.ch/property/start> <http://www.w3.org/2000/01/rdf-schema#label> "Start" .
+<http://ld.data-bs.ch/property/start> <http://purl.org/linked-data/cube#dimension> <http://ld.data-bs.ch/property/start> .
+<http://ld.data-bs.ch/property/end> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#ComponentSpecification> .
+<http://ld.data-bs.ch/property/end> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#DimensionProperty> .
+<http://ld.data-bs.ch/property/end> <http://www.w3.org/2000/01/rdf-schema#label> "Ende" .
+<http://ld.data-bs.ch/property/end> <http://purl.org/linked-data/cube#dimension> <http://ld.data-bs.ch/property/end> .
+<http://ld.data-bs.ch/property/electrical-conductivity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#ComponentSpecification> .
+<http://ld.data-bs.ch/property/electrical-conductivity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#DimensionProperty> .
+<http://ld.data-bs.ch/property/electrical-conductivity> <http://www.w3.org/2000/01/rdf-schema#label> "Elektrische Leitfähigkeit" .
+<http://ld.data-bs.ch/property/electrical-conductivity> <http://purl.org/linked-data/cube#dimension> <http://ld.data-bs.ch/property/electrical-conductivity> .
+<http://ld.data-bs.ch/property/oxygen-saturation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#ComponentSpecification> .
+<http://ld.data-bs.ch/property/oxygen-saturation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#DimensionProperty> .
+<http://ld.data-bs.ch/property/oxygen-saturation> <http://www.w3.org/2000/01/rdf-schema#label> "Sauerstoffsättigungsindex" .
+<http://ld.data-bs.ch/property/oxygen-saturation> <http://purl.org/linked-data/cube#dimension> <http://ld.data-bs.ch/property/oxygen-saturation> .
+<http://ld.data-bs.ch/property/ph> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#ComponentSpecification> .
+<http://ld.data-bs.ch/property/ph> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#DimensionProperty> .
+<http://ld.data-bs.ch/property/ph> <http://www.w3.org/2000/01/rdf-schema#label> "pH-Wert" .
+<http://ld.data-bs.ch/property/ph> <http://purl.org/linked-data/cube#dimension> <http://ld.data-bs.ch/property/ph> .
+<http://ld.data-bs.ch/property/temperature> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#ComponentSpecification> .
+<http://ld.data-bs.ch/property/temperature> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#DimensionProperty> .
+<http://ld.data-bs.ch/property/temperature> <http://www.w3.org/2000/01/rdf-schema#label> "Temperatur" .
+<http://ld.data-bs.ch/property/temperature> <http://purl.org/linked-data/cube#dimension> <http://ld.data-bs.ch/property/temperature> .
+<http://ld.data-bs.ch/property/observedBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#ComponentSpecification> .
+<http://ld.data-bs.ch/property/observedBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/linked-data/cube#DimensionProperty> .
+<http://ld.data-bs.ch/property/observedBy> <http://www.w3.org/2000/01/rdf-schema#label> "ermittelt von" .
+<http://ld.data-bs.ch/property/observedBy> <http://purl.org/linked-data/cube#dimension> <http://ld.data-bs.ch/property/observedBy> .

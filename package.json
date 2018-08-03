@@ -11,6 +11,9 @@
     "barnard59": "git+https://github.com/zazuko/barnard59.git#master",
     "bluebird": "^3.5.1",
     "duplexify": "^3.6.0",
+    "ftp": "^0.3.10",
+    "lodash": "^4.17.10",
+    "moment": "^2.22.2",
     "slug": "^0.9.1",
     "wellknown": "^0.5.0"
   },
@@ -22,8 +25,12 @@
     "indikatoren-fetch-production": "node scripts/indikatoren-fetch production",
     "indikatoren-generate-csv-metadata": "node scripts/indikatoren-generate-csv-metadata",
     "indikatoren-convert": "node --trace-warnings scripts/indikatoren-convert",
-    "test": "standard",
     "indikatoren-upload-staging": "node scripts/indikatoren-upload staging",
-    "indikatoren-upload-production": "node scripts/indikatoren-upload production"
+    "indikatoren-upload-production": "node scripts/indikatoren-upload production",
+    "rhein-ues-weil-staging": "node scripts/rhein-ues-weil staging",
+    "rhein-ues-weil-production": "node scripts/rhein-ues-weil production",
+    "rhein-ues-weil-upload-metadata-staging": "node scripts/rhein-ues-weil-metadata staging",
+    "rhein-ues-weil-upload-metadata-production": "node scripts/rhein-ues-weil-metadata production",
+    "test": "standard"
   }
 }
