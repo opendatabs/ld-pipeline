@@ -105,6 +105,9 @@
             "onlinedaten/roh/archiv_lod/${this.filename.split('/').pop()}",
             "${JSON.stringify(this.global['ftp-server'][this.global.target])}"
           ]
+        },
+        {
+          "operation": "null"
         }
       ]
     }
