@@ -26,10 +26,12 @@
     "indikatoren-convert": "node --trace-warnings scripts/indikatoren-convert",
     "indikatoren-upload-staging": "node scripts/indikatoren-upload staging",
     "indikatoren-upload-production": "node scripts/indikatoren-upload production",
-    "rhein-ues-weil-staging": "node scripts/rhein-ues-weil staging",
-    "rhein-ues-weil-production": "node scripts/rhein-ues-weil production",
-    "rhein-ues-weil-upload-metadata-staging": "node scripts/rhein-ues-weil-metadata staging",
-    "rhein-ues-weil-upload-metadata-production": "node scripts/rhein-ues-weil-metadata production",
+    "rhein-ues-weil-metadata-staging": "node scripts/rhein-ues-weil rhein-ues-weil-metadata staging",
+    "rhein-ues-weil-metadata-production": "node scripts/rhein-ues-weil rhein-ues-weil-metadata production",
+    "rhein-ues-weil-raw-staging": "node scripts/rhein-ues-weil rhein-ues-weil-raw staging",
+    "rhein-ues-weil-raw-production": "node scripts/rhein-ues-weil rhein-ues-weil-raw production",
+    "rhein-ues-weil-corrected-staging": "node scripts/rhein-ues-weil rhein-ues-weil-corrected staging",
+    "rhein-ues-weil-corrected-production": "node scripts/rhein-ues-weil rhein-ues-weil-corrected production",
     "test": "standard"
   }
 }
