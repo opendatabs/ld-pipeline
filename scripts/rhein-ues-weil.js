@@ -22,6 +22,14 @@ c.read().then(config => {
     config['ftp-server'][config.target].password = process.env.FTP_PASSWORD
   }
 
+  if (process.env.SPARQL_USER) {
+    config.upload[config.target].user = process.env.SPARQL_USER
+  }
+
+  if (process.env.SPARQL_PASSWORD) {
+    config.upload[config.target].password = process.env.SPARQL_PASSWORD
+  }
+
   return p.run(() => {
     const task = config.tasks[taskName]
 
