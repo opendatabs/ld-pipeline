@@ -4,7 +4,7 @@
     "delimiter": "\t"
   },
   "tableSchema": {
-    "aboutUrl": "http://ld.data-bs.ch/code/raum/Wohnviertel{wohnviertel_id}",
+    "aboutUrl": "https://ld.data-bs.ch/code/raum/Wohnviertel{wohnviertel_id}",
     "columns": [
       {
         "titles": "wohnbezirk_name",
@@ -13,7 +13,7 @@
       {
         "titles": "wohnbezirk_id",
         "propertyUrl": "http://www.w3.org/2004/02/skos/core#narrower",
-        "valueUrl": "http://ld.data-bs.ch/code/raum/Wohnbezirk{wohnbezirk_id}"
+        "valueUrl": "https://ld.data-bs.ch/code/raum/Wohnbezirk{wohnbezirk_id}"
       },
       {
         "titles": "wohnviertel_name",
@@ -34,7 +34,7 @@
       {
         "titles": "gemeinde_id_bfs",
         "propertyUrl": "http://www.w3.org/2004/02/skos/core#broader",
-        "valueUrl": "http://ld.data-bs.ch/code/raum/Gemeinde{gemeinde_id_bfs}"
+        "valueUrl": "https://ld.data-bs.ch/code/raum/Gemeinde{gemeinde_id_bfs}"
       },
       {
         "titles": "kanton_name",

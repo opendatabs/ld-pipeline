@@ -116,7 +116,7 @@
     },
     "raum-gemeinde-geojson": {
       "inputGeoJson": "tmp/indikatoren-input-data/geojson/Gemeinden.json",
-      "subjectGeoJson": "http://ld.data-bs.ch/code/raum/Gemeinde${R2_BFSNR}",
+      "subjectGeoJson": "https://ld.data-bs.ch/code/raum/Gemeinde${R2_BFSNR}",
       "output": "target/raum-gemeinde-geojson.nt",
       "steps": "raum-geojson"
     },
@@ -128,7 +128,7 @@
     },
     "raum-kanton-geojson": {
       "inputGeoJson": "tmp/indikatoren-input-data/geojson/Kanton.json",
-      "subjectGeoJson": "http://ld.data-bs.ch/code/raum/Kanton",
+      "subjectGeoJson": "https://ld.data-bs.ch/code/raum/Kanton",
       "output": "target/raum-kanton-geojson.nt",
       "steps": "raum-geojson"
     },
@@ -140,7 +140,7 @@
     },
     "raum-wohnbezirk-geojson": {
       "inputGeoJson": "tmp/indikatoren-input-data/geojson/bezirke.json",
-      "subjectGeoJson": "http://ld.data-bs.ch/code/raum/Wohnbezirk${ZTXT.match(new RegExp('0*([1-9]{1}[0-9]*)')).pop()}",
+      "subjectGeoJson": "https://ld.data-bs.ch/code/raum/Wohnbezirk${ZTXT.match(new RegExp('0*([1-9]{1}[0-9]*)')).pop()}",
       "output": "target/raum-wohnbezirk-geojson.nt",
       "steps": "raum-geojson"
     },
@@ -152,7 +152,7 @@
     },
     "raum-wohnviertel-geojson": {
       "inputGeoJson": "tmp/indikatoren-input-data/geojson/wohnviertel.json",
-      "subjectGeoJson": "http://ld.data-bs.ch/code/raum/Wohnviertel${TXT}",
+      "subjectGeoJson": "https://ld.data-bs.ch/code/raum/Wohnviertel${TXT}",
       "output": "target/raum-wohnviertel-geojson.nt",
       "steps": "raum-geojson"
     },
@@ -197,7 +197,7 @@
           "operation": "custom.jsonData",
           "arguments": [
             "${this['json-data']}",
-            "http://ld.data-bs.ch/dataset/${this.input.match(/([^/]*)\\.tsv/).pop()}"
+            "https://ld.data-bs.ch/dataset/${this.input.match(/([^/]*)\\.tsv/).pop()}"
           ]
         },
         {

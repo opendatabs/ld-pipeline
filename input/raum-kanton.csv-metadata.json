@@ -4,7 +4,7 @@
     "delimiter": "\t"
   },
   "tableSchema": {
-    "aboutUrl": "http://ld.data-bs.ch/code/raum/Kanton",
+    "aboutUrl": "https://ld.data-bs.ch/code/raum/Kanton",
     "columns": [
       {
         "titles": "wohnbezirk_name",
@@ -33,7 +33,7 @@
       {
         "titles": "gemeinde_id_bfs",
         "propertyUrl": "http://www.w3.org/2004/02/skos/core#narrower",
-        "valueUrl": "http://ld.data-bs.ch/code/raum/Gemeinde{gemeinde_id_bfs}"
+        "valueUrl": "https://ld.data-bs.ch/code/raum/Gemeinde{gemeinde_id_bfs}"
       },
       {
         "titles": "kanton_name",

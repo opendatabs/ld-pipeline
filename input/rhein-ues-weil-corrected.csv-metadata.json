@@ -4,42 +4,42 @@
     "delimiter": ";"
   },
   "tableSchema": {
-    "aboutUrl": "http://ld.data-bs.ch/dataset/rhein-ues-weil-corrected/observation/{Startzeitpunkt}",
+    "aboutUrl": "https://ld.data-bs.ch/dataset/rhein-ues-weil-corrected/observation/{Startzeitpunkt}",
     "columns": [
       {
         "titles": "Startzeitpunkt",
-        "propertyUrl": "http://ld.data-bs.ch/property/start",
+        "propertyUrl": "https://ld.data-bs.ch/property/start",
         "datatype": "dateTime"
       },
       {
         "titles": "Endezeitpunkt",
-        "propertyUrl": "http://ld.data-bs.ch/property/end",
+        "propertyUrl": "https://ld.data-bs.ch/property/end",
         "datatype": "dateTime"
       },
       {
         "titles": "RUS.W.O.S3.LF",
-        "propertyUrl": "http://ld.data-bs.ch/property/electrical-conductivity",
+        "propertyUrl": "https://ld.data-bs.ch/property/electrical-conductivity",
         "datatype": "double"
       },
       {
         "titles": "RUS.W.O.S3.O2",
-        "propertyUrl": "http://ld.data-bs.ch/property/oxygen-saturation",
+        "propertyUrl": "https://ld.data-bs.ch/property/oxygen-saturation",
         "datatype": "double"
       },
       {
         "titles": "RUS.W.O.S3.PH",
-        "propertyUrl": "http://ld.data-bs.ch/property/ph",
+        "propertyUrl": "https://ld.data-bs.ch/property/ph",
         "datatype": "double"
       },
       {
         "titles": "RUS.W.O.S3.TE",
-        "propertyUrl": "http://ld.data-bs.ch/property/temperature",
+        "propertyUrl": "https://ld.data-bs.ch/property/temperature",
         "datatype": "double"
       },
       {
         "virtual": true,
-        "propertyUrl": "http://ld.data-bs.ch/property/observedBy",
-        "valueUrl": "http://ld.data-bs.ch/object/rhein-ues-weil"
+        "propertyUrl": "https://ld.data-bs.ch/property/observedBy",
+        "valueUrl": "https://ld.data-bs.ch/object/rhein-ues-weil"
       },
       {
         "virtual": true,
@@ -49,7 +49,7 @@
       {
         "virtual": true,
         "propertyUrl": "http://purl.org/linked-data/cube#dataSet",
-        "valueUrl": "http://ld.data-bs.ch/dataset/rhein-ues-weil-corrected"
+        "valueUrl": "https://ld.data-bs.ch/dataset/rhein-ues-weil-corrected"
       }
     ]
   }

@@ -31,8 +31,8 @@ c.read().then(config => {
 
     // generate the CSVW Metadata object with the given base IRIs
     const metadata = createCsvMetadata(task.input,
-      'http://ld.data-bs.ch/dataset/',
-      'http://ld.data-bs.ch/property/', {
+      'https://ld.data-bs.ch/dataset/',
+      'https://ld.data-bs.ch/property/', {
         delimiter,
         tableSchema
       })

@@ -1,7 +1,7 @@
 # statabs-data
 
 Data pipeline to convert tsv files from the Statistisches Amt Basel-Stadt to N-Triples files.
-The SPARQL interface to access the data can be found at [http://ld.data-bs.ch/sparql/](http://ld.data-bs.ch/sparql/).
+The SPARQL interface to access the data can be found at [https://ld.data-bs.ch/sparql/](https://ld.data-bs.ch/sparql/).
 
 ## Usage
 
@@ -100,7 +100,7 @@ The following properties are required in the `tableSchema`:
 #### aboutUrl
 
 The `aboutUrl` is used as subject for the observation triples.
-Therefore it should have a pattern like this: `http://ld.data-bs.ch/dataset/$DATASET_NUMBER/observation/{$CSV_KEY_COLUMN_1}-{$CSV_KEY_COLUMN_N}`
+Therefore it should have a pattern like this: `https://ld.data-bs.ch/dataset/$DATASET_NUMBER/observation/{$CSV_KEY_COLUMN_1}-{$CSV_KEY_COLUMN_N}`
 The `$CSV_KEY_COLUMN_*` is the name of the column in the CSV file.
 All columns of the primary key must be included.
 Static values for the key are possible.

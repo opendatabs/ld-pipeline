@@ -16,7 +16,8 @@
     },
     "production": {
       "namedGraph": "https://linked.opendata.swiss/graph/bs/rhein-ues-weil",
-      "graphStoreEndpoint": "https://lindas-data.ch:8443/lindas"
+      "graphStoreEndpoint": "https://lindas-data.ch:8443/lindas",
+      "sparqlUpdateUrl": "https://lindas-data.ch:8443/lindas/update"
     }
   },
   "tasks": {
@@ -32,7 +33,7 @@
         {
           "operation": "bash.cmd",
           "arguments": [
-            "ENDPOINT=${this.global.upload[this.global.target].graphStoreEndpoint} USER=$SPARQL_USER:$SPARQL_PASSWORD GRAPH=${this.global.upload[this.global.target].namedGraph} INPUT=${this.filename} ./scripts/upload-append.sh"
+            "ENDPOINT=${this.global.upload[this.global.target].graphStoreEndpoint} USER=$SPARQL_USER:$SPARQL_PASSWORD GRAPH=${this.global.upload[this.global.target].namedGraph} INPUT=${this.filename} ./scripts/upload.sh"
           ]
         },
         {
@@ -191,7 +192,7 @@
         {
           "operation": "sparql.update",
           "arguments": [
-            "DELETE { GRAPH <${this.global.upload[this.global.target].namedGraph}> { <http://ld.data-bs.ch/dataset/rhein-ues-weil-corrected/observation> <http://purl.org/linked-data/cube#observation> ?observation . ?observation ?p ?s . }} WHERE { GRAPH <${this.global.upload[this.global.target].namedGraph}> { <http://ld.data-bs.ch/dataset/rhein-ues-weil-corrected/observation> <http://purl.org/linked-data/cube#observation> ?observation . ?observation ?p ?s . }}",
+            "DELETE { GRAPH <${this.global.upload[this.global.target].namedGraph}> { <https://ld.data-bs.ch/dataset/rhein-ues-weil-corrected/observation> <http://purl.org/linked-data/cube#observation> ?observation . ?observation ?p ?s . }} WHERE { GRAPH <${this.global.upload[this.global.target].namedGraph}> { <https://ld.data-bs.ch/dataset/rhein-ues-weil-corrected/observation> <http://purl.org/linked-data/cube#observation> ?observation . ?observation ?p ?s . }}",
             "${JSON.stringify(this.global.upload[this.global.target])}"
           ]
         },
