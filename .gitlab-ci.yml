@@ -1,0 +1,35 @@
+image: node:8
+before_script:
+  - npm install
+
+indikatoren_staging:
+  script:
+    - npm run indikatoren-staging
+
+indikatoren_production:
+  script:
+    - npm run indikatoren-production
+
+rhein_ues_weil_metadata_staging:
+  script:
+    - npm run rhein-ues-weil-metadata-staging
+
+rhein_ues_weil_metadata_production:
+  script:
+    - npm run rhein-ues-weil-metadata-production
+
+rhein_ues_weil_raw_staging:
+  script:
+    - npm run rhein-ues-weil-raw-staging
+
+rhein_ues_weil_raw_production:
+  script:
+    - npm run rhein-ues-weil-raw-production
+
+rhein_ues_weil_corrected_staging:
+  script:
+    - npm run rhein-ues-weil-corrected-staging
+
+rhein_ues-weil_corrected_production:
+  script:
+    - npm run rhein-ues-weil-corrected-production

@@ -22,10 +22,12 @@
     "standard": "^11.0.1"
   },
   "scripts": {
+    "indikatoren-staging": "npm run indikatoren-fetch-staging && npm run indikatoren-generate-csv-metadata && npm run indikatoren-convert && npm run indikatoren-upload-staging",
+    "indikatoren-production": "npm run indikatoren-fetch-production && npm run indikatoren-generate-csv-metadata && npm run indikatoren-convert && npm run indikatoren-upload-production",
     "indikatoren-fetch-staging": "node scripts/indikatoren-fetch staging",
     "indikatoren-fetch-production": "node scripts/indikatoren-fetch production",
     "indikatoren-generate-csv-metadata": "node scripts/indikatoren-generate-csv-metadata",
-    "indikatoren-convert": "node --trace-warnings scripts/indikatoren-convert",
+    "indikatoren-convert": "node scripts/indikatoren-convert",
     "indikatoren-upload-staging": "node scripts/indikatoren-upload staging",
     "indikatoren-upload-production": "node scripts/indikatoren-upload production",
     "rhein-ues-weil-metadata-staging": "node scripts/rhein-ues-weil rhein-ues-weil-metadata staging",
@@ -34,6 +36,7 @@
     "rhein-ues-weil-raw-production": "node scripts/rhein-ues-weil rhein-ues-weil-raw production",
     "rhein-ues-weil-corrected-staging": "node scripts/rhein-ues-weil rhein-ues-weil-corrected staging",
     "rhein-ues-weil-corrected-production": "node scripts/rhein-ues-weil rhein-ues-weil-corrected production",
+    "clean": "rm -rf ./tmp && rm -rf ./target",
     "test": "standard"
   }
 }
