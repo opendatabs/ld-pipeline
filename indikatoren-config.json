@@ -55,8 +55,17 @@
           "operation": "geojson.parse",
           "arguments": [
             "${this.subjectGeoJson}",
-            "http://www.opengis.net/ont/geosparql#hasGeometry"
+            "http://www.opengis.net/ont/geosparql#asWKT"
           ]
+        },
+        {
+          "operation": "map",
+          "arguments": [
+            "./input/map-hasgeometry-from-aswkt.js"
+          ]
+        },
+        {
+          "operation": "flatten"
         },
         {
           "operation": "ntriples.serialize"
@@ -116,7 +125,7 @@
     },
     "raum-gemeinde-geojson": {
       "inputGeoJson": "tmp/indikatoren-input-data/geojson/Gemeinden.json",
-      "subjectGeoJson": "https://ld.data-bs.ch/code/raum/Gemeinde${R2_BFSNR}",
+      "subjectGeoJson": "https://ld.data-bs.ch/code/raum/Gemeinde${R2_BFSNR}/geometry",
       "output": "target/raum-gemeinde-geojson.nt",
       "steps": "raum-geojson"
     },
@@ -128,7 +137,7 @@
     },
     "raum-kanton-geojson": {
       "inputGeoJson": "tmp/indikatoren-input-data/geojson/Kanton.json",
-      "subjectGeoJson": "https://ld.data-bs.ch/code/raum/Kanton",
+      "subjectGeoJson": "https://ld.data-bs.ch/code/raum/Kanton/geometry",
       "output": "target/raum-kanton-geojson.nt",
       "steps": "raum-geojson"
     },
@@ -140,7 +149,7 @@
     },
     "raum-wohnbezirk-geojson": {
       "inputGeoJson": "tmp/indikatoren-input-data/geojson/bezirke.json",
-      "subjectGeoJson": "https://ld.data-bs.ch/code/raum/Wohnbezirk${ZTXT.match(new RegExp('0*([1-9]{1}[0-9]*)')).pop()}",
+      "subjectGeoJson": "https://ld.data-bs.ch/code/raum/Wohnbezirk${ZTXT.match(new RegExp('0*([1-9]{1}[0-9]*)')).pop()}/geometry",
       "output": "target/raum-wohnbezirk-geojson.nt",
       "steps": "raum-geojson"
     },
@@ -152,7 +161,7 @@
     },
     "raum-wohnviertel-geojson": {
       "inputGeoJson": "tmp/indikatoren-input-data/geojson/wohnviertel.json",
-      "subjectGeoJson": "https://ld.data-bs.ch/code/raum/Wohnviertel${TXT}",
+      "subjectGeoJson": "https://ld.data-bs.ch/code/raum/Wohnviertel${TXT}/geometry",
       "output": "target/raum-wohnviertel-geojson.nt",
       "steps": "raum-geojson"
     },

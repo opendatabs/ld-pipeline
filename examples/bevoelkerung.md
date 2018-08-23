@@ -74,6 +74,7 @@ SELECT * WHERE {
     ?observation <https://ld.data-bs.ch/property/raum> ?raum .
     ?raum <http://www.w3.org/2000/01/rdf-schema#label> ?raumLabel .
     ?raum <http://www.opengis.net/ont/geosparql#hasGeometry> ?geometry .
+    ?geometry <http://www.opengis.net/ont/geosparql#asWKT> ?wkt .
     BIND (CONCAT(?raumLabel, ": ", ?bew) AS ?geometryLabel )
     FILTER (?zeit > xsd:date("2017-01-01"))
   }
