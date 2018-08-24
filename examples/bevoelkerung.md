@@ -2,7 +2,7 @@
 
 The following query fetches all values from the Basel dataset:
 
-```
+```sparql
 SELECT * WHERE {
   GRAPH <https://linked.opendata.swiss/graph/bs/statistics> {
     ?observation <http://purl.org/linked-data/cube#dataSet> <https://ld.data-bs.ch/dataset/6623> .
@@ -16,7 +16,7 @@ SELECT * WHERE {
 
 This query fetches the same kind of observations from the Zürich dataset:
 
-```
+```sparql
 SELECT * WHERE {
   GRAPH <https://linked.opendata.swiss/graph/zh/statistics> {
     ?observation <http://purl.org/linked-data/cube#dataSet> <https://ld.stadt-zuerich.ch/statistics/dataset/BEW-RAUM-ZEIT> .
@@ -30,7 +30,7 @@ SELECT * WHERE {
 
 And both combined can be fetched with this query:
 
-```
+```sparql
 SELECT ?zeit (?bew AS ?bev) ?raumLabel WHERE {{
   SERVICE <http://ld.integ.stadt-zuerich.ch/query> {
     SELECT * WHERE {
@@ -63,7 +63,7 @@ To show the data in a chart click on `Pivot Table` and configure the columns lik
 
 If the geometry is also selected, the map can be used to display the data:
 
-```
+```sparql
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 SELECT * WHERE {
