@@ -6,7 +6,7 @@ There are two dataset which contain data from the RÜS:
 
 The following query fetches all values of observations newer than 2018-08-15:
 
-```
+```sparql
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT * WHERE {
   GRAPH <https://linked.opendata.swiss/graph/bs/rhein-ues-weil> {
