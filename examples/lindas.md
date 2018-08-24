@@ -8,7 +8,7 @@ The data is published to the LINDAS SPARQL endpoint.
 The data of Statistisches Amt Basel-Stadt is stored in a separate named graph.
 The following query can be used to list a available named graphs:
 
-```
+```sparql
 SELECT DISTINCT ?g WHERE {
   GRAPH ? {
     ?s ?p ?o .
@@ -19,7 +19,7 @@ SELECT DISTINCT ?g WHERE {
 It will also list the named graph in the following query.
 The query fetches the 10 random triples found in the named graph:
 
-```
+```sparql
 SELECT * WHERE {
   GRAPH <https://linked.opendata.swiss/graph/bs/statistics> {
     ?s ?p ?o .
