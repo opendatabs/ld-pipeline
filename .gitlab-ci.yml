@@ -2,8 +2,11 @@ image: node:8
 before_script:
   - npm install
 
+stages:
+  - build
+
 indikatoren_staging:
-  stage: indikatoren_staging
+  stage: build
   script:
     - npm run indikatoren-staging
 
