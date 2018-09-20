@@ -9,6 +9,9 @@ indikatoren_staging:
   stage: build
   script:
     - npm run indikatoren-staging
+  except:
+    variables:
+        - $CRON
 
 #indikatoren_production:
 #  stage: indikatoren_production
