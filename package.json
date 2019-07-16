@@ -8,7 +8,7 @@
     "url": "git@github.com:statistikstadtzuerich/statabs-data.git"
   },
   "dependencies": {
-    "barnard59": "git+https://github.com/zazuko/barnard59.git#master",
+    "barnard59": "git+https://github.com/zazuko/barnard59-legacy.git#master",
     "bluebird": "^3.5.1",
     "duplexify": "^3.6.0",
     "ftp": "^0.3.10",
