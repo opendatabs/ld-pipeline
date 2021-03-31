@@ -1,0 +1,27 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "url": "https://raw.githubusercontent.com/StataBS/indikatoren/master/data/6623.tsv",
+  "dialect": {
+    "delimiter": "\t"
+  },
+  "tableSchema": {
+    "aboutUrl": "https://ld.data-bs.ch/cube/6623/observation/{Jahr}-Gemeinde2701",
+    "columns": [
+      {
+        "titles": "Jahr",
+        "propertyUrl": "https://ld.bs.ch/property/jahr",
+        "datatype": "date"
+      },
+      {
+        "titles": "Bevölkerung Stadt Basel",
+        "propertyUrl": "https://ld.bs.ch/property/bevolkerung",
+        "datatype": "integer"
+      },
+      {
+        "virtual": true,
+        "propertyUrl": "https://ld.bs.ch/property/raum",
+        "valueUrl": "https://ld.bs.ch/code/raum/Gemeinde2701"
+      }
+    ]
+  }
+}

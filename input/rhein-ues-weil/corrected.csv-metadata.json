@@ -1,0 +1,41 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "dialect": {
+    "delimiter": ";"
+  },
+  "tableSchema": {
+    "aboutUrl": "https://ld.bs.ch/cube/rhein-ues-weil-corrected/observation/{Startzeitpunkt}",
+    "columns": [
+      {
+        "titles": "Startzeitpunkt",
+        "propertyUrl": "https://ld.bs.ch/property/start",
+        "datatype": "dateTime"
+      },
+      {
+        "titles": "Endezeitpunkt",
+        "propertyUrl": "https://ld.bs.ch/property/end",
+        "datatype": "dateTime"
+      },
+      {
+        "titles": "RUS.W.O.S3.LF",
+        "propertyUrl": "https://ld.bs.ch/property/electrical-conductivity",
+        "datatype": "double"
+      },
+      {
+        "titles": "RUS.W.O.S3.O2",
+        "propertyUrl": "https://ld.bs.ch/property/oxygen-saturation",
+        "datatype": "double"
+      },
+      {
+        "titles": "RUS.W.O.S3.PH",
+        "propertyUrl": "https://ld.bs.ch/property/ph",
+        "datatype": "double"
+      },
+      {
+        "titles": "RUS.W.O.S3.TE",
+        "propertyUrl": "https://ld.bs.ch/property/temperature",
+        "datatype": "double"
+      }
+    ]
+  }
+}

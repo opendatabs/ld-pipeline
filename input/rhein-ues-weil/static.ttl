@@ -1,0 +1,128 @@
+@base <https://ld.bs.ch/cube/>.
+@prefix cube: <https://cube.link/>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+#
+# corrected
+#
+
+<rhein-ues-weil> a cube:Cube;
+  cube:observationConstraint <rhein-ues-weil/shape>;
+  cube:observationSet <rhein-ues-weil/observation/>.
+
+<rhein-ues-weil/observation/> a cube:ObservationSet.
+
+<rhein-ues-weil/shape> a cube:Constraint, sh:NodeShape;
+  sh:closed true;
+  sh:property [
+    sh:path <https://ld.bs.ch/property/start>;
+    sh:nodeKind sh:Literal;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:datatype xsd:dateTime
+  ], [
+    sh:path <https://ld.bs.ch/property/end>;
+    sh:nodeKind sh:Literal;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:datatype xsd:dateTime
+  ], [
+    sh:path <https://ld.bs.ch/property/electrical-conductivity>;
+    sh:nodeKind sh:Literal;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:datatype xsd:double
+  ], [
+    sh:path <https://ld.bs.ch/property/oxygen-saturation>;
+    sh:nodeKind sh:Literal;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:datatype xsd:double
+  ], [
+    sh:path <https://ld.bs.ch/property/ph>;
+    sh:nodeKind sh:Literal;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:datatype xsd:double
+  ], [
+    sh:path <https://ld.bs.ch/property/temperature>;
+    sh:nodeKind sh:Literal;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:datatype xsd:double
+  ], [
+    sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>;
+    sh:nodeKind sh:IRI;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:in (cube:Observation)
+  ], [
+    sh:path <https://cube.link/observedBy>;
+    sh:nodeKind sh:IRI;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:in (<https://ld.bs.ch/object/rhein-ues-weil>)
+  ].
+
+#
+# raw
+#
+
+<rhein-ues-weil-raw> a cube:Cube;
+  cube:observationConstraint <rhein-ues-weil-raw/shape>;
+  cube:observationSet <rhein-ues-weil-raw/observation/>.
+
+<rhein-ues-weil-raw/observation/> a cube:ObservationSet.
+
+<rhein-ues-weil-raw/shape> a cube:Constraint, sh:NodeShape;
+  sh:closed true;
+  sh:property [
+    sh:path <https://ld.bs.ch/property/start>;
+    sh:nodeKind sh:Literal;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:datatype xsd:dateTime
+  ], [
+    sh:path <https://ld.bs.ch/property/end>;
+    sh:nodeKind sh:Literal;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:datatype xsd:dateTime
+  ], [
+    sh:path <https://ld.bs.ch/property/electrical-conductivity>;
+    sh:nodeKind sh:Literal;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:datatype xsd:double
+  ], [
+    sh:path <https://ld.bs.ch/property/oxygen-saturation>;
+    sh:nodeKind sh:Literal;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:datatype xsd:double
+  ], [
+    sh:path <https://ld.bs.ch/property/ph>;
+    sh:nodeKind sh:Literal;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:datatype xsd:double
+  ], [
+    sh:path <https://ld.bs.ch/property/temperature>;
+    sh:nodeKind sh:Literal;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:datatype xsd:double
+  ], [
+    sh:path <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>;
+    sh:nodeKind sh:IRI;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:in (cube:Observation)
+  ], [
+    sh:path <https://cube.link/observedBy>;
+    sh:nodeKind sh:IRI;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:in (<https://ld.bs.ch/object/rhein-ues-weil>)
+  ].

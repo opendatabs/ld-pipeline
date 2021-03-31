@@ -1,0 +1,26 @@
+@prefix fuseki: <http://jena.apache.org/fuseki#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tdb2: <http://jena.apache.org/2016/tdb#> .
+
+[] a fuseki:Server ;
+  fuseki:services (<#ldbsch>).
+
+# Defines one endpoint:
+#   - /data: SPARQL Graph Store Protocol read/write
+#   - /data/sparql: SPARQL query
+
+<#ldbsch> a fuseki:Service;
+  rdfs:label "ld.bs.ch";
+  fuseki:name "data";
+  fuseki:endpoint [
+    fuseki:operation fuseki:gsp-rw
+  ];
+  fuseki:endpoint [
+    fuseki:operation fuseki:query;
+    fuseki:name "sparql"
+  ];
+  fuseki:dataset <#ldbsch-ds>.
+
+<#ldbsch-ds> a tdb2:DatasetTDB2;
+  tdb2:location "/fuseki/databases/ldbsch";
+  tdb2:unionDefaultGraph true.

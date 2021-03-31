@@ -1,0 +1,37 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "url": "https://data.bs.ch/explore/dataset/100042/download/?format=csv&timezone=Europe/Berlin&lang=de&use_labels_for_header=true&csv_separator=%3B",
+  "dialect": {
+    "delimiter": ";"
+  },
+  "tableSchema": {
+    "aboutUrl": "https://ld.bs.ch/code/raum/wohnviertel{WOV_ID}",
+    "columns": [
+      {
+        "titles": "Geo Point",
+        "propertyUrl": "https://schema.org/geo"
+      },
+      {
+        "titles": "Geo Shape",
+        "propertyUrl": "http://www.opengis.net/ont/geosparql#hasGeometry"
+      },
+      {
+        "titles": "WOV_ID",
+        "suppressOutput": true
+      },
+      {
+        "titles": "WOV_LABEL",
+        "propertyUrl": "https://schema.org/identifier"
+      },
+      {
+        "titles": "WOV_NAME",
+        "propertyUrl": "https://schema.org/name"
+      },
+      {
+        "virtual": true,
+        "propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "valueUrl": "https://schema.org/Place"
+      }
+    ]
+  }
+}

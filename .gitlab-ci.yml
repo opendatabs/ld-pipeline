@@ -1,0 +1,15 @@
+image: node:14
+
+before_script:
+  - npm ci
+
+stages:
+  - build
+
+raum_production:
+  stage: build
+  script:
+    - npm run raum:store
+  except:
+    variables:
+      - $CRON
