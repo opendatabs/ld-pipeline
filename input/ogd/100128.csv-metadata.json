@@ -1,0 +1,40 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "url": "https://data.bs.ch/explore/dataset/100128/download/?format=csv&timezone=Europe/Berlin&lang=de&use_labels_for_header=true&csv_separator=%3B&fields=datum,wohnviertel_id,geschlecht,person_alter,staatsangehoerigkeit,anzahl",
+  "dialect": {
+    "delimiter": ";"
+  },
+  "tableSchema": {
+    "aboutUrl": "https://ld.bs.ch/cube/100128/observation/{Datum}-{Wohnviertel-ID}-{Geschlecht}-{Alter}-{Staatsangehoerigkeit}",
+    "columns": [
+      {
+        "titles": "Datum",
+        "propertyUrl": "https://ld.bs.ch/property/date",
+        "datatype": "date"
+      },
+      {
+        "titles": "Wohnviertel-ID",
+        "propertyUrl": "https://ld.bs.ch/property/raum",
+        "valueUrl": "https://ld.bs.ch/code/raum/wohnviertel/{Wohnviertel-ID}"
+      },
+      {
+        "titles": "Geschlecht",
+        "propertyUrl": "https://ld.bs.ch/property/geschlecht"
+      },
+      {
+        "titles": "Alter",
+        "propertyUrl": "https://ld.bs.ch/property/alter",
+        "datatype": "integer"
+      },
+      {
+        "titles": "Staatsangehoerigkeit",
+        "propertyUrl": "https://ld.bs.ch/property/staatsangehoerigkeit"
+      },
+      {
+        "titles": "Anzahl",
+        "propertyUrl": "https://ld.bs.ch/property/anzahl",
+        "datatype": "integer"
+      }
+    ]
+  }
+}
