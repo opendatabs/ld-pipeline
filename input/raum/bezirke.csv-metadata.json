@@ -1,11 +1,11 @@
 {
   "@context": "http://www.w3.org/ns/csvw",
-  "url": "https://data.bs.ch/explore/dataset/100039/download/?format=csv&timezone=Europe/Berlin&lang=de&use_labels_for_header=true&csv_separator=%3B",
+  "url": "https://data.bs.ch/explore/dataset/100039/download/?format=csv&timezone=Europe/Berlin&lang=de&use_labels_for_header=true&csv_separator=%3B&fields=geo_point_2d,geo_shape,bez_id,bez_label,bez_name,wov_id",
   "dialect": {
     "delimiter": ";"
   },
   "tableSchema": {
-    "aboutUrl": "https://ld.bs.ch/code/raum/bezirk{BEZ_ID}",
+    "aboutUrl": "https://ld.bs.ch/code/raum/bezirk/{BEZ_ID}",
     "columns": [
       {
         "titles": "Geo Point",
@@ -30,7 +30,7 @@
       {
         "titles": "WOV_ID",
         "propertyUrl": "https://schema.org/containedInPlace",
-        "valueUrl": "https://ld.bs.ch/code/raum/wohnviertel{WOV_ID}"
+        "valueUrl": "https://ld.bs.ch/code/raum/wohnviertel/{WOV_ID}"
       },
       {
         "virtual": true,
