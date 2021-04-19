@@ -1,0 +1,46 @@
+DEFINE sql:describe-mode "CBD"
+
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX geonames: <http://www.geonames.org/ontology#>
+PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
+
+DESCRIBE ?resource WHERE {
+  {
+    SELECT (?canton AS ?resource) WHERE {
+      VALUES ?canton { <https://ld.geo.admin.ch/boundaries/canton/12> }
+    }
+  } UNION {
+    SELECT (?cantonVersion AS ?resource) WHERE {
+      ?canton dct:hasVersion ?cantonVersion.
+
+      FILTER (?canton = <https://ld.geo.admin.ch/boundaries/canton/12>)
+    }
+  } UNION {
+    SELECT (?municipalityVersion AS ?resource) WHERE {
+      ?canton dct:hasVersion ?cantonVersion.
+
+      ?municipalityVersion geonames:parentADM1 ?cantonVersion.
+
+      FILTER (?canton = <https://ld.geo.admin.ch/boundaries/canton/12>)
+    }
+  } UNION {
+    SELECT (?municipality AS ?resource) WHERE {
+      ?canton dct:hasVersion ?cantonVersion.
+
+      ?municipalityVersion geonames:parentADM1 ?cantonVersion;
+        dct:isVersionOf ?municipality.
+
+      FILTER (?canton = <https://ld.geo.admin.ch/boundaries/canton/12>)
+    }
+  } UNION {
+    SELECT (?geometry AS ?resource) WHERE {
+      ?canton dct:hasVersion ?cantonVersion.
+
+      ?municipalityVersion geonames:parentADM1 ?cantonVersion;
+        dct:isVersionOf ?municipality;
+        geosparql:defaultGeometry ?geometry.
+
+      FILTER (?canton = <https://ld.geo.admin.ch/boundaries/canton/12>)
+    }
+  }
+}

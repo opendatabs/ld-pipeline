@@ -1,0 +1,105 @@
+@base <http://opendatabs.github.com/ld-pipeline/mirror/>.
+@prefix p: <https://pipeline.described.at/>.
+@prefix code: <https://code.described.at/>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+
+<defaultVars>
+  p:variable [ a p:Variable;
+    p:name "SOURCE_ENDPOINT_URL";
+    p:value "https://ld.geo.admin.ch/query"
+  ], [ a p:Variable;
+    p:name "ENDPOINT_URL";
+    p:value "http://localhost:3030/data"
+  ], [ a p:Variable;
+    p:name "ENDPOINT_USER";
+    p:value "admin"
+  ], [ a p:Variable;
+    p:name "ENDPOINT_PASSWORD";
+    p:value "test"
+  ], [ a p:Variable;
+    p:name "query";
+    p:value "input/mirror/swisstopo.sparql"
+  ], [ a p:Variable;
+    p:name "graph";
+    p:value "https://ld.bs.ch/graph/swisstopo"
+  ].
+
+<stdout> a p:Pipeline, p:Readable;
+  p:variables <defaultVars>;
+  p:steps [
+    p:stepList (
+      <query>
+      <addLocals>
+      <flatten>
+      <serialize>
+    )
+  ].
+
+<store> a p:Pipeline;
+  p:variables <defaultVars>;
+  p:steps [
+    p:stepList (
+      <query>
+      <addLocals>
+      <flatten>
+      <setGraph>
+      <upload>
+    )
+  ].
+
+<query> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-sparql/construct.js>
+  ];
+  code:arguments [
+    code:name "endpoint";
+    code:value "SOURCE_ENDPOINT_URL"^^p:VariableName
+  ], [
+    code:name "query";
+    code:value """(() => {
+      const { readFileSync } = require('fs')
+      const filename = this.variables.get('query')
+
+      return readFileSync(filename).toString()
+      })()
+    """^^code:EcmaScript
+  ].
+
+<addLocals> a p:Step ;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-base#map>
+  ];
+  code:arguments ([ a code:EcmaScript;
+    code:link <file:../lib/addLocals.js#addLocalsSwisstopo>
+  ]).
+
+<flatten> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-base#flatten>;
+  ].
+
+<serialize> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-formats/ntriples.js#serialize>
+  ].
+
+<setGraph> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-rdf/setGraph.js>
+  ];
+  code:arguments ("graph"^^p:VariableName).
+
+<upload> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-graph-store#put>
+  ];
+  code:arguments [
+    code:name "endpoint";
+    code:value "ENDPOINT_URL"^^p:VariableName
+  ], [
+    code:name "user";
+    code:value "ENDPOINT_USER"^^p:VariableName
+  ], [
+    code:name "password";
+    code:value "ENDPOINT_PASSWORD"^^p:VariableName
+  ].
