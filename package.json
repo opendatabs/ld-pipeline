@@ -31,7 +31,7 @@
     "barnard59-csvw": "^0.1.0",
     "barnard59-formats": "^0.1.2",
     "barnard59-ftp": "^0.1.1",
-    "barnard59-graph-store": "^0.1.0",
+    "barnard59-graph-store": "^0.1.1",
     "barnard59-rdf": "^0.2.3",
     "barnard59-sparql": "^0.1.1",
     "glob": "^7.1.6",
