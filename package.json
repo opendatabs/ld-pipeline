@@ -7,7 +7,7 @@
     "ogd:store": "barnard59 run --pipeline=http://opendatabs.github.com/ld-pipeline/ogd/store --format=text/turtle pipelines/ogd.ttl --variable=ENDPOINT_URL=$ENDPOINT_URL --variable=ENDPOINT_USER=$ENDPOINT_USER --variable=ENDPOINT_PASSWORD=$ENDPOINT_PASSWORD",
     "ogd:store-default": "barnard59 run --pipeline=http://opendatabs.github.com/ld-pipeline/ogd/store --format=text/turtle pipelines/ogd.ttl",
     "raum:stdout": "barnard59 run --pipeline=http://opendatabs.github.com/ld-pipeline/raum/stdout --format=text/turtle pipelines/raum.ttl",
-    "raum:store": "barnard59 run --pipeline=http://opendatabs.github.com/ld-pipeline/raum/store --format=text/turtle pipelines/raum.ttl --variable=ENDPOINT_URL=$ENDPOINT_URL --variable=ENDPOINT_USER=$ENDPOINT_USER --variable=ENDPOINT_PASSWORD=$ENDPOINT_PASSWORD",
+    "raum:store": "barnard59 run -v --pipeline=http://opendatabs.github.com/ld-pipeline/raum/store --format=text/turtle pipelines/raum.ttl --variable=ENDPOINT_URL=$ENDPOINT_URL --variable=ENDPOINT_USER=$ENDPOINT_USER --variable=ENDPOINT_PASSWORD=$ENDPOINT_PASSWORD",
     "raum:store-default": "barnard59 run --pipeline=http://opendatabs.github.com/ld-pipeline/raum/store --format=text/turtle pipelines/raum.ttl",
     "rhein-ues-weil:corrected:stdout": "barnard59 run --pipeline=http://opendatabs.github.com/ld-pipeline/rhein-ues-weil/stdoutCorrected --format=text/turtle pipelines/rhein-ues-weil.ttl",
     "rhein-ues-weil:corrected:store-default": "barnard59 run --pipeline=http://opendatabs.github.com/ld-pipeline/rhein-ues-weil/storeCorrected --format=text/turtle pipelines/rhein-ues-weil.ttl",
