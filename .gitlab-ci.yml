@@ -29,3 +29,27 @@ raum_production:
   except:
     variables:
       - $CRON
+
+rhein_ues_weil_static:
+  stage: build
+  script:
+    - npm run rhein-ues-weil:static:store
+  except:
+    variables:
+      - $CRON
+
+rhein_ues_weil_corrected:
+  stage: build
+  script:
+    - npm run rhein-ues-weil:corrected:store
+  only:
+    variables:
+      - $CRON
+
+rhein_ues_weil_raw:
+  stage: build
+  script:
+    - npm run rhein-ues-weil:raw:store
+  only:
+    variables:
+      - $CRON
