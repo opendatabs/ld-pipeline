@@ -70,6 +70,7 @@
       <readCsv>
       <parseCsv>
       <removeCsvwTriples>
+      <map>
       <toDataset>
       <toObservation>
       <flatten>
@@ -84,6 +85,7 @@
       <readCsv>
       <parseCsv>
       <removeCsvwTriples>
+      <map>
       <toDataset>
       <toObservation>
       <flatten>
@@ -219,6 +221,14 @@
   ];
   code:arguments ([ a code:EcmaScript;
     code:link <file:../lib/isNotCsvwTriple.js>
+  ]).
+
+<map> a p:Step ;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-base#map>
+  ];
+  code:arguments ([ a code:EcmaScript;
+    code:link <file:../lib/map.js>
   ]).
 
 <toDataset> a p:Step;
