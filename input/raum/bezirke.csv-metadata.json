@@ -9,7 +9,7 @@
     "columns": [
       {
         "titles": "Geo Point",
-        "propertyUrl": "https://schema.org/geo"
+        "propertyUrl": "http://schema.org/geo"
       },
       {
         "titles": "Geo Shape",
@@ -21,21 +21,21 @@
       },
       {
         "titles": "BEZ_LABEL",
-        "propertyUrl": "https://schema.org/identifier"
+        "propertyUrl": "http://schema.org/identifier"
       },
       {
         "titles": "BEZ_NAME",
-        "propertyUrl": "https://schema.org/name"
+        "propertyUrl": "http://schema.org/name"
       },
       {
         "titles": "WOV_ID",
-        "propertyUrl": "https://schema.org/containedInPlace",
+        "propertyUrl": "http://schema.org/containedInPlace",
         "valueUrl": "https://ld.bs.ch/code/raum/wohnviertel/{WOV_ID}"
       },
       {
         "virtual": true,
         "propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-        "valueUrl": "https://schema.org/Place"
+        "valueUrl": "http://schema.org/Place"
       }
     ]
   }

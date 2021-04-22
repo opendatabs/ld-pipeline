@@ -8,12 +8,12 @@
     "columns": [
       {
         "titles": "Startzeitpunkt",
-        "propertyUrl": "https://ld.bs.ch/property/start",
+        "propertyUrl": "http://schema.org/startDate",
         "datatype": "dateTime"
       },
       {
         "titles": "Endezeitpunkt",
-        "propertyUrl": "https://ld.bs.ch/property/end",
+        "propertyUrl": "http://schema.org/endDate",
         "datatype": "dateTime"
       },
       {
