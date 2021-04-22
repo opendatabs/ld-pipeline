@@ -244,6 +244,9 @@
   code:arguments [
     code:name "observer";
     code:value "observer"^^p:VariableName
+  ], [
+    code:name "useDate";
+    code:value "http://schema.org/startDate"
   ].
 
 <flatten> a p:Step;
