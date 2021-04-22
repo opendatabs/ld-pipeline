@@ -169,6 +169,7 @@
       <readCsv>
       <parseCsv>
       <removeCsvwTriples>
+      <map>
       <toDataset>
       <toObservation>
       <flatten>
