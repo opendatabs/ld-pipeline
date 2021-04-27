@@ -1,0 +1,159 @@
+@base <http://opendatabs.github.com/ld-pipeline/code/>.
+@prefix p: <https://pipeline.described.at/>.
+@prefix code: <https://code.described.at/>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+
+<defaultVars>
+  p:variable [ a p:Variable;
+    p:name "ENDPOINT_URL";
+    p:value "http://localhost:3030/data"
+  ], [ a p:Variable;
+    p:name "ENDPOINT_USER";
+    p:value "admin"
+  ], [ a p:Variable;
+    p:name "ENDPOINT_PASSWORD";
+    p:value "test"
+  ], [ a p:Variable;
+    p:name "csvMappingFilePattern";
+    p:value "input/code/*.csv-metadata.json"
+  ], [ a p:Variable;
+    p:name "graph";
+    p:value "https://ld.bs.ch/graph/code"
+  ], [ a p:Variable;
+    p:name "observer";
+    p:value "https://www.statistik.bs.ch/"
+  ].
+
+<stdout> a p:Pipeline, p:Readable;
+  p:variables <defaultVars>;
+  p:steps [
+    p:stepList (
+      <listCsvwMetaFiles>
+      <forEachCsvwMetaFile>
+      <serialize>
+    )
+  ].
+
+<store> a p:Pipeline;
+  p:variables <defaultVars>;
+  p:steps [
+    p:stepList (
+      <listCsvwMetaFiles>
+      <forEachCsvwMetaFile>
+      <setGraph>
+      <upload>
+    )
+  ].
+
+<listCsvwMetaFiles> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-base#glob>
+  ];
+  code:arguments[
+    code:name "pattern";
+    code:value "csvMappingFilePattern"^^p:VariableName
+  ].
+
+<forEachCsvwMetaFile> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-core#forEach>
+  ];
+  code:arguments (<readCsvTriples> "csvMapping").
+
+<readCsvTriples> a p:Pipeline, p:ReadableObjectMode;
+  p:steps [
+    p:stepList (
+      <readCsv>
+      <parseCsv>
+      <removeCsvwTriples>
+      <map>
+      <unique>
+    )
+  ].
+
+<readCsv> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-csvw#fetch>
+  ];
+  code:arguments [
+    code:name "csvw";
+    code:value "file:${csvMapping}"^^code:EcmaScriptTemplateLiteral
+  ].
+
+<parseCsv> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-formats/csvw.js#parse>
+  ];
+  code:arguments [
+    code:name "metadata";
+    code:value <parseMetadata>
+  ], [
+    code:name "relaxColumnCount";
+    code:value true
+  ].
+
+<removeCsvwTriples> a p:Step ;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-base#filter>
+  ];
+  code:arguments ([ a code:EcmaScript;
+    code:link <file:../lib/isNotCsvwTriple.js>
+  ]).
+
+<map> a p:Step ;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-base#map>
+  ];
+  code:arguments ([ a code:EcmaScript;
+    code:link <file:../lib/map.js>
+  ]).
+
+<unique> a p:Step ;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <file:../lib/uniqueQuads.js>
+  ].
+
+<serialize> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-formats/ntriples.js#serialize>
+  ].
+
+<parseMetadata> a p:Pipeline, p:ReadableObjectMode;
+  p:steps [
+    p:stepList (
+      <readMetadataJson>
+      <parseMetadataJson>
+    )
+  ].
+
+<readMetadataJson> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:fs#createReadStream>
+  ];
+  code:arguments ("csvMapping"^^p:VariableName).
+
+<parseMetadataJson> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-formats/jsonld.js#parse>
+  ].
+
+<setGraph> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-rdf/setGraph.js>
+  ];
+  code:arguments ("graph"^^p:VariableName).
+
+<upload> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-graph-store#put>
+  ];
+  code:arguments [
+    code:name "endpoint";
+    code:value "ENDPOINT_URL"^^p:VariableName
+  ], [
+    code:name "user";
+    code:value "ENDPOINT_USER"^^p:VariableName
+  ], [
+    code:name "password";
+    code:value "ENDPOINT_PASSWORD"^^p:VariableName
+  ].
