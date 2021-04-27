@@ -9,7 +9,7 @@
     "columns": [
       {
         "titles": "Geo Point",
-        "propertyUrl": "http://schema.org//geo"
+        "propertyUrl": "http://schema.org/geo"
       },
       {
         "titles": "Geo Shape",
@@ -21,20 +21,20 @@
       },
       {
         "titles": "WOV_LABEL",
-        "propertyUrl": "http://schema.org//identifier"
+        "propertyUrl": "http://schema.org/identifier"
       },
       {
         "titles": "WOV_NAME",
-        "propertyUrl": "http://schema.org//name"
+        "propertyUrl": "http://schema.org/name"
       },
       {
         "titles": "gemeinde_name",
-        "propertyUrl": "http://schema.org/"
+        "propertyUrl": "http://schema.org/containedInPlace"
       },
       {
         "virtual": true,
         "propertyUrl": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-        "valueUrl": "http://schema.org//Place"
+        "valueUrl": "http://schema.org/Place"
       }
     ]
   }
