@@ -6,6 +6,14 @@ before_script:
 stages:
   - build
 
+code_production:
+  stage: build
+  script:
+    - npm run code:store
+  except:
+    variables:
+      - $CRON
+
 mirror_swisstopo_production:
   stage: build
   script:
