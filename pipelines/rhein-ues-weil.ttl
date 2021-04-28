@@ -268,7 +268,7 @@
 
 <upload> a p:Step;
   code:implementedBy [ a code:EcmaScript;
-    code:link <node:barnard59-graph-store#put>
+    code:link <node:barnard59-graph-store#post>
   ];
   code:arguments [
     code:name "endpoint";
