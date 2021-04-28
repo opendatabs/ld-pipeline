@@ -54,15 +54,6 @@
     p:value "https://ld.bs.ch/graph/rhein-ues-weil-raw"
   ].
 
-<defaultVarsStatic>
-  p:variable [ a p:Variable;
-    p:name "filename";
-    p:value "input/rhein-ues-weil/static.ttl"
-  ], [ a p:Variable;
-    p:name "graph";
-    p:value "https://ld.bs.ch/graph/rhein-ues-weil-static"
-  ].
-
 <stdoutCorrected> a p:Pipeline, p:Readable;
   p:variables <defaultVars>, <defaultVarsCorrected>;
   p:steps [
@@ -110,27 +101,6 @@
     p:stepList (
       <listCsvFiles>
       <forEachCsvFile>
-      <setGraph>
-      <upload>
-    )
-  ].
-
-<stdoutStatic> a p:Pipeline, p:Readable;
-  p:variables <defaultVars>, <defaultVarsStatic>;
-  p:steps [
-    p:stepList (
-      <readTurtle>
-      <parseTurtle>
-      <serialize>
-    )
-  ].
-
-<storeStatic> a p:Pipeline;
-  p:variables <defaultVars>, <defaultVarsStatic>;
-  p:steps [
-    p:stepList (
-      <readTurtle>
-      <parseTurtle>
       <setGraph>
       <upload>
     )
@@ -198,21 +168,9 @@
     code:value "filename"^^p:VariableName
   ].
 
-<readTurtle> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <node:fs#createReadStream>
-  ];
-  code:arguments ("filename"^^p:VariableName).
-
 <parseCsv> a p:Step;
   code:implementedBy [ a code:EcmaScript;
     code:link <node:barnard59-formats/csvw.js#parse>
-  ];
-  code:arguments (<parseMetadata>).
-
-<parseTurtle> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <node:barnard59-formats/n3.js#parse>
   ];
   code:arguments (<parseMetadata>).
 

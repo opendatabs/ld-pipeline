@@ -1,0 +1,102 @@
+BASE <https://ld.bs.ch/>
+
+PREFIX void: <http://rdfs.org/ns/void#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX sd: <http://www.w3.org/ns/sparql-service-description#>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX schema: <http://schema.org/>
+PREFIX doap: <http://usefulinc.com/ns/doap#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX cube: <https://cube.link/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+##
+## void
+##
+
+<.well-known/void> a void:DatasetDescription;
+  schema:name "Datasets of City of Basel"@en;
+  schema:name "Datensätze der Stadt Basel"@de;
+  dcterms:creator <org/basel>;
+  schema:hasPart <catalog/basel/cube>.
+
+##
+## organizations
+##
+
+<org/zazuko> a schema:Corporation;
+    schema:name "Zazuko GmbH";
+    rdfs:seeAlso wd:Q93230157;
+    schema:url <https://zazuko.com/>.
+
+<org/basel> a foaf:Organization, schema:GovernmentOrganization;
+    schema:name "Statistik Stadt Basel"@de;
+    foaf:homepage <https://data.bs.ch/>.
+
+##
+## catalog
+##
+
+<catalog/basel/cube> a dcat:Catalog, schema:DataCatalog;
+  schema:name "Statistische Daten der Stadt Basel"@de;
+  schema:description "Dieser Datensatz enthält statistische Daten der Stadt Basel als OLAP Cubes im Cube Schema Vokabular"@de;
+  dcterms:publisher <org/basel>;
+  schema:dataset
+    <cube/6623>,
+    <cube/100052>,
+    <cube/100128>,
+    <cube/rhein-ues-weil>,
+    <cube/rhein-ues-weil-raw>;
+  doap:repository [ a doap:GitRepository;
+    doap:browse <https://github.com/opendatabs/ld-pipeline>;
+    doap:location "git@github.com:opendatabs/ld-pipeline.git"
+  ];
+  void:sparqlEndpoint <https://ld.bs.ch/query>.
+
+<cube/6623> a void:Dataset, dcat:Dataset, schema:Dataset;
+  schema:name "Bevölkerungsbestand am Jahresende"@de;
+  dcat:keyword "Bevölkerung";
+  schema:publisher <org/basel>;
+  schema:contactPoint <org/basel>;
+  schema:contributor <org/zazuko>;
+  schema:dateCreated "2020-12-31"^^xsd:date;
+  schema:dateModified "2020-12-31"^^xsd:date.
+
+<cube/100052> a void:Dataset, dcat:Dataset, schema:Dataset;
+  schema:name "Baumkataster: Baumbestand"@de;
+  dcat:keyword "Baumkataster", "Baumbestand";
+  schema:publisher <org/basel>;
+  schema:contactPoint <org/basel>;
+  schema:contributor <org/zazuko>;
+  schema:dateCreated "2020-12-31"^^xsd:date;
+  schema:dateModified "2020-12-31"^^xsd:date.
+
+<cube/100128> a void:Dataset, dcat:Dataset, schema:Dataset;
+  schema:name "Wohnbevölkerung nach Geschlecht, Alter, Staatsangehörigkeit und Wohnviertel"@de;
+  dcat:keyword "Wohnbevölkerung", "Geschlecht", "Alter", "Staatsangehörigkeit", "Wohnviertel";
+  schema:publisher <org/basel>;
+  schema:contactPoint <org/basel>;
+  schema:contributor <org/zazuko>;
+  schema:dateCreated "2020-12-31"^^xsd:date;
+  schema:dateModified "2020-12-31"^^xsd:date.
+
+<cube/rhein-ues-weil> a void:Dataset, dcat:Dataset, schema:Dataset;
+  schema:name "Daten der Rheinüberwachungsstation Weil am Rhein"@de;
+  dcat:keyword "Rhein", "Rheinüberwachungsstation", "Weil";
+  schema:publisher <org/basel>;
+  schema:contactPoint <org/basel>;
+  schema:contributor <org/zazuko>;
+  schema:dateCreated "2020-12-31"^^xsd:date;
+  schema:dateModified "2020-12-31"^^xsd:date.
+
+<cube/rhein-ues-weil-raw> a void:Dataset, dcat:Dataset, schema:Dataset;
+  schema:name "Rohdaten der Rheinüberwachungsstation Weil am Rhein"@de;
+  dcat:keyword "Rhein", "Rheinüberwachungsstation", "Weil", "Rohdaten";
+  schema:publisher <org/basel>;
+  schema:contactPoint <org/basel>;
+  schema:contributor <org/zazuko>;
+  schema:dateCreated "2020-12-31"^^xsd:date;
+  schema:dateModified "2020-12-31"^^xsd:date.

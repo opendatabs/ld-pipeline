@@ -1,0 +1,105 @@
+@base <http://opendatabs.github.com/ld-pipeline/static/>.
+@prefix p: <https://pipeline.described.at/>.
+@prefix code: <https://code.described.at/>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+
+<defaultVars>
+  p:variable [ a p:Variable;
+    p:name "ENDPOINT_URL";
+    p:value "http://localhost:3030/data"
+  ], [ a p:Variable;
+    p:name "ENDPOINT_USER";
+    p:value "admin"
+  ], [ a p:Variable;
+    p:name "ENDPOINT_PASSWORD";
+    p:value "test"
+  ], [ a p:Variable;
+    p:name "inputFilePattern";
+    p:value "input/static/*.ttl"
+  ], [ a p:Variable;
+    p:name "baseGraph";
+    p:value "https://ld.bs.ch/graph/"
+  ].
+
+<stdout> a p:Pipeline, p:Readable;
+  p:variables <defaultVars>;
+  p:steps [
+    p:stepList (
+      <listTurtleFiles>
+      <forEachTurtleFile>
+      <serialize>
+    )
+  ].
+
+<store> a p:Pipeline;
+  p:variables <defaultVars>;
+  p:steps [
+    p:stepList (
+      <listTurtleFiles>
+      <forEachTurtleFile>
+      <setGraph>
+      <upload>
+    )
+  ].
+
+<listTurtleFiles> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-base#glob>
+  ];
+  code:arguments [
+    code:name "pattern";
+    code:value "inputFilePattern"^^p:VariableName
+  ].
+
+<forEachTurtleFile> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-core#forEach>
+  ];
+  code:arguments (<readTurtle> "filename").
+
+<readTurtle> a p:Pipeline, p:ReadableObjectMode;
+  p:steps [
+    p:stepList (
+      <readTurtle>
+      <parseTurtle>
+      <setGraph>
+    )
+  ].
+
+<readTurtle> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:fs#createReadStream>
+  ];
+  code:arguments ("filename"^^p:VariableName).
+
+<parseTurtle> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-formats/n3.js#parse>
+  ];
+  code:arguments (<parseMetadata>).
+
+<serialize> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-formats/ntriples.js#serialize>
+  ].
+
+<setGraph> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-rdf/setGraph.js>
+  ];
+  code:arguments ("${baseGraph}${filename.split('.')[0]}"^^code:EcmaScriptTemplateLiteral).
+
+<upload> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-graph-store#put>
+  ];
+  code:arguments [
+    code:name "endpoint";
+    code:value "ENDPOINT_URL"^^p:VariableName
+  ], [
+    code:name "user";
+    code:value "ENDPOINT_USER"^^p:VariableName
+  ], [
+    code:name "password";
+    code:value "ENDPOINT_PASSWORD"^^p:VariableName
+  ].

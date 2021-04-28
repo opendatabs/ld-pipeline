@@ -38,14 +38,6 @@ raum_production:
     variables:
       - $CRON
 
-rhein_ues_weil_static:
-  stage: build
-  script:
-    - npm run rhein-ues-weil:static:store
-  except:
-    variables:
-      - $CRON
-
 rhein_ues_weil_corrected:
   stage: build
   script:
@@ -59,5 +51,13 @@ rhein_ues_weil_raw:
   script:
     - npm run rhein-ues-weil:raw:store
   only:
+    variables:
+      - $CRON
+
+static:
+  stage: build
+  script:
+    - npm run static:store
+  except:
     variables:
       - $CRON

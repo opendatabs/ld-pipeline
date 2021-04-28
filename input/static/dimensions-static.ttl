@@ -1,0 +1,13 @@
+BASE <https://ld.bs.ch/>
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX schema: <http://schema.org/>
+PREFIX bsproperty: <https://ld.bs.ch/property/>
+
+bsproperty:baumart a rdf:Property;
+    schema:name "Baumart";
+    schema:description "Baumart.".
+
+bsproperty:pflanzdatum a rdf:Property;
+    schema:name "Pflanzdatum";
+    schema:description "Datum der Pflanzung eines Baums.".
