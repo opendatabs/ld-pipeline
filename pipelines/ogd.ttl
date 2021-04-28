@@ -68,11 +68,11 @@
       <removeCsvwTriples>
       <map>
       <mapGeometry>
-      <flatten>
+      <flatten1>
       <toDataset>
       <toObservation>
       <buildCubeShape>
-      <flatten>
+      <flatten2>
     )
   ].
 
@@ -121,7 +121,7 @@
     code:link <file:../lib/mapGeometry.js>
   ]).
 
-<flatten> a p:Step;
+<flatten1> a p:Step;
   code:implementedBy [ a code:EcmaScript;
     code:link <node:barnard59-base#flatten>;
   ].
@@ -145,7 +145,7 @@
     code:link <node:barnard59-rdf/cube.js#buildCubeShape>
   ].
 
-<flatten> a p:Step;
+<flatten2> a p:Step;
   code:implementedBy [ a code:EcmaScript;
     code:link <node:barnard59-base#flatten>;
   ].
