@@ -64,7 +64,7 @@
       <parseCsv>
       <removeCsvwTriples>
       <map>
-      <geoJsonToWkt>
+      <mapGeometry>
       <flatten>
     )
   ].
@@ -106,12 +106,12 @@
     code:link <file:../lib/map.js>
   ]).
 
-<geoJsonToWkt> a p:Step ;
+<mapGeometry> a p:Step ;
   code:implementedBy [ a code:EcmaScript;
     code:link <node:barnard59-base#map>
   ];
   code:arguments ([ a code:EcmaScript;
-    code:link <file:../lib/geoJsonToWkt.js>
+    code:link <file:../lib/mapGeometry.js>
   ]).
 
 <flatten> a p:Step;

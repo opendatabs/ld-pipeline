@@ -9,7 +9,7 @@
     "columns": [
       {
         "titles": "Geo Point",
-        "propertyUrl": "http://schema.org/geo"
+        "propertyUrl": "http://www.opengis.net/ont/geosparql#hasGeometry"
       },
       {
         "titles": "Baumnummer",

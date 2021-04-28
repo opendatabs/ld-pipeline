@@ -67,6 +67,8 @@
       <parseCsv>
       <removeCsvwTriples>
       <map>
+      <mapGeometry>
+      <flatten>
       <toDataset>
       <toObservation>
       <buildCubeShape>
@@ -110,6 +112,19 @@
   code:arguments ([ a code:EcmaScript;
     code:link <file:../lib/map.js>
   ]).
+
+<mapGeometry> a p:Step ;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-base#map>
+  ];
+  code:arguments ([ a code:EcmaScript;
+    code:link <file:../lib/mapGeometry.js>
+  ]).
+
+<flatten> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-base#flatten>;
+  ].
 
 <toDataset> a p:Step;
   code:implementedBy [ a code:EcmaScript;
