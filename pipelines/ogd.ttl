@@ -14,9 +14,6 @@
     p:name "ENDPOINT_PASSWORD";
     p:value "test"
   ], [ a p:Variable;
-    p:name "graph";
-    p:value "https://ld.bs.ch/graph/ogd"
-  ], [ a p:Variable;
     p:name "observer";
     p:value "https://www.statistik.bs.ch/"
   ].
@@ -25,12 +22,18 @@
   p:variable [ a p:Variable;
     p:name "csvMappingFilePattern";
     p:value "input/ogd/monthly/*.csv-metadata.json"
+  ], [ a p:Variable;
+    p:name "graph";
+    p:value "https://ld.bs.ch/graph/ogd-monthly"
   ].
 
 <defaultVarsWeekly>
   p:variable [ a p:Variable;
     p:name "csvMappingFilePattern";
     p:value "input/ogd/weekly/*.csv-metadata.json"
+  ], [ a p:Variable;
+    p:name "graph";
+    p:value "https://ld.bs.ch/graph/ogd-weekly"
   ].
 
 <stdoutMonthly> a p:Pipeline, p:Readable;
