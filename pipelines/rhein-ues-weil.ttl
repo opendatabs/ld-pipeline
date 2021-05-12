@@ -25,6 +25,9 @@
   ], [ a p:Variable;
     p:name "observer";
     p:value "https://ld.bs.ch/object/rhein-ues-weil"
+  ], [ a p:Variable;
+    p:name "filesPerRun";
+    p:value "1000"
   ].
 
 <defaultVarsCorrected>
@@ -90,6 +93,7 @@
   p:steps [
     p:stepList (
       <listCsvFiles>
+      <limitCsvFiles>
       <forEachCsvFile>
       <serialize>
     )
@@ -100,6 +104,7 @@
   p:steps [
     p:stepList (
       <listCsvFiles>
+      <limitCsvFiles>
       <forEachCsvFile>
       <setGraph>
       <upload>
@@ -126,6 +131,12 @@
     code:name "pathname";
     code:value "ftpInputPathname"^^p:VariableName
   ].
+
+<limitCsvFiles> a p:Step ;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-base#limit>
+  ];
+  code:arguments ("filesPerRun"^^p:VariableName).
 
 <forEachCsvFile> a p:Step;
   code:implementedBy [ a code:EcmaScript;
