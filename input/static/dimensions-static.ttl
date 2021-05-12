@@ -2,12 +2,67 @@ BASE <https://ld.bs.ch/>
 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX schema: <http://schema.org/>
-PREFIX bsproperty: <https://ld.bs.ch/property/>
 
-bsproperty:baumart a rdf:Property;
+#
+# properties
+#
+
+<property/alter> a rdf:Property;
+    schema:name "Alter".
+
+<property/anzahl> a rdf:Property;
+    schema:name "Anzahl".
+
+<property/baumart> a rdf:Property;
     schema:name "Baumart";
     schema:description "Baumart.".
 
-bsproperty:pflanzdatum a rdf:Property;
+<property/bevolkerung> a rdf:Property;
+    schema:name "Bevölkerung".
+
+<property/date> a rdf:Property;
+    schema:name "Datum".
+
+<property/electrical-conductivity> a rdf:Property;
+    schema:name "Elektrische Leitfähigkeit".
+
+<property/geschlecht> a rdf:Property;
+    schema:name "Geschlecht".
+
+<property/jahr> a rdf:Property;
+    schema:name "Jahr".
+
+<property/oxygen-saturation> a rdf:Property;
+    schema:name "Sauerstoffsättigung".
+
+<property/pflanzdatum> a rdf:Property;
     schema:name "Pflanzdatum";
     schema:description "Datum der Pflanzung eines Baums.".
+
+<property/ph> a rdf:Property;
+    schema:name "pH-Wert".
+
+<property/raum> a rdf:Property;
+    schema:name "Raum".
+
+<property/staatsangehoerigkeit> a rdf:Property;
+    schema:name "Staatsangehörigkeit".
+
+<property/temperature> a rdf:Property;
+    schema:name "Temperatur".
+
+#
+# codes
+#
+
+<code/geschlecht/Maennlich>
+    schema:name "männlich".
+
+<code/geschlecht/Weiblich>
+    schema:name "weiblich".
+
+<code/staatsangehoerigkeit/Auslaender>
+    schema:name "Ausländer".
+
+<code/staatsangehoerigkeit/Schweizer>
+    schema:name "Schweizer".
