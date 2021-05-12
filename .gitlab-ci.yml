@@ -6,7 +6,7 @@ before_script:
 stages:
   - build
 
-code_production:
+code:
   stage: build
   script:
     - npm run code:store
@@ -14,7 +14,7 @@ code_production:
     variables:
       - $CRON
 
-mirror_swisstopo_production:
+mirror_swisstopo:
   stage: build
   script:
     - npm run mirror:swisstopo:store
@@ -22,7 +22,7 @@ mirror_swisstopo_production:
     variables:
       - $CRON
 
-raum_production:
+raum:
   stage: build
   script:
     - npm run raum:store
@@ -38,23 +38,21 @@ static:
     variables:
       - $CRON
 
-ogd_production_monthly:
+ogd_monthly:
   stage: build
   script:
     - npm run ogd:store:monthly
   only:
     variables:
-      - $CRON
-      - $CRON_MONTHLY
+      - $CRON && $CRON_OGD_MONTHLY
 
-ogd_production_weekly:
+ogd_weekly:
   stage: build
   script:
     - npm run ogd:store:weekly
   only:
     variables:
-      - $CRON
-      - $CRON_WEEKLY
+      - $CRON && $CRON_OGD_WEEKLY
 
 rhein_ues_weil_corrected:
   stage: build
@@ -62,8 +60,7 @@ rhein_ues_weil_corrected:
     - npm run rhein-ues-weil:corrected:store
   only:
     variables:
-      - $CRON
-      - $CRON_RHEIN_UES_WEIL_CORRECTED
+      - $CRON && $CRON_RHEIN_UES_WEIL_CORRECTED
 
 rhein_ues_weil_raw:
   stage: build
@@ -71,5 +68,4 @@ rhein_ues_weil_raw:
     - npm run rhein-ues-weil:raw:store
   only:
     variables:
-      - $CRON
-      - $CRON_RHEIN_UES_WEIL_RAW
+      - $CRON && $CRON_RHEIN_UES_WEIL_RAW
