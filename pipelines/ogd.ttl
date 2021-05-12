@@ -14,9 +14,6 @@
     p:name "ENDPOINT_PASSWORD";
     p:value "test"
   ], [ a p:Variable;
-    p:name "csvMappingFilePattern";
-    p:value "input/ogd/*.csv-metadata.json"
-  ], [ a p:Variable;
     p:name "graph";
     p:value "https://ld.bs.ch/graph/ogd"
   ], [ a p:Variable;
@@ -24,8 +21,20 @@
     p:value "https://www.statistik.bs.ch/"
   ].
 
-<stdout> a p:Pipeline, p:Readable;
-  p:variables <defaultVars>;
+<defaultVarsMonthly>
+  p:variable [ a p:Variable;
+    p:name "csvMappingFilePattern";
+    p:value "input/ogd/monthly/*.csv-metadata.json"
+  ].
+
+<defaultVarsWeekly>
+  p:variable [ a p:Variable;
+    p:name "csvMappingFilePattern";
+    p:value "input/ogd/weekly/*.csv-metadata.json"
+  ].
+
+<stdoutMonthly> a p:Pipeline, p:Readable;
+  p:variables <defaultVars>, <defaultVarsMonthly>;
   p:steps [
     p:stepList (
       <listCsvwMetaFiles>
@@ -34,8 +43,29 @@
     )
   ].
 
-<store> a p:Pipeline;
-  p:variables <defaultVars>;
+<storeMonthly> a p:Pipeline;
+  p:variables <defaultVars>, <defaultVarsMonthly>;
+  p:steps [
+    p:stepList (
+      <listCsvwMetaFiles>
+      <forEachCsvwMetaFile>
+      <setGraph>
+      <upload>
+    )
+  ].
+
+<stdoutWeekly> a p:Pipeline, p:Readable;
+  p:variables <defaultVars>, <defaultVarsWeekly>;
+  p:steps [
+    p:stepList (
+      <listCsvwMetaFiles>
+      <forEachCsvwMetaFile>
+      <serialize>
+    )
+  ].
+
+<storeWeekly> a p:Pipeline;
+  p:variables <defaultVars>, <defaultVarsWeekly>;
   p:steps [
     p:stepList (
       <listCsvwMetaFiles>

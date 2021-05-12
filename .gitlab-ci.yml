@@ -22,19 +22,35 @@ mirror_swisstopo_production:
     variables:
       - $CRON
 
-ogd_production:
-  stage: build
-  script:
-    - npm run ogd:store
-  except:
-    variables:
-      - $CRON
-
 raum_production:
   stage: build
   script:
     - npm run raum:store
   except:
+    variables:
+      - $CRON
+
+static:
+  stage: build
+  script:
+    - npm run static:store
+  except:
+    variables:
+      - $CRON
+
+ogd_production_monthly:
+  stage: build
+  script:
+    - npm run ogd:store:monthly
+  only:
+    variables:
+      - $CRON
+
+ogd_production_weekly:
+  stage: build
+  script:
+    - npm run ogd:store:weekly
+  only:
     variables:
       - $CRON
 
@@ -51,13 +67,5 @@ rhein_ues_weil_raw:
   script:
     - npm run rhein-ues-weil:raw:store
   only:
-    variables:
-      - $CRON
-
-static:
-  stage: build
-  script:
-    - npm run static:store
-  except:
     variables:
       - $CRON
