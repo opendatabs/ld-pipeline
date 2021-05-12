@@ -45,6 +45,7 @@ ogd_production_monthly:
   only:
     variables:
       - $CRON
+      - $CRON_MONTHLY
 
 ogd_production_weekly:
   stage: build
@@ -53,6 +54,7 @@ ogd_production_weekly:
   only:
     variables:
       - $CRON
+      - $CRON_WEEKLY
 
 rhein_ues_weil_corrected:
   stage: build
@@ -61,6 +63,7 @@ rhein_ues_weil_corrected:
   only:
     variables:
       - $CRON
+      - $CRON_RHEIN_UES_WEIL_CORRECTED
 
 rhein_ues_weil_raw:
   stage: build
@@ -69,3 +72,4 @@ rhein_ues_weil_raw:
   only:
     variables:
       - $CRON
+      - $CRON_RHEIN_UES_WEIL_RAW
