@@ -112,8 +112,8 @@
   ].
 
 <listCsvFiles> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <node:barnard59-ftp/list.js>
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-ftp/list.js#default>
   ];
   code:arguments [
     code:name "protocol";
@@ -133,14 +133,14 @@
   ].
 
 <limitCsvFiles> a p:Step ;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <node:barnard59-base#limit>
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-base/limit.js#default>
   ];
   code:arguments ("filesPerRun"^^p:VariableName).
 
 <forEachCsvFile> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <node:barnard59-core#forEach>
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-base/forEach.js#default>
   ];
   code:arguments (<readCsvTriples> "filename").
 
@@ -159,8 +159,8 @@
   ].
 
 <readCsv> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <node:barnard59-ftp/read.js>
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-ftp/read.js#default>
   ];
   code:arguments [
     code:name "protocol";
@@ -180,34 +180,34 @@
   ].
 
 <parseCsv> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
+  code:implementedBy [ a code:EcmaScriptModule;
     code:link <node:barnard59-formats/csvw.js#parse>
   ];
   code:arguments (<parseMetadata>).
 
 <removeCsvwTriples> a p:Step ;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <node:barnard59-base#filter>
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-base/filter.js#default>
   ];
-  code:arguments ([ a code:EcmaScript;
-    code:link <file:../lib/isNotCsvwTriple.js>
+  code:arguments ([ a code:EcmaScriptModule;
+    code:link <file:../lib/isNotCsvwTriple.js#default>
   ]).
 
 <map> a p:Step ;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <node:barnard59-base#map>
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-base/map.js#default>
   ];
-  code:arguments ([ a code:EcmaScript;
-    code:link <file:../lib/map.js>
+  code:arguments ([ a code:EcmaScriptModule;
+    code:link <file:../lib/map.js#default>
   ]).
 
 <toDataset> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <node:rdf-stream-to-dataset-stream/bySubject.js>
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:rdf-stream-to-dataset-stream/bySubject.js#default>
   ].
 
 <toObservation> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
+  code:implementedBy [ a code:EcmaScriptModule;
     code:link <node:barnard59-rdf/cube.js#toObservation>
   ];
   code:arguments [
@@ -219,13 +219,13 @@
   ].
 
 <flatten> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <node:barnard59-base#flatten>;
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-base/flatten.js#default>;
   ].
 
 <move> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <node:barnard59-ftp/move.js>
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-ftp/move.js#default>
   ];
   code:arguments [
     code:name "protocol";
@@ -248,7 +248,7 @@
   ].
 
 <serialize> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
+  code:implementedBy [ a code:EcmaScriptModule;
     code:link <node:barnard59-formats/ntriples.js#serialize>
   ].
 
@@ -261,25 +261,25 @@
   ].
 
 <readMetadataJson> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
+  code:implementedBy [ a code:EcmaScriptModule;
     code:link <node:fs#createReadStream>
   ];
   code:arguments ("csvMapping"^^p:VariableName).
 
 <parseMetadataJson> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
+  code:implementedBy [ a code:EcmaScriptModule;
     code:link <node:barnard59-formats/jsonld.js#parse>
   ].
 
 <setGraph> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <node:barnard59-rdf/setGraph.js>
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-rdf/setGraph.js#default>
   ];
   code:arguments ("graph"^^p:VariableName).
 
 <upload> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <node:barnard59-graph-store#post>
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-graph-store/post.js#default>
   ];
   code:arguments [
     code:name "endpoint";
