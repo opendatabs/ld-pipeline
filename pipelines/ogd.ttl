@@ -15,7 +15,7 @@
     p:value "test"
   ], [ a p:Variable;
     p:name "observer";
-    p:value "https://www.statistik.bs.ch/"
+    p:value "https://opendata.bs.ch/"
   ].
 
 <defaultVarsMonthly>
