@@ -48,8 +48,8 @@
   ].
 
 <query> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <node:barnard59-sparql/construct.js>
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-sparql/construct.js#default>
   ];
   code:arguments [
     code:name "endpoint";
@@ -66,31 +66,31 @@
   ].
 
 <addLocals> a p:Step ;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <node:barnard59-base#map>
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-base/map.js#default>
   ];
-  code:arguments ([ a code:EcmaScript;
+  code:arguments ([ a code:EcmaScriptModule;
     code:link <file:../lib/addLocals.js#addLocalsSwisstopo>
   ]).
 
 <flatten> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <node:barnard59-base#flatten>;
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-base/flatten.js#default>;
   ].
 
 <serialize> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
+  code:implementedBy [ a code:EcmaScriptModule;
     code:link <node:barnard59-formats/ntriples.js#serialize>
   ].
 
 <setGraph> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <node:barnard59-rdf/setGraph.js>
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-rdf/setGraph.js#default>
   ];
   code:arguments ("graph"^^p:VariableName).
 
 <upload> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
+  code:implementedBy [ a code:EcmaScriptModule;
     code:link <node:barnard59-graph-store#put>
   ];
   code:arguments [

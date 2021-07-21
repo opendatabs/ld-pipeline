@@ -19,9 +19,6 @@
   ], [ a p:Variable;
     p:name "graph";
     p:value "https://ld.bs.ch/graph/code"
-  ], [ a p:Variable;
-    p:name "observer";
-    p:value "https://www.statistik.bs.ch/"
   ].
 
 <stdout> a p:Pipeline, p:Readable;
@@ -46,8 +43,8 @@
   ].
 
 <listCsvwMetaFiles> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <node:barnard59-base#glob>
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-base/glob.js#default>
   ];
   code:arguments[
     code:name "pattern";
@@ -55,8 +52,8 @@
   ].
 
 <forEachCsvwMetaFile> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <node:barnard59-core#forEach>
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-base/forEach.js#default>
   ];
   code:arguments (<readCsvTriples> "csvMapping").
 
@@ -81,7 +78,7 @@
   ].
 
 <parseCsv> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
+  code:implementedBy [ a code:EcmaScriptModule;
     code:link <node:barnard59-formats/csvw.js#parse>
   ];
   code:arguments [
@@ -93,28 +90,28 @@
   ].
 
 <removeCsvwTriples> a p:Step ;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <node:barnard59-base#filter>
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-base/filter.js#default>
   ];
-  code:arguments ([ a code:EcmaScript;
-    code:link <file:../lib/isNotCsvwTriple.js>
+  code:arguments ([ a code:EcmaScriptModule;
+    code:link <file:../lib/isNotCsvwTriple.js#default>
   ]).
 
 <map> a p:Step ;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <node:barnard59-base#map>
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-base/map.js#default>
   ];
-  code:arguments ([ a code:EcmaScript;
-    code:link <file:../lib/map.js>
+  code:arguments ([ a code:EcmaScriptModule;
+    code:link <file:../lib/map.js#default>
   ]).
 
 <unique> a p:Step ;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <file:../lib/uniqueQuads.js>
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <file:../lib/uniqueQuads.js#default>
   ].
 
 <serialize> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
+  code:implementedBy [ a code:EcmaScriptModule;
     code:link <node:barnard59-formats/ntriples.js#serialize>
   ].
 
@@ -127,25 +124,25 @@
   ].
 
 <readMetadataJson> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
+  code:implementedBy [ a code:EcmaScriptModule;
     code:link <node:fs#createReadStream>
   ];
   code:arguments ("csvMapping"^^p:VariableName).
 
 <parseMetadataJson> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
+  code:implementedBy [ a code:EcmaScriptModule;
     code:link <node:barnard59-formats/jsonld.js#parse>
   ].
 
 <setGraph> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <node:barnard59-rdf/setGraph.js>
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-rdf/setGraph.js#default>
   ];
   code:arguments ("graph"^^p:VariableName).
 
 <upload> a p:Step;
-  code:implementedBy [ a code:EcmaScript;
-    code:link <node:barnard59-graph-store#put>
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-graph-store/index.js#put>
   ];
   code:arguments [
     code:name "endpoint";
