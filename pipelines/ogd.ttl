@@ -18,6 +18,15 @@
     p:value "https://opendata.bs.ch/"
   ].
 
+<defaultVarsDaily>
+  p:variable [ a p:Variable;
+    p:name "csvMappingFilePattern";
+    p:value "input/ogd/daily/*.csv-metadata.json"
+  ], [ a p:Variable;
+    p:name "graph";
+    p:value "https://ld.bs.ch/graph/ogd-daily"
+  ].
+
 <defaultVarsMonthly>
   p:variable [ a p:Variable;
     p:name "csvMappingFilePattern";
@@ -34,6 +43,27 @@
   ], [ a p:Variable;
     p:name "graph";
     p:value "https://ld.bs.ch/graph/ogd-weekly"
+  ].
+
+<stdoutDaily> a p:Pipeline, p:Readable;
+  p:variables <defaultVars>, <defaultVarsDaily>;
+  p:steps [
+    p:stepList (
+      <listCsvwMetaFiles>
+      <forEachCsvwMetaFile>
+      <serialize>
+    )
+  ].
+
+<storeDaily> a p:Pipeline;
+  p:variables <defaultVars>, <defaultVarsDaily>;
+  p:steps [
+    p:stepList (
+      <listCsvwMetaFiles>
+      <forEachCsvwMetaFile>
+      <setGraph>
+      <upload>
+    )
   ].
 
 <stdoutMonthly> a p:Pipeline, p:Readable;

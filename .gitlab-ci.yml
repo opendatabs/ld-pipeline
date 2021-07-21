@@ -38,6 +38,14 @@ static:
     variables:
       - $CRON
 
+ogd_daily:
+  stage: build
+  script:
+    - npm run ogd:store:daily
+  only:
+    variables:
+      - $CRON && $CRON_OGD_DAILY
+
 ogd_monthly:
   stage: build
   script:

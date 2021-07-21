@@ -1,0 +1,37 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "url": "https://data.bs.ch/explore/dataset/100134/download/?format=csv&lang=de&csv_separator=%3B&fields=id_ts,institut,geo_point_2d,strasse,ort,online",
+  "dialect": {
+    "delimiter": ";"
+  },
+  "tableSchema": {
+    "aboutUrl": "https://ld.bs.ch/cube/100134/observation/{id_ts}",
+    "columns": [
+      {
+        "titles": "id_ts",
+        "propertyUrl": "http://schema.org/identifier"
+      },
+      {
+        "titles": "institut",
+        "propertyUrl": "http://schema.org/name"
+      },
+      {
+        "titles": "geo_point_2d",
+        "propertyUrl": "http://www.opengis.net/ont/geosparql#hasGeometry"
+      },
+      {
+        "titles": "strasse",
+        "propertyUrl": "http://schema.org/streetAddress"
+      },
+      {
+        "titles": "ort",
+        "propertyUrl": "http://schema.org/addressLocality"
+      },
+      {
+        "titles": "online",
+        "propertyUrl": "http://schema.org/mainEntityOfPage",
+        "valueUrl": "null{online}"
+      }
+    ]
+  }
+}
