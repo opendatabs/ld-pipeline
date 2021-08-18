@@ -1,18 +1,18 @@
 {
   "@context": "http://www.w3.org/ns/csvw",
-  "url": "https://data.bs.ch/explore/dataset/100052/download/?format=csv&timezone=Europe/Berlin&lang=de&use_labels_for_header=true&csv_separator=%3B&fields=id_gruppe,gruppe",
+  "url": "https://data.bs.ch/explore/dataset/100052/download/?format=csv&lang=de&csv_separator=%3B&fields=id_gruppe,gruppe",
   "dialect": {
     "delimiter": ";"
   },
   "tableSchema": {
-    "aboutUrl": "https://ld.bs.ch/code/baumgruppe/{ID_Gruppe}",
+    "aboutUrl": "https://ld.bs.ch/code/baumgruppe/{id_gruppe}",
     "columns": [
       {
-        "titles": "ID_Gruppe",
+        "titles": "id_gruppe",
         "suppressOutput": true
       },
       {
-        "titles": "Gruppe",
+        "titles": "gruppe",
         "propertyUrl": "http://schema.org/name"
       }
     ]

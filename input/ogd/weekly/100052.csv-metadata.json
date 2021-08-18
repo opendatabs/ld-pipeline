@@ -1,57 +1,57 @@
 {
   "@context": "http://www.w3.org/ns/csvw",
-  "url": "https://data.bs.ch/explore/dataset/100052/download/?format=csv&timezone=Europe/Berlin&lang=de&use_labels_for_header=true&csv_separator=%3B&fields=geo_point_2d,baumnr,baumart_lateinisch,pflanzdatu,baumalter,standjahr,id_schutzs,strasse,kreis,id_gruppe,gemeinde",
+  "url": "https://data.bs.ch/explore/dataset/100052/download/?format=csv&lang=de&csv_separator=%3B&fields=geo_point_2d,baumnr,baumart_lateinisch,pflanzdatu,baumalter,standjahr,id_schutzs,strasse,kreis,id_gruppe,gemeinde",
   "dialect": {
     "delimiter": ";"
   },
   "tableSchema": {
-    "aboutUrl": "https://ld.bs.ch/cube/100052/observation/{Baumnummer}",
+    "aboutUrl": "https://ld.bs.ch/cube/100052/observation/{baumnr}",
     "columns": [
       {
-        "titles": "Geo Point",
+        "titles": "geo_point_2d",
         "propertyUrl": "http://www.opengis.net/ont/geosparql#hasGeometry"
       },
       {
-        "titles": "Baumnummer",
+        "titles": "baumnr",
         "propertyUrl": "http://schema.org/identifier"
       },
       {
-        "titles": "Baumart lateinisch",
+        "titles": "baumart_lateinisch",
         "propertyUrl": "https://ld.bs.ch/property/baumart",
-        "valueUrl": "https://ld.bs.ch/code/baumart/{Baumart lateinisch}"
+        "valueUrl": "https://ld.bs.ch/code/baumart/{baumart_lateinisch}"
       },
       {
-        "titles": "Pflanzdatum",
+        "titles": "pflanzdatu",
         "propertyUrl": "https://ld.bs.ch/property/pflanzdatum"
       },
       {
-        "titles": "Baumalter",
+        "titles": "baumalter",
         "propertyUrl": "https://ld.bs.ch/property/baumalter"
       },
       {
-        "titles": "Standjahr",
+        "titles": "standjahr",
         "propertyUrl": "https://ld.bs.ch/property/standjahr"
       },
       {
-        "titles": "ID_Schutzstatus",
+        "titles": "id_schutzs",
         "propertyUrl": "https://ld.bs.ch/property/baumschutzstatus",
-        "valueUrl": "https://ld.bs.ch/code/baumschutzstatus/{ID_Schutzstatus}"
+        "valueUrl": "https://ld.bs.ch/code/baumschutzstatus/{id_schutzs}"
       },
       {
-        "titles": "Strasse",
+        "titles": "strasse",
         "propertyUrl": "http://schema.org/streetAddress"
       },
       {
-        "titles": "Kreis",
+        "titles": "kreis",
         "propertyUrl": "http://schema.org/addressRegion"
       },
       {
-        "titles": "ID_Gruppe",
+        "titles": "id_gruppe",
         "propertyUrl": "https://ld.bs.ch/property/baumgruppe",
-        "valueUrl": "https://ld.bs.ch/code/baumgruppe/{ID_Gruppe}"
+        "valueUrl": "https://ld.bs.ch/code/baumgruppe/{id_gruppe}"
       },
       {
-        "titles": "Gemeinde",
+        "titles": "gemeinde",
         "propertyUrl": "http://schema.org/addressLocality"
       }
     ]

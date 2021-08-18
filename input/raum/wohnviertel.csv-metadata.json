@@ -1,30 +1,30 @@
 {
   "@context": "http://www.w3.org/ns/csvw",
-  "url": "https://data.bs.ch/explore/dataset/100042/download/?format=csv&timezone=Europe/Berlin&lang=de&use_labels_for_header=true&csv_separator=%3B&fields=geo_point_2d,geo_shape,wov_id,wov_label,wov_name,gemeinde_name",
+  "url": "https://data.bs.ch/explore/dataset/100042/download/?format=csv&lang=de&csv_separator=%3B&fields=geo_point_2d,geo_shape,wov_id,wov_label,wov_name,gemeinde_name",
   "dialect": {
     "delimiter": ";"
   },
   "tableSchema": {
-    "aboutUrl": "https://ld.bs.ch/code/raum/wohnviertel/{WOV_ID}",
+    "aboutUrl": "https://ld.bs.ch/code/raum/wohnviertel/{wov_id}",
     "columns": [
       {
-        "titles": "Geo Point",
+        "titles": "geo_point_2d",
         "propertyUrl": "http://www.opengis.net/ont/geosparql#hasGeometry"
       },
       {
-        "titles": "Geo Shape",
+        "titles": "geo_shape",
         "propertyUrl": "http://www.opengis.net/ont/geosparql#hasGeometry"
       },
       {
-        "titles": "WOV_ID",
+        "titles": "wov_id",
         "suppressOutput": true
       },
       {
-        "titles": "WOV_LABEL",
+        "titles": "wov_label",
         "propertyUrl": "http://schema.org/identifier"
       },
       {
-        "titles": "WOV_NAME",
+        "titles": "wov_name",
         "propertyUrl": "http://schema.org/name"
       },
       {

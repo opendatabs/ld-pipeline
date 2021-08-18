@@ -1,23 +1,23 @@
 {
   "@context": "http://www.w3.org/ns/csvw",
-  "url": "https://data.bs.ch/explore/dataset/100052/download/?format=csv&timezone=Europe/Berlin&lang=de&use_labels_for_header=true&csv_separator=%3B&fields=art,baumart_lateinisch,baumart_deutsch",
+  "url": "https://data.bs.ch/explore/dataset/100052/download/?format=csv&lang=de&csv_separator=%3B&fields=art,baumart_lateinisch,baumart_deutsch",
   "dialect": {
     "delimiter": ";"
   },
   "tableSchema": {
-    "aboutUrl": "https://ld.bs.ch/code/baumart/{Baumart lateinisch}",
+    "aboutUrl": "https://ld.bs.ch/code/baumart/{baumart_lateinisch}",
     "columns": [
       {
-        "titles": "Baumart",
+        "titles": "art",
         "propertyUrl": "http://schema.org/name"
       },
       {
-        "titles": "Baumart lateinisch",
+        "titles": "baumart_lateinisch",
         "propertyUrl": "http://schema.org/name",
         "lang": "la"
       },
       {
-        "titles": "Baumart deutsch",
+        "titles": "baumart_deutsch",
         "propertyUrl": "http://schema.org/name",
         "lang": "de"
       }

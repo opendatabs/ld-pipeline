@@ -1,18 +1,18 @@
 {
   "@context": "http://www.w3.org/ns/csvw",
-  "url": "https://data.bs.ch/explore/dataset/100052/download/?format=csv&timezone=Europe/Berlin&lang=de&use_labels_for_header=true&csv_separator=%3B&fields=id_schutzs,schutzstat",
+  "url": "https://data.bs.ch/explore/dataset/100052/download/?format=csv&lang=de&csv_separator=%3B&fields=id_schutzs,schutzstat",
   "dialect": {
     "delimiter": ";"
   },
   "tableSchema": {
-    "aboutUrl": "https://ld.bs.ch/code/baumschutzstatus/{ID_Schutzstatus}",
+    "aboutUrl": "https://ld.bs.ch/code/baumschutzstatus/{id_schutzs}",
     "columns": [
       {
-        "titles": "ID_Schutzstatus",
+        "titles": "id_schutzs",
         "suppressOutput": true
       },
       {
-        "titles": "Schutzstatus",
+        "titles": "schutzstat",
         "propertyUrl": "http://schema.org/name"
       }
     ]
