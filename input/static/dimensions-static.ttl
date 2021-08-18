@@ -17,6 +17,10 @@ PREFIX schema: <http://schema.org/>
     schema:name "Baumart";
     schema:description "Baumart.".
 
+<property/bestehend> a rdf:Property;
+    schema:name "Nur bestehende Patienten";
+    schema:description "Werden nur bestehende Patienten getestet".
+
 <property/bevolkerung> a rdf:Property;
     schema:name "Bevölkerung".
 

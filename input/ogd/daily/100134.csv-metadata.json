@@ -1,6 +1,6 @@
 {
   "@context": "http://www.w3.org/ns/csvw",
-  "url": "https://data.bs.ch/explore/dataset/100134/download/?format=csv&lang=de&csv_separator=%3B&fields=id_ts,institut,geo_point_2d,strasse,ort,online",
+  "url": "https://data.bs.ch/explore/dataset/100134/download/?format=csv&lang=de&csv_separator=%3B&fields=id_ts,institut,geo_point_2d,strasse,ort,telefon,bestehend,online",
   "dialect": {
     "delimiter": ";"
   },
@@ -26,6 +26,15 @@
       {
         "titles": "ort",
         "propertyUrl": "http://schema.org/addressLocality"
+      },
+      {
+        "titles": "telefon",
+        "propertyUrl": "http://schema.org/telephone"
+      },
+      {
+        "titles": "bestehend",
+        "propertyUrl": "https://ld.bs.ch/property/bestehend",
+        "datatype": "boolean"
       },
       {
         "titles": "online",
