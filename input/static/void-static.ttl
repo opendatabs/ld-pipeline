@@ -66,33 +66,6 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
   schema:dateCreated "2020-12-31"^^xsd:date;
   schema:dateModified "2020-12-31"^^xsd:date.
 
-<cube/100052> a void:Dataset, dcat:Dataset, schema:Dataset;
-  schema:name "Baumkataster: Baumbestand"@de;
-  dcat:keyword "Baumkataster", "Baumbestand";
-  schema:publisher <org/basel>;
-  schema:contactPoint <org/basel>;
-  schema:contributor <org/zazuko>;
-  schema:dateCreated "2020-12-31"^^xsd:date;
-  schema:dateModified "2020-12-31"^^xsd:date.
-
-<cube/100128> a void:Dataset, dcat:Dataset, schema:Dataset;
-  schema:name "Wohnbevölkerung nach Geschlecht, Alter, Staatsangehörigkeit und Wohnviertel"@de;
-  dcat:keyword "Wohnbevölkerung", "Geschlecht", "Alter", "Staatsangehörigkeit", "Wohnviertel";
-  schema:publisher <org/basel>;
-  schema:contactPoint <org/basel>;
-  schema:contributor <org/zazuko>;
-  schema:dateCreated "2020-12-31"^^xsd:date;
-  schema:dateModified "2020-12-31"^^xsd:date.
-
-<cube/100134> a void:Dataset, dcat:Dataset, schema:Dataset;
-   schema:name "Coronavirus (Covid-19): Teststellen"@de;
-   dcat:keyword "Corona", "COVID-19", "Spital", "Krankheit", "Coronavirus", "Virus", "Pandemie", "Test", "Lungenentzündung";
-   schema:publisher <org/basel>;
-   schema:contactPoint <org/basel>;
-   schema:contributor <org/zazuko>;
-   schema:dateCreated "2021-03-31"^^xsd:date;
-   schema:dateModified "2021-07-12"^^xsd:date.
-
 <cube/rhein-ues-weil> a void:Dataset, dcat:Dataset, schema:Dataset;
   schema:name "Daten der Rheinüberwachungsstation Weil am Rhein"@de;
   dcat:keyword "Rhein", "Rheinüberwachungsstation", "Weil";

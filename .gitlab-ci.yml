@@ -22,6 +22,14 @@ mirror_swisstopo:
     variables:
       - $CRON
 
+ogd_void:
+  stage: build
+  script:
+    - npm run ogd-void:store
+  except:
+    variables:
+      - $CRON
+
 raum:
   stage: build
   script:
