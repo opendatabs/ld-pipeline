@@ -26,7 +26,8 @@
       },
       {
         "titles": "baumalter",
-        "propertyUrl": "https://ld.bs.ch/property/baumalter"
+        "propertyUrl": "https://ld.bs.ch/property/baumalter",
+        "datatype": "integer"
       },
       {
         "titles": "standjahr",
