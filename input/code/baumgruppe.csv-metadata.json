@@ -8,6 +8,12 @@
     "aboutUrl": "https://ld.bs.ch/code/baumgruppe/{id_gruppe}",
     "columns": [
       {
+        "virtual": true,
+        "aboutUrl": "https://ld.bs.ch/code/baumgruppe/",
+        "propertyUrl": "http://schema.org/hasDefinedTerm",
+        "valueUrl": "https://ld.bs.ch/code/baumgruppe/{id_gruppe}"
+      },
+      {
         "titles": "id_gruppe",
         "suppressOutput": true
       },

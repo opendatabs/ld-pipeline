@@ -15,7 +15,15 @@ PREFIX schema: <http://schema.org/>
 
 <property/baumart> a rdf:Property;
     schema:name "Baumart";
-    schema:description "Baumart.".
+    schema:description "Baumart".
+
+<property/baumgruppe> a rdf:Property;
+    schema:name "Gruppe";
+    schema:description "Gruppe (Baumkataster)".
+
+<property/baumschutzstatus> a rdf:Property;
+    schema:name "Schutzstatus";
+    schema:description "Schutzstatus (Baumkataster)".
 
 <property/bestehend> a rdf:Property;
     schema:name "Nur bestehende Patienten";
@@ -70,3 +78,16 @@ PREFIX schema: <http://schema.org/>
 
 <code/staatsangehoerigkeit/Schweizer>
     schema:name "Schweizer".
+
+#
+# term sets
+#
+
+<code/baumart/> a schema:DefinedTermSet;
+    schema:name "Baumarten".
+
+<code/baumgruppe/> a schema:DefinedTermSet;
+    schema:name "Gruppe (Baumkataster)".
+
+<code/baumschutzstatus/> a schema:DefinedTermSet;
+    schema:name "Schutzstatus (Baumkataster)".

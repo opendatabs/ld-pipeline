@@ -8,6 +8,12 @@
     "aboutUrl": "https://ld.bs.ch/code/baumart/{baumart_lateinisch}",
     "columns": [
       {
+        "virtual": true,
+        "aboutUrl": "https://ld.bs.ch/code/baumart/",
+        "propertyUrl": "http://schema.org/hasDefinedTerm",
+        "valueUrl": "https://ld.bs.ch/code/baumart/{baumart_lateinisch}"
+      },
+      {
         "titles": "art",
         "propertyUrl": "http://schema.org/name"
       },

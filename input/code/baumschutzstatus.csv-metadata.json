@@ -8,6 +8,12 @@
     "aboutUrl": "https://ld.bs.ch/code/baumschutzstatus/{id_schutzs}",
     "columns": [
       {
+        "virtual": true,
+        "aboutUrl": "https://ld.bs.ch/code/baumschutzstatus/",
+        "propertyUrl": "http://schema.org/hasDefinedTerm",
+        "valueUrl": "https://ld.bs.ch/code/baumschutzstatus/{id_schutzs}"
+      },
+      {
         "titles": "id_schutzs",
         "suppressOutput": true
       },
