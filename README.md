@@ -102,3 +102,131 @@ SELECT ?wkt (CONCAT(?name, " ", STR(SUM(?anzahl))) AS ?wktLabel) WHERE {
 }
 GROUP BY ?raum ?wkt ?name ?wktLabel
 ```
+
+The following [query](https://s.zazuko.com/2hE5DD) returns the COVID test stations that don't require being an existing patient:
+
+```sparql
+PREFIX bsprop: <https://ld.bs.ch/property/>
+PREFIX cube: <https://cube.link/>
+PREFIX schema: <http://schema.org/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?observation ?wkt ?wktLabel WHERE {
+  <https://ld.bs.ch/cube/100134> cube:observationSet ?observationSet.
+
+  ?observationSet cube:observation ?observation.
+
+  ?observation
+    schema:name ?name;
+    bsprop:bestehend ?bestehend;
+    schema:telephone ?telephone;
+    schema:streetAddress ?streetAddress;
+    schema:latitude ?latitude;
+    schema:longitude ?longitude.
+
+  BIND(CONCAT("POINT (", ?longitude, " ", ?latitude,")") AS ?wkt)
+  BIND(CONCAT(?name, ", ", ?streetAddress, " (Tel: ", ?telephone, ")") AS ?wktLabel)
+
+  FILTER(?bestehend = false)
+}
+```
+
+The following [query](https://s.zazuko.com/VKiFP) returns the total number of trees that have an age information available and the age of the oldest tree per municipality:
+
+```sparql
+PREFIX bsprop: <https://ld.bs.ch/property/>
+PREFIX cube: <https://cube.link/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX schema: <http://schema.org/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?wkt (CONCAT(?name, " Anzahl: ", STR(?anzahl), " max. Alter: ", STR(?maxAge)) AS ?wktLabel) WHERE {
+
+SELECT (COUNT(*) AS ?anzahl) (MAX(xsd:integer(?age)) AS ?maxAge) ?name ?wkt WHERE {
+  <https://ld.bs.ch/cube/100052> cube:observationSet ?observationSet.
+
+  ?observationSet cube:observation ?observation.
+
+  ?observation
+    schema:addressLocality ?addressLocality;
+    bsprop:baumalter ?baumalter.
+  
+  ?addressLocality schema:sameAs ?municipality.
+  ?raum dct:isVersionOf ?municipality.
+
+  ?raum
+    schema:name ?name;
+    dct:issued ?issued;
+    geo:defaultGeometry ?geometry.
+  
+  ?geometry geo:asWKT ?wkt.
+  
+  BIND(xsd:integer(?baumalter) AS ?age)
+
+  FILTER(?issued >= xsd:date("2021-01-01"))
+  FILTER(?age > 0)
+} GROUP BY ?name ?wkt
+
+}
+```
+
+
+The following [query](https://s.zazuko.com/2Dchw) returns the oldest tree(s) for each species:
+
+```sparql
+PREFIX bsprop: <https://ld.bs.ch/property/>
+PREFIX cube: <https://cube.link/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX schema: <http://schema.org/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT * WHERE {
+  {
+    SELECT (MAX(?age) AS ?maxAge) ?baumart WHERE {
+      <https://ld.bs.ch/cube/100052> cube:observationSet ?observationSet.
+    
+      ?observationSet cube:observation ?observation.
+    
+      ?observation
+        bsprop:baumart ?baumart;
+        bsprop:baumalter ?baumalter.
+    
+      BIND(xsd:integer(?baumalter) AS ?age)
+    
+      FILTER(?age > 0)
+      FILTER(?baumart != <https://ld.bs.ch/code/baumart/>)
+    } GROUP BY ?baumart
+  }
+
+  {
+    SELECT * WHERE {
+      <https://ld.bs.ch/cube/100052> cube:observationSet ?observationSet.
+
+      ?observationSet cube:observation ?observation.
+    
+      ?observation
+        bsprop:baumart ?baumart;
+        bsprop:baumalter ?baumalter;
+        schema:latitude ?latitude;
+        schema:longitude ?longitude.
+
+      BIND(xsd:integer(?baumalter) AS ?age1)
+    }
+  }
+  
+  {
+    SELECT * WHERE {
+      ?baumart schema:name ?label
+
+      FILTER(LANG(?label) = "de")
+    }
+  }
+  
+  FILTER(?age1 = ?maxAge)
+  
+  BIND(CONCAT("POINT (", ?longitude, " ", ?latitude,")") AS ?wkt)
+  BIND(CONCAT(?label, " (", STR(?maxAge), ")") AS ?wktLabel)
+}
+```
