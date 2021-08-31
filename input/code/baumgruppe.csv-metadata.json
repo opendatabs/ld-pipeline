@@ -14,6 +14,11 @@
         "valueUrl": "https://ld.bs.ch/code/baumgruppe/{id_gruppe}"
       },
       {
+        "virtual": true,
+        "propertyUrl": "http://schema.org/inDefinedTermSet",
+        "valueUrl": "https://ld.bs.ch/code/baumgruppe/"
+      },
+      {
         "titles": "id_gruppe",
         "suppressOutput": true
       },
