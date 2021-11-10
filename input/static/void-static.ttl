@@ -18,8 +18,8 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 ##
 
 <.well-known/void> a void:DatasetDescription;
-  schema:name "Datasets of City of Basel"@en;
-  schema:name "Datensätze der Stadt Basel"@de;
+  schema:name "Datasets of Canton Basel-Stadt"@en;
+  schema:name "Datensätze des Kantons Basel-Stadt"@de;
   dcterms:creator <org/basel>;
   schema:hasPart <catalog/basel/cube>.
 
@@ -33,7 +33,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
     schema:url <https://zazuko.com/>.
 
 <org/basel> a foaf:Organization, schema:GovernmentOrganization;
-    schema:name "Statistik Stadt Basel"@de;
+    schema:name "Statistik Kanton Basel-Stadt"@de;
     foaf:homepage <https://data.bs.ch/>.
 
 ##
@@ -41,8 +41,8 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 ##
 
 <catalog/basel/cube> a dcat:Catalog, schema:DataCatalog;
-  schema:name "Statistische Daten der Stadt Basel"@de;
-  schema:description "Dieser Datensatz enthält statistische Daten der Stadt Basel als OLAP Cubes im Cube Schema Vokabular"@de;
+  schema:name "Statistische Daten des Kantons Basel-Stadt"@de;
+  schema:description "Dieser Datensatz enthält statistische Daten des Kantons Basel-Stadt als OLAP Cubes im Cube Schema Vokabular"@de;
   dcterms:publisher <org/basel>;
   schema:dataset
     <cube/6623>,
