@@ -1,85 +1,119 @@
 BASE <https://ld.bs.ch/>
-
-PREFIX void: <http://rdfs.org/ns/void#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX dcterms: <http://purl.org/dc/terms/>
-PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-PREFIX sd: <http://www.w3.org/ns/sparql-service-description#>
-PREFIX dcat: <http://www.w3.org/ns/dcat#>
-PREFIX schema: <http://schema.org/>
-PREFIX doap: <http://usefulinc.com/ns/doap#>
-PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX cube: <https://cube.link/>
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX doap: <http://usefulinc.com/ns/doap#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <http://schema.org/>
+PREFIX sd: <http://www.w3.org/ns/sparql-service-description#>
+PREFIX void: <http://rdfs.org/ns/void#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 ##
-## void
+## void (Dataset Description)
 ##
 
-<.well-known/void> a void:DatasetDescription;
-  schema:name "Datasets of Canton Basel-Stadt"@en;
-  schema:name "Datensätze des Kantons Basel-Stadt"@de;
-  dcterms:creator <org/basel>;
-  schema:hasPart <catalog/basel/cube>.
+<.well-known/void> a void:DatasetDescription ;
+  dcterms:title "Open Datasets of Canton Basel-Stadt"@en ;
+  dcterms:title "Offene Datensätze des Kantons Basel-Stadt"@de ;
+  dcterms:creator <org/fachstelle-ogd> ;
+  dcterms:publisher <org/fachstelle-ogd> ;
+  dcterms:subject <catalog/basel/cube> # alternativ kann auch foaf:topic verwendet werden
+  .
 
 ##
-## organizations
+## Organizations
+## 
+
+<org/zazuko> a schema:Corporation ;
+  schema:name "Zazuko GmbH"@de, "Zazuko GmbH"@en ;
+  schema:url <https://zazuko.com> ;
+  owl:sameAs <https://ld.admin.ch/org/zazuko> ;
+  rdfs:seeAlso wd:Q93230157
+  .
+
+<org/fachstelle-ogd> a schema:GovernmentOrganization ;
+  schema:name "Fachstelle für Open Government Data des Kantons Basel-Stadt"@de ;
+  schema:alternateName "Fachstelle OGD"@de ;
+  schema:url <https://staatskalender.bs.ch/organization/regierung-und-verwaltung/praesidialdepartement/statistisches-amt/fachstelle-ogd>, <https://data.bs.ch/>
+  .
+
+<org/statistisches-amt> a schema:GovernmentOrganization ;
+  schema:name "Statistisches Amt des Kantons Basel-Stadt"@de ;
+  schema:alternateName "StatA" ;
+  schema:url <https://staatskalender.bs.ch/organization/regierung-und-verwaltung/praesidialdepartement/statistisches-amt>, <https://www.statistik.bs.ch/>
+  .
+
+<org/amt-fuer-umwelt-und-energie-aue> a schema:GovernmentOrganization ;
+  schema:name "Amt für Umwelt und Energie des Kantons Basel-Stadt"@de ;
+  schema:alternateName "AUE" ;
+  schema:url: <https://staatskalender.bs.ch/organization/regierung-und-verwaltung/departement-fuer-wirtschaft-soziales-und-umwelt/amt-fuer-umwelt-und-energie-aue>, <https://www.aue.bs.ch/>
+  .
+
+##
+## Information systems (Software: data producers and transformers)
 ##
 
-<org/zazuko> a schema:Corporation;
-    schema:name "Zazuko GmbH";
-    rdfs:seeAlso wd:Q93230157;
-    schema:url <https://zazuko.com/>.
+<sys/rues> a schema:SoftwareApplication ;
+  schema:name "Rheinüberwachungsstation Weil am Rhein (RÜS)" ;
+  schema:description "Sensoren und Datenausgabe der Rheinüberwachungsstation Weil am Rhein"@de ;
+  schema:url <https://www.aue.bs.ch/umweltanalytik/rheinueberwachungsstation-weil-am-rhein.html>
+  .
 
-<org/basel> a foaf:Organization, schema:GovernmentOrganization;
-    schema:name "Open Data Kanton Basel-Stadt"@de;
-    foaf:homepage <https://data.bs.ch/>.
+<sys/ld-pipeline> a doap:GitRepository ;
+  schema:name "LD-Pipeline" ;
+  schema:description "Die LD-Pipeline der Fachstelle OGD transformiert statistische Daten in ein RDF-Modell und publiziert sie als Linked Data."@de ;
+  doap:browse <https://github.com/opendatabs/ld-pipeline> ;
+  doap:location "git@github.com:opendatabs/ld-pipeline.git"
+  .
 
 ##
-## catalog
+## Datasets (mit Subsets)
 ##
 
-<catalog/basel/cube> a dcat:Catalog, schema:DataCatalog;
-  schema:name "Statistische Daten des Kantons Basel-Stadt"@de;
-  schema:description "Dieser Datensatz enthält offene Daten des Kantons Basel-Stadt als OLAP Cubes im Cube Schema Vokabular"@de;
-  dcterms:publisher <org/basel>;
-  schema:dataset
-    <cube/6623>,
-    <cube/100052>,
-    <cube/100128>,
-    <cube/100134>,
-    <cube/rhein-ues-weil>,
-    <cube/rhein-ues-weil-raw>;
-  doap:repository [ a doap:GitRepository;
-    doap:browse <https://github.com/opendatabs/ld-pipeline>;
-    doap:location "git@github.com:opendatabs/ld-pipeline.git"
-  ];
-  void:sparqlEndpoint <https://ld.bs.ch/query>.
+<catalog/basel/cube> a void:Dataset ;
+  dcterms:title "Statistische Daten des Kantons Basel-Stadt"@de ;
+  dcterms:description "Dieser Datensatz enthält offene Daten des Kantons Basel-Stadt als OLAP Cubes im Cube Schema Vokabular"@de ;
+  dcterms:publisher <org/fachstelle-ogd> ; # gilt auch für untergeordnete Datensets
+  dcterms:contributor <org/zazuko> ; # gilt auch für untergeordnete Datensets
+  dcterms:licence <https://creativecommons.org/publicdomain/zero/1.0/> ; # gilt auch für untergeordnete Datensets (@todo: ist das korrekt?)
+  void:subset
+    <cube/6623> ,
+    <cube/100052> ,
+    <cube/100128> ,
+    <cube/100134> ,
+    <cube/rhein-ues-weil> ,
+    <cube/rhein-ues-weil-raw> ;
+  void:vocabulary <https://cube.link>, <http://purl.org/linked-data/cube#> # @todo: Welches Vokabular, welche Vokabulare werden verwendet?
+  doap:repository <sys/ld-pipeline> ;
+  void:sparqlEndpoint <https://ld.bs.ch/sparql>
+  .
 
-<cube/6623> a void:Dataset, dcat:Dataset, schema:Dataset;
-  schema:name "Bevölkerungsbestand am Jahresende"@de;
-  dcat:keyword "Bevölkerung";
-  schema:publisher <org/basel>;
-  schema:contactPoint <org/basel>;
-  schema:contributor <org/zazuko>;
-  schema:dateCreated "2020-12-31"^^xsd:date;
-  schema:dateModified "2020-12-31"^^xsd:date.
+<cube/6623> a void:Dataset ;
+  dcterms:title "Bevölkerungsbestand am Jahresende"@de ;
+  dcterms:creator <org/statistisches-amt> ;
+  dcterms:subject wd:Q33829, wd:Q7229821 ; # "Human Population", "Population statistics"
+  dcterms:source "Data Warehouse des Statistischen Amts" # oder sowas ähnliches @todo: Quelle als System erfassen und URI eintragen
+  dcterms:created "2020-12-31"^^xsd:date ;
+  dcterms:modified "2020-12-31"^^xsd:date
+  .
 
-<cube/rhein-ues-weil> a void:Dataset, dcat:Dataset, schema:Dataset;
-  schema:name "Daten der Rheinüberwachungsstation Weil am Rhein"@de;
-  dcat:keyword "Rhein", "Rheinüberwachungsstation", "Weil";
-  schema:publisher <org/basel>;
-  schema:contactPoint <org/basel>;
-  schema:contributor <org/zazuko>;
-  schema:dateCreated "2020-12-31"^^xsd:date;
-  schema:dateModified "2020-12-31"^^xsd:date.
+<cube/rhein-ues-weil> a void:Dataset ;
+  dcterms:title "Daten der Rheinüberwachungsstation Weil am Rhein"@de ;
+  dcterms:creator <org/amt-fuer-umwelt-und-energie-aue> ;
+  dcterms:subject wd:Q584, wd:Q61909 ; # "Rhein", "Weil am Rhein"
+  dcterms:source <sys/rues> ;
+  dcterms:created "2020-12-31"^^xsd:date ;
+  dcterms:modified "2020-12-31"^^xsd:date
+  .
 
-<cube/rhein-ues-weil-raw> a void:Dataset, dcat:Dataset, schema:Dataset;
-  schema:name "Rohdaten der Rheinüberwachungsstation Weil am Rhein"@de;
-  dcat:keyword "Rhein", "Rheinüberwachungsstation", "Weil", "Rohdaten";
-  schema:publisher <org/basel>;
-  schema:contactPoint <org/basel>;
-  schema:contributor <org/zazuko>;
-  schema:dateCreated "2020-12-31"^^xsd:date;
-  schema:dateModified "2020-12-31"^^xsd:date.
+<cube/rhein-ues-weil-raw> a void:Dataset ;
+  dcterms:title "Rohdaten der Rheinüberwachungsstation Weil am Rhein"@de ;
+  dcterms:creator <org/amt-fuer-umwelt-und-energie-aue> ;
+  dcterms:subject wd:Q584, wd:Q61909, wd:Q2110223 ;  # "Rhein", "Weil am Rhein", "Rohdaten"
+  dcterms:source <sys/rues> ;  
+  dcterms:created "2020-12-31"^^xsd:date ;
+  dcterms:modified "2020-12-31"^^xsd:date
+  .
