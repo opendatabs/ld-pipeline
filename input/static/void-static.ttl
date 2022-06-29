@@ -20,7 +20,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
   dcterms:title "Offene Datensätze des Kantons Basel-Stadt"@de ;
   dcterms:creator <org/fachstelle-ogd> ;
   dcterms:publisher <org/fachstelle-ogd> ;
-  dcterms:subject <catalog/basel/cube> # alternativ kann auch foaf:topic verwendet werden
+  dcterms:subject <cube/6623> , <cube/100052> , <cube/100128> , <cube/100134> , <cube/rhein-ues-weil> , <cube/rhein-ues-weil-raw> 
   .
 
 ##
@@ -70,50 +70,50 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
   .
 
 ##
-## Datasets (mit Subsets)
+## Datasets
 ##
-
-<catalog/basel/cube> a void:Dataset ;
-  dcterms:title "Statistische Daten des Kantons Basel-Stadt"@de ;
-  dcterms:description "Dieser Datensatz enthält offene Daten des Kantons Basel-Stadt als OLAP Cubes im Cube Schema Vokabular"@de ;
-  dcterms:publisher <org/fachstelle-ogd> ; # gilt auch für untergeordnete Datensets
-  dcterms:contributor <org/zazuko> ; # gilt auch für untergeordnete Datensets
-  dcterms:licence <https://creativecommons.org/licenses/by/3.0/ch/> ;
-  void:subset
-    <cube/6623> ,
-    <cube/100052> ,
-    <cube/100128> ,
-    <cube/100134> ,
-    <cube/rhein-ues-weil> ,
-    <cube/rhein-ues-weil-raw> ;
-  void:vocabulary <https://cube.link>, <http://purl.org/linked-data/cube#> ; # @todo: Welches Vokabular, welche Vokabulare werden verwendet? 
-  doap:repository <sys/ld-pipeline> ;
-  void:sparqlEndpoint <https://ld.bs.ch/sparql>
-  .
 
 <cube/6623> a void:Dataset ;
   dcterms:title "Bevölkerungsbestand am Jahresende"@de ;
   dcterms:creator <org/statistisches-amt> ;
+  dcterms:publisher <org/fachstelle-ogd> ; # gilt auch für untergeordnete Datensets
+  dcterms:contributor <org/zazuko> ; # gilt auch für untergeordnete Datensets
+  dcterms:licence <https://creativecommons.org/licenses/by/3.0/ch/> ;
   dcterms:subject wd:Q33829, wd:Q7229821 ;
   dcterms:source "Statistisches Amt Basel-Stadt, Bevölkerungsstatistik" ;
   dcterms:created "2020-12-31"^^xsd:date ;
-  dcterms:modified "2020-12-31"^^xsd:date
+  dcterms:modified "2020-12-31"^^xsd:date;
+  void:vocabulary <https://cube.link>, <http://purl.org/linked-data/cube#> ;
+  doap:repository <sys/ld-pipeline> ;
+  void:sparqlEndpoint <https://ld.bs.ch/sparql>
   .
 
 <cube/rhein-ues-weil> a void:Dataset ;
+  dcterms:publisher <org/fachstelle-ogd> ; # gilt auch für untergeordnete Datensets
+  dcterms:contributor <org/zazuko> ; # gilt auch für untergeordnete Datensets
+  dcterms:licence <https://creativecommons.org/licenses/by/3.0/ch/> ;
   dcterms:title "Daten der Rheinüberwachungsstation Weil am Rhein"@de ;
   dcterms:creator <org/amt-fuer-umwelt-und-energie-aue> ;
   dcterms:subject wd:Q584, wd:Q61909 ; # "Rhein", "Weil am Rhein"
   dcterms:source <sys/rues> ;
   dcterms:created "2020-12-31"^^xsd:date ;
-  dcterms:modified "2020-12-31"^^xsd:date
+  dcterms:modified "2020-12-31"^^xsd:date ;
+  void:vocabulary <https://cube.link>, <http://purl.org/linked-data/cube#> ;
+  doap:repository <sys/ld-pipeline> ;
+  void:sparqlEndpoint <https://ld.bs.ch/sparql>
   .
 
 <cube/rhein-ues-weil-raw> a void:Dataset ;
+  dcterms:publisher <org/fachstelle-ogd> ; # gilt auch für untergeordnete Datensets
+  dcterms:contributor <org/zazuko> ; # gilt auch für untergeordnete Datensets
+  dcterms:licence <https://creativecommons.org/licenses/by/3.0/ch/> ;
   dcterms:title "Rohdaten der Rheinüberwachungsstation Weil am Rhein"@de ;
   dcterms:creator <org/amt-fuer-umwelt-und-energie-aue> ;
   dcterms:subject wd:Q584, wd:Q61909, wd:Q2110223 ;  # "Rhein", "Weil am Rhein", "Rohdaten"
   dcterms:source <sys/rues> ;  
   dcterms:created "2020-12-31"^^xsd:date ;
-  dcterms:modified "2020-12-31"^^xsd:date
+  dcterms:modified "2020-12-31"^^xsd:date ;
+  void:vocabulary <https://cube.link>, <http://purl.org/linked-data/cube#> ;
+  doap:repository <sys/ld-pipeline> ;
+  void:sparqlEndpoint <https://ld.bs.ch/sparql>
   .
