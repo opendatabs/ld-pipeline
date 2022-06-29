@@ -78,7 +78,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
   dcterms:description "Dieser Datensatz enthält offene Daten des Kantons Basel-Stadt als OLAP Cubes im Cube Schema Vokabular"@de ;
   dcterms:publisher <org/fachstelle-ogd> ; # gilt auch für untergeordnete Datensets
   dcterms:contributor <org/zazuko> ; # gilt auch für untergeordnete Datensets
-  dcterms:licence <https://creativecommons.org/publicdomain/zero/1.0/> ; # gilt auch für untergeordnete Datensets (@todo: ist das korrekt?)
+  dcterms:licence <https://creativecommons.org/licenses/by/3.0/ch/> ;
   void:subset
     <cube/6623> ,
     <cube/100052> ,
@@ -94,8 +94,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 <cube/6623> a void:Dataset ;
   dcterms:title "Bevölkerungsbestand am Jahresende"@de ;
   dcterms:creator <org/statistisches-amt> ;
-  dcterms:subject wd:Q33829, wd:Q7229821 ; # "Human Population", "Population statistics"
-  dcterms:source "Data Warehouse des Statistischen Amts" ; # oder sowas ähnliches @todo: Quelle als System erfassen und URI eintragen
+  dcterms:subject wd:Q33829, wd:Q7229821 ;
+  dcterms:source "Statistisches Amt Basel-Stadt, Bevölkerungsstatistik" ;
   dcterms:created "2020-12-31"^^xsd:date ;
   dcterms:modified "2020-12-31"^^xsd:date
   .
