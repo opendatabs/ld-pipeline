@@ -75,6 +75,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 <cube/6623> a void:Dataset ;
   dcterms:title "Bevölkerungsbestand am Jahresende"@de ;
+  dcterms:description "Datengrundlage des Indikators 6623 'Bevölkerungsbestand der Stadt Basel am Jahresende' seit 1774, siehe https://statabs.github.io/indikatoren/chart-details.html?hideHeader=false&id=6623"@de ;
   dcterms:creator <org/statistisches-amt> ;
   dcterms:publisher <org/fachstelle-ogd> ; # gilt auch für untergeordnete Datensets
   dcterms:contributor <org/zazuko> ; # gilt auch für untergeordnete Datensets
@@ -89,10 +90,11 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
   .
 
 <cube/rhein-ues-weil> a void:Dataset ;
+  dcterms:title "Daten der Rheinüberwachungsstation Weil am Rhein"@de ;
+  dcterms:description "Kontinuierlich gemessene Parameter im Rhein, siehe auch https://data.bs.ch/explore/dataset/100046"@de" ;
   dcterms:publisher <org/fachstelle-ogd> ; # gilt auch für untergeordnete Datensets
   dcterms:contributor <org/zazuko> ; # gilt auch für untergeordnete Datensets
   dcterms:licence <https://creativecommons.org/licenses/by/3.0/ch/> ;
-  dcterms:title "Daten der Rheinüberwachungsstation Weil am Rhein"@de ;
   dcterms:creator <org/amt-fuer-umwelt-und-energie-aue> ;
   dcterms:subject wd:Q584, wd:Q61909 ; # "Rhein", "Weil am Rhein"
   dcterms:source <sys/rues> ;
@@ -104,10 +106,11 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
   .
 
 <cube/rhein-ues-weil-raw> a void:Dataset ;
+  dcterms:title "Rohdaten der Rheinüberwachungsstation Weil am Rhein"@de ;
+  dcterms:description "Kontinuierlich gemessene Parameter im Rhein, siehe auch https://data.bs.ch/explore/dataset/100046"@de" ;
   dcterms:publisher <org/fachstelle-ogd> ; # gilt auch für untergeordnete Datensets
   dcterms:contributor <org/zazuko> ; # gilt auch für untergeordnete Datensets
   dcterms:licence <https://creativecommons.org/licenses/by/3.0/ch/> ;
-  dcterms:title "Rohdaten der Rheinüberwachungsstation Weil am Rhein"@de ;
   dcterms:creator <org/amt-fuer-umwelt-und-energie-aue> ;
   dcterms:subject wd:Q584, wd:Q61909, wd:Q2110223 ;  # "Rhein", "Weil am Rhein", "Rohdaten"
   dcterms:source <sys/rues> ;  
