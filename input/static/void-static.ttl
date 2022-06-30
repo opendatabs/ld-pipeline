@@ -20,7 +20,13 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
   dcterms:title "Offene Datensätze des Kantons Basel-Stadt"@de ;
   dcterms:creator <org/fachstelle-ogd> ;
   dcterms:publisher <org/fachstelle-ogd> ;
-  dcterms:subject <cube/6623> , <cube/100052> , <cube/100128> , <cube/100134> , <cube/rhein-ues-weil> , <cube/rhein-ues-weil-raw> 
+  dcterms:subject 
+    <cube/6623> , # non-existent on data.bs.ch (under this id)
+    <cube/100052> , 
+    <cube/100128> , 
+    <cube/100134> , 
+    <cube/rhein-ues-weil> , 
+    <cube/rhein-ues-weil-raw> 
   .
 
 ##
@@ -77,8 +83,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
   dcterms:title "Bevölkerungsbestand am Jahresende"@de ;
   dcterms:description "Datengrundlage des Indikators 6623 'Bevölkerungsbestand der Stadt Basel am Jahresende' seit 1774, siehe https://statabs.github.io/indikatoren/chart-details.html?hideHeader=false&id=6623"@de ;
   dcterms:creator <org/statistisches-amt> ;
-  dcterms:publisher <org/fachstelle-ogd> ; # gilt auch für untergeordnete Datensets
-  dcterms:contributor <org/zazuko> ; # gilt auch für untergeordnete Datensets
+  dcterms:publisher <org/fachstelle-ogd> ;
+  dcterms:contributor <org/zazuko> ;
   dcterms:licence <https://creativecommons.org/licenses/by/3.0/ch/> ;
   dcterms:subject wd:Q33829, wd:Q7229821 ;
   dcterms:source "Statistisches Amt Basel-Stadt, Bevölkerungsstatistik" ;
@@ -92,8 +98,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 <cube/rhein-ues-weil> a void:Dataset ;
   dcterms:title "Daten der Rheinüberwachungsstation Weil am Rhein"@de ;
   dcterms:description "Kontinuierlich gemessene Parameter im Rhein, siehe auch https://data.bs.ch/explore/dataset/100046"@de ;
-  dcterms:publisher <org/fachstelle-ogd> ; # gilt auch für untergeordnete Datensets
-  dcterms:contributor <org/zazuko> ; # gilt auch für untergeordnete Datensets
+  dcterms:publisher <org/fachstelle-ogd> ;
+  dcterms:contributor <org/zazuko> ;
   dcterms:licence <https://creativecommons.org/licenses/by/3.0/ch/> ;
   dcterms:creator <org/amt-fuer-umwelt-und-energie-aue> ;
   dcterms:subject wd:Q584, wd:Q61909 ; # "Rhein", "Weil am Rhein"
@@ -108,12 +114,12 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 <cube/rhein-ues-weil-raw> a void:Dataset ;
   dcterms:title "Rohdaten der Rheinüberwachungsstation Weil am Rhein"@de ;
   dcterms:description "Kontinuierlich gemessene Parameter im Rhein, siehe auch https://data.bs.ch/explore/dataset/100046"@de ;
-  dcterms:publisher <org/fachstelle-ogd> ; # gilt auch für untergeordnete Datensets
-  dcterms:contributor <org/zazuko> ; # gilt auch für untergeordnete Datensets
+  dcterms:publisher <org/fachstelle-ogd> ;
+  dcterms:contributor <org/zazuko> ;
   dcterms:licence <https://creativecommons.org/licenses/by/3.0/ch/> ;
   dcterms:creator <org/amt-fuer-umwelt-und-energie-aue> ;
   dcterms:subject wd:Q584, wd:Q61909, wd:Q2110223 ;  # "Rhein", "Weil am Rhein", "Rohdaten"
-  dcterms:source <sys/rues> ;  
+  dcterms:source <sys/rues> ;
   dcterms:created "2020-12-31"^^xsd:date ;
   dcterms:modified "2020-12-31"^^xsd:date ;
   void:vocabulary <https://cube.link>, <http://purl.org/linked-data/cube#> ;
