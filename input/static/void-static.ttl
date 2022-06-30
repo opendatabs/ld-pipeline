@@ -91,7 +91,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 <cube/rhein-ues-weil> a void:Dataset ;
   dcterms:title "Daten der Rheinüberwachungsstation Weil am Rhein"@de ;
-  dcterms:description "Kontinuierlich gemessene Parameter im Rhein, siehe auch https://data.bs.ch/explore/dataset/100046"@de" ;
+  dcterms:description "Kontinuierlich gemessene Parameter im Rhein, siehe auch https://data.bs.ch/explore/dataset/100046"@de ;
   dcterms:publisher <org/fachstelle-ogd> ; # gilt auch für untergeordnete Datensets
   dcterms:contributor <org/zazuko> ; # gilt auch für untergeordnete Datensets
   dcterms:licence <https://creativecommons.org/licenses/by/3.0/ch/> ;
@@ -107,7 +107,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 <cube/rhein-ues-weil-raw> a void:Dataset ;
   dcterms:title "Rohdaten der Rheinüberwachungsstation Weil am Rhein"@de ;
-  dcterms:description "Kontinuierlich gemessene Parameter im Rhein, siehe auch https://data.bs.ch/explore/dataset/100046"@de" ;
+  dcterms:description "Kontinuierlich gemessene Parameter im Rhein, siehe auch https://data.bs.ch/explore/dataset/100046"@de ;
   dcterms:publisher <org/fachstelle-ogd> ; # gilt auch für untergeordnete Datensets
   dcterms:contributor <org/zazuko> ; # gilt auch für untergeordnete Datensets
   dcterms:licence <https://creativecommons.org/licenses/by/3.0/ch/> ;
