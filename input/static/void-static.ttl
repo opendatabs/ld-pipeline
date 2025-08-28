@@ -18,8 +18,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 <.well-known/void> a void:DatasetDescription ;
   dcterms:title "Open Datasets of Canton Basel-Stadt"@en ;
   dcterms:title "Offene Datensätze des Kantons Basel-Stadt"@de ;
-  dcterms:creator <org/fachstelle-ogd> ;
-  dcterms:publisher <org/fachstelle-ogd> ;
+  dcterms:creator <org/DCC.BS> ;
+  dcterms:publisher <org/DCC.BS> ;
   dcterms:subject 
     <cube/6623> , # non-existent on data.bs.ch (under this id)
     <cube/100052> , 
@@ -92,7 +92,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
   dcterms:title "Bevölkerungsbestand am Jahresende"@de ;
   dcterms:description "Datengrundlage des Indikators 6623 'Bevölkerungsbestand der Stadt Basel am Jahresende' seit 1774, siehe https://statabs.github.io/indikatoren/chart-details.html?hideHeader=false&id=6623"@de ;
   dcterms:creator <org/statistisches-amt> ;
-  dcterms:publisher <org/fachstelle-ogd> ;
+  dcterms:publisher <org/DCC.BS> ;
   dcterms:contributor <org/zazuko> ;
   dcterms:licence <https://creativecommons.org/licenses/by/3.0/ch/> ;
   dcterms:subject wd:Q33829, wd:Q7229821 ;
@@ -107,7 +107,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 <cube/rhein-ues-weil> a void:Dataset ;
   dcterms:title "Daten der Rheinüberwachungsstation Weil am Rhein"@de ;
   dcterms:description "Kontinuierlich gemessene Parameter im Rhein, siehe auch https://data.bs.ch/explore/dataset/100046"@de ;
-  dcterms:publisher <org/fachstelle-ogd> ;
+  dcterms:publisher <org/DCC.BS> ;
   dcterms:contributor <org/zazuko> ;
   dcterms:licence <https://creativecommons.org/licenses/by/3.0/ch/> ;
   dcterms:creator <org/amt-fuer-umwelt-und-energie-aue> ;
@@ -123,7 +123,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 <cube/rhein-ues-weil-raw> a void:Dataset ;
   dcterms:title "Rohdaten der Rheinüberwachungsstation Weil am Rhein"@de ;
   dcterms:description "Kontinuierlich gemessene Parameter im Rhein, siehe auch https://data.bs.ch/explore/dataset/100046"@de ;
-  dcterms:publisher <org/fachstelle-ogd> ;
+  dcterms:publisher <org/DCC.BS> ;
   dcterms:contributor <org/zazuko> ;
   dcterms:licence <https://creativecommons.org/licenses/by/3.0/ch/> ;
   dcterms:creator <org/amt-fuer-umwelt-und-energie-aue> ;
