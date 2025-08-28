@@ -43,13 +43,22 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 <org/fachstelle-ogd> a schema:GovernmentOrganization ;
   schema:name "Fachstelle für Open Government Data des Kantons Basel-Stadt"@de ;
   schema:alternateName "Fachstelle OGD"@de ;
-  schema:url <https://staatskalender.bs.ch/organization/regierung-und-verwaltung/praesidialdepartement/statistisches-amt/fachstelle-ogd>, <https://data.bs.ch/>
+  schema:url <https://staatskalender.bs.ch/organization/regierung-und-verwaltung/praesidialdepartement/statistisches-amt/fachstelle-ogd>, <https://data.bs.ch/>, <https://www.bs.ch/daten/databs/dcc#open-government-data-ogd> ;
+  schema:supersededBy <org/DCC.BS>
+  .
+
+<org/DCC.BS> a schema:GovernmentOrganization ;
+  schema:name "Data Competence Center des Kantonts Basel-Stadt"@de ;
+  schema:alternateName "DCC.BS"@de ;
+  schema:url <https://www.bs.ch/daten/databs/dcc>, <https://staatskalender.bs.ch/organization/regierung-und-verwaltung/praesidialdepartement/statistisches-amt/data-competence-center> ;
+  schema:parentOrganization <org/statistisches-amt>
   .
 
 <org/statistisches-amt> a schema:GovernmentOrganization ;
   schema:name "Statistisches Amt des Kantons Basel-Stadt"@de ;
   schema:alternateName "StatA" ;
-  schema:url <https://staatskalender.bs.ch/organization/regierung-und-verwaltung/praesidialdepartement/statistisches-amt>, <https://www.statistik.bs.ch/>
+  schema:url <https://staatskalender.bs.ch/organization/regierung-und-verwaltung/praesidialdepartement/statistisches-amt>, <https://www.statistik.bs.ch/>, <https://www.bs.ch/pd/statistik> ;
+  schema:subOrganization <org/DCC.BS>
   .
 
 <org/amt-fuer-umwelt-und-energie-aue> a schema:GovernmentOrganization ;
