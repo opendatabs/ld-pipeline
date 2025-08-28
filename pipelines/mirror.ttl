@@ -6,7 +6,7 @@
 <defaultVars>
   p:variable [ a p:Variable;
     p:name "SOURCE_ENDPOINT_URL";
-    p:value "https://ld.geo.admin.ch/query"
+    p:value "https://geo.ld.admin.ch/query"
   ], [ a p:Variable;
     p:name "ENDPOINT_URL";
     p:value "http://localhost:3030/data"
