@@ -64,7 +64,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 <org/amt-fuer-umwelt-und-energie-aue> a schema:GovernmentOrganization ;
   schema:name "Amt für Umwelt und Energie des Kantons Basel-Stadt"@de ;
   schema:alternateName "AUE" ;
-  schema:url: <https://staatskalender.bs.ch/organization/regierung-und-verwaltung/departement-fuer-wirtschaft-soziales-und-umwelt/amt-fuer-umwelt-und-energie-aue>, <https://www.aue.bs.ch/>
+  schema:url: <https://staatskalender.bs.ch/organization/regierung-und-verwaltung/departement-fuer-wirtschaft-soziales-und-umwelt/amt-fuer-umwelt-und-energie-aue>, <https://www.bs.ch/aue>
   .
 
 ##
@@ -74,7 +74,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 <sys/rues> a schema:SoftwareApplication ;
   schema:name "Rheinüberwachungsstation Weil am Rhein (RÜS)" ;
   schema:description "Sensoren und Datenausgabe der Rheinüberwachungsstation Weil am Rhein"@de ;
-  schema:url <https://www.aue.bs.ch/umweltanalytik/rheinueberwachungsstation-weil-am-rhein.html>
+  schema:url <https://www.bs.ch/wsu/aue/abteilung-umweltlabor/rheinueberwachungsstation-weil-am-rhein-rues>
   .
 
 <sys/ld-pipeline> a doap:GitRepository ;
