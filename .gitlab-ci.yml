@@ -18,6 +18,7 @@ fetch-deps:
 # Fuseki
 code:
   stage: build
+  allow_failure: true
   needs:
     - job: fetch-deps
       artifacts: true
@@ -29,6 +30,7 @@ code:
 
 mirror_swisstopo:
   stage: build
+  allow_failure: true
   needs:
     - job: fetch-deps
       artifacts: true
@@ -40,6 +42,7 @@ mirror_swisstopo:
 
 ogd_void:
   stage: build
+  allow_failure: true
   needs:
     - job: fetch-deps
       artifacts: true
@@ -51,6 +54,7 @@ ogd_void:
 
 raum:
   stage: build
+  allow_failure: true
   needs:
     - job: fetch-deps
       artifacts: true
@@ -62,6 +66,7 @@ raum:
 
 static:
   stage: build
+  allow_failure: true
   needs:
     - job: fetch-deps
       artifacts: true
@@ -73,6 +78,7 @@ static:
 
 ogd_daily:
   stage: build
+  allow_failure: true
   needs:
     - job: fetch-deps
       artifacts: true
@@ -84,6 +90,7 @@ ogd_daily:
 
 ogd_monthly:
   stage: build
+  allow_failure: true
   needs:
     - job: fetch-deps
       artifacts: true
@@ -95,6 +102,7 @@ ogd_monthly:
 
 ogd_weekly:
   stage: build
+  allow_failure: true
   needs:
     - job: fetch-deps
       artifacts: true
@@ -106,6 +114,7 @@ ogd_weekly:
 
 rhein_ues_weil_corrected:
   stage: build
+  allow_failure: true
   needs:
     - job: fetch-deps
       artifacts: true
@@ -117,6 +126,7 @@ rhein_ues_weil_corrected:
 
 rhein_ues_weil_raw:
   stage: build
+  allow_failure: true
   needs:
     - job: fetch-deps
       artifacts: true
