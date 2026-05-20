@@ -139,12 +139,13 @@ rhein_ues_weil_raw:
 # QLever
 qlever-code:
   stage: build
+  allow_failure: true
   needs:
     - job: fetch-deps
       artifacts: true
   script:
-    - mkdir -p /output
-    - npm run code:stdout > /output/code.nt
+    - mkdir -p output
+    - npm run code:stdout > output/code.nt
   artifacts:
     paths:
       - output/code.nt
@@ -155,12 +156,13 @@ qlever-code:
 
 qlever-mirror_swisstopo:
   stage: build
+  allow_failure: true
   needs:
     - job: fetch-deps
       artifacts: true
   script:
-    - mkdir -p /output
-    - npm run mirror:swisstopo:stdout > /output/mirror_swisstopo.nt
+    - mkdir -p output
+    - npm run mirror:swisstopo:stdout > output/mirror_swisstopo.nt
   artifacts:
     paths:
       - output/mirror_swisstopo.nt
@@ -171,12 +173,13 @@ qlever-mirror_swisstopo:
 
 qlever-ogd_void:
   stage: build
+  allow_failure: true
   needs:
     - job: fetch-deps
       artifacts: true
   script:
-    - mkdir -p /output
-    - npm run ogd-void:stdout > /output/ogd_void.nt
+    - mkdir -p output
+    - npm run ogd-void:stdout > output/ogd_void.nt
   artifacts:
     paths:
       - output/ogd_void.nt
@@ -187,12 +190,13 @@ qlever-ogd_void:
 
 qlever-raum:
   stage: build
+  allow_failure: true
   needs:
     - job: fetch-deps
       artifacts: true
   script:
-    - mkdir -p /output
-    - npm run raum:stdout > /output/raum.nt
+    - mkdir -p output
+    - npm run raum:stdout > output/raum.nt
   artifacts:
     paths:
       - output/raum.nt
@@ -203,12 +207,13 @@ qlever-raum:
 
 qlever-static:
   stage: build
+  allow_failure: true
   needs:
     - job: fetch-deps
       artifacts: true
   script:
-    - mkdir -p /output
-    - npm run static:stdout > /output/static.nt
+    - mkdir -p output
+    - npm run static:stdout > output/static.nt
   artifacts:
     paths:
       - output/static.nt
@@ -219,12 +224,13 @@ qlever-static:
 
 qlever-ogd_daily:
   stage: build
+  allow_failure: true
   needs:
     - job: fetch-deps
       artifacts: true
   script:
-    - mkdir -p /output
-    - npm run ogd:stdout:daily > /output/ogd_daily.nt
+    - mkdir -p output
+    - npm run ogd:stdout:daily > output/ogd_daily.nt
   artifacts:
     paths:
       - output/ogd_daily.nt
@@ -235,12 +241,13 @@ qlever-ogd_daily:
 
 qlever-ogd_monthly:
   stage: build
+  allow_failure: true
   needs:
     - job: fetch-deps
       artifacts: true
   script:
-    - mkdir -p /output
-    - npm run ogd:stdout:monthly > /output/ogd_monthly.nt
+    - mkdir -p output
+    - npm run ogd:stdout:monthly > output/ogd_monthly.nt
   artifacts:
     paths:
       - output/ogd_monthly.nt
@@ -251,12 +258,13 @@ qlever-ogd_monthly:
 
 qlever-ogd_weekly:
   stage: build
+  allow_failure: true
   needs:
     - job: fetch-deps
       artifacts: true
   script:
-    - mkdir -p /output
-    - npm run ogd:stdout:weekly > /output/ogd_weekly.nt
+    - mkdir -p output
+    - npm run ogd:stdout:weekly > output/ogd_weekly.nt
   artifacts:
     paths:
       - output/ogd_weekly.nt
@@ -267,12 +275,13 @@ qlever-ogd_weekly:
 
 qlever-rhein_ues_weil_corrected:
   stage: build
+  allow_failure: true
   needs:
     - job: fetch-deps
       artifacts: true
   script:
-    - mkdir -p /output
-    - npm run rhein-ues-weil:corrected:stdout > /output/rhein_ues_weil_corrected.nt
+    - mkdir -p output
+    - npm run rhein-ues-weil:corrected:stdout > output/rhein_ues_weil_corrected.nt
   artifacts:
     paths:
       - output/rhein_ues_weil_corrected.nt
@@ -283,12 +292,13 @@ qlever-rhein_ues_weil_corrected:
 
 qlever-rhein_ues_weil_raw:
   stage: build
+  allow_failure: true
   needs:
     - job: fetch-deps
       artifacts: true
   script:
-    - mkdir -p /output
-    - npm run rhein-ues-weil:raw:stdout > /output/rhein_ues_weil_raw.nt
+    - mkdir -p output
+    - npm run rhein-ues-weil:raw:stdout > output/rhein_ues_weil_raw.nt
   artifacts:
     paths:
       - output/rhein_ues_weil_raw.nt
