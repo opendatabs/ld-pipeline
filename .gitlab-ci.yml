@@ -1,13 +1,26 @@
 image: node:14
 
-before_script:
-  - npm ci
-
 stages:
+  - deps
   - build
+  - store
 
+# Fetch dependencies once
+fetch-deps:
+  stage: deps
+  script:
+    - npm ci
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 1 week
+
+# Fuseki
 code:
   stage: build
+  needs:
+    - job: fetch-deps
+      artifacts: true
   script:
     - npm run code:store
   except:
@@ -16,6 +29,9 @@ code:
 
 mirror_swisstopo:
   stage: build
+  needs:
+    - job: fetch-deps
+      artifacts: true
   script:
     - npm run mirror:swisstopo:store
   except:
@@ -24,6 +40,9 @@ mirror_swisstopo:
 
 ogd_void:
   stage: build
+  needs:
+    - job: fetch-deps
+      artifacts: true
   script:
     - npm run ogd-void:store
   except:
@@ -32,6 +51,9 @@ ogd_void:
 
 raum:
   stage: build
+  needs:
+    - job: fetch-deps
+      artifacts: true
   script:
     - npm run raum:store
   except:
@@ -40,6 +62,9 @@ raum:
 
 static:
   stage: build
+  needs:
+    - job: fetch-deps
+      artifacts: true
   script:
     - npm run static:store
   except:
@@ -48,6 +73,9 @@ static:
 
 ogd_daily:
   stage: build
+  needs:
+    - job: fetch-deps
+      artifacts: true
   script:
     - npm run ogd:store:daily
   only:
@@ -56,6 +84,9 @@ ogd_daily:
 
 ogd_monthly:
   stage: build
+  needs:
+    - job: fetch-deps
+      artifacts: true
   script:
     - npm run ogd:store:monthly
   only:
@@ -64,6 +95,9 @@ ogd_monthly:
 
 ogd_weekly:
   stage: build
+  needs:
+    - job: fetch-deps
+      artifacts: true
   script:
     - npm run ogd:store:weekly
   only:
@@ -72,6 +106,9 @@ ogd_weekly:
 
 rhein_ues_weil_corrected:
   stage: build
+  needs:
+    - job: fetch-deps
+      artifacts: true
   script:
     - npm run rhein-ues-weil:corrected:store
   only:
@@ -80,8 +117,208 @@ rhein_ues_weil_corrected:
 
 rhein_ues_weil_raw:
   stage: build
+  needs:
+    - job: fetch-deps
+      artifacts: true
   script:
     - npm run rhein-ues-weil:raw:store
   only:
     variables:
       - $CRON && $CRON_RHEIN_UES_WEIL_RAW
+
+# QLever
+qlever-code:
+  stage: build
+  needs:
+    - job: fetch-deps
+      artifacts: true
+  script:
+    - mkdir -p /output
+    - npm run code:stdout > /output/code.nt
+  artifacts:
+    paths:
+      - output/code.nt
+    expire_in: 1 week
+  except:
+    variables:
+      - $CRON
+
+qlever-mirror_swisstopo:
+  stage: build
+  needs:
+    - job: fetch-deps
+      artifacts: true
+  script:
+    - mkdir -p /output
+    - npm run mirror:swisstopo:stdout > /output/mirror_swisstopo.nt
+  artifacts:
+    paths:
+      - output/mirror_swisstopo.nt
+    expire_in: 1 week
+  except:
+    variables:
+      - $CRON
+
+qlever-ogd_void:
+  stage: build
+  needs:
+    - job: fetch-deps
+      artifacts: true
+  script:
+    - mkdir -p /output
+    - npm run ogd-void:stdout > /output/ogd_void.nt
+  artifacts:
+    paths:
+      - output/ogd_void.nt
+    expire_in: 1 week
+  except:
+    variables:
+      - $CRON
+
+qlever-raum:
+  stage: build
+  needs:
+    - job: fetch-deps
+      artifacts: true
+  script:
+    - mkdir -p /output
+    - npm run raum:stdout > /output/raum.nt
+  artifacts:
+    paths:
+      - output/raum.nt
+    expire_in: 1 week
+  except:
+    variables:
+      - $CRON
+
+qlever-static:
+  stage: build
+  needs:
+    - job: fetch-deps
+      artifacts: true
+  script:
+    - mkdir -p /output
+    - npm run static:stdout > /output/static.nt
+  artifacts:
+    paths:
+      - output/static.nt
+    expire_in: 1 week
+  except:
+    variables:
+      - $CRON
+
+qlever-ogd_daily:
+  stage: build
+  needs:
+    - job: fetch-deps
+      artifacts: true
+  script:
+    - mkdir -p /output
+    - npm run ogd:stdout:daily > /output/ogd_daily.nt
+  artifacts:
+    paths:
+      - output/ogd_daily.nt
+    expire_in: 1 week
+  only:
+    variables:
+      - $CRON && $CRON_OGD_DAILY
+
+qlever-ogd_monthly:
+  stage: build
+  needs:
+    - job: fetch-deps
+      artifacts: true
+  script:
+    - mkdir -p /output
+    - npm run ogd:stdout:monthly > /output/ogd_monthly.nt
+  artifacts:
+    paths:
+      - output/ogd_monthly.nt
+    expire_in: 1 week
+  only:
+    variables:
+      - $CRON && $CRON_OGD_MONTHLY
+
+qlever-ogd_weekly:
+  stage: build
+  needs:
+    - job: fetch-deps
+      artifacts: true
+  script:
+    - mkdir -p /output
+    - npm run ogd:stdout:weekly > /output/ogd_weekly.nt
+  artifacts:
+    paths:
+      - output/ogd_weekly.nt
+    expire_in: 1 week
+  only:
+    variables:
+      - $CRON && $CRON_OGD_WEEKLY
+
+qlever-rhein_ues_weil_corrected:
+  stage: build
+  needs:
+    - job: fetch-deps
+      artifacts: true
+  script:
+    - mkdir -p /output
+    - npm run rhein-ues-weil:corrected:stdout > /output/rhein_ues_weil_corrected.nt
+  artifacts:
+    paths:
+      - output/rhein_ues_weil_corrected.nt
+    expire_in: 1 week
+  only:
+    variables:
+      - $CRON && $CRON_RHEIN_UES_WEIL_CORRECTED
+
+qlever-rhein_ues_weil_raw:
+  stage: build
+  needs:
+    - job: fetch-deps
+      artifacts: true
+  script:
+    - mkdir -p /output
+    - npm run rhein-ues-weil:raw:stdout > /output/rhein_ues_weil_raw.nt
+  artifacts:
+    paths:
+      - output/rhein_ues_weil_raw.nt
+    expire_in: 1 week
+  only:
+    variables:
+      - $CRON && $CRON_RHEIN_UES_WEIL_RAW
+
+store-all:
+  stage: store
+  needs:
+    - job: qlever-code
+      artifacts: true
+      optional: true
+    - job: qlever-mirror_swisstopo
+      artifacts: true
+      optional: true
+    - job: qlever-ogd_void
+      artifacts: true
+      optional: true
+    - job: qlever-raum
+      artifacts: true
+      optional: true
+    - job: qlever-static
+      artifacts: true
+      optional: true
+    - job: qlever-ogd_daily
+      artifacts: true
+      optional: true
+    - job: qlever-ogd_monthly
+      artifacts: true
+      optional: true
+    - job: qlever-ogd_weekly
+      artifacts: true
+      optional: true
+    - job: qlever-rhein_ues_weil_corrected
+      artifacts: true
+      optional: true
+    - job: qlever-rhein_ues_weil_raw
+      artifacts: true
+      optional: true
+  script:
+    - ls -alh output/
