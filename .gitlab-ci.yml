@@ -4,6 +4,7 @@ stages:
   - deps
   - build
   - store
+  - trigger
 
 # Fetch dependencies once
 fetch-deps:
@@ -340,5 +341,25 @@ store-all:
     - job: qlever-rhein_ues_weil_raw
       artifacts: true
       optional: true
+  image:
+    name: docker.io/minio/mc:latest
+    entrypoint: [""]
   script:
-    - ls -alh output/
+    # Display all files that we will upload to the S3 bucket
+    - ls -alh output
+    - if [ -z "$(ls -A output)" ]; then echo "No files to upload!"; exit 1; fi
+
+    # Upload files to the S3 bucket if there are any
+    - mc alias set bucket "${DST_S3_ENDPOINT}" "${DST_S3_ACCESS_KEY}" "${DST_S3_SECRET_KEY}"
+    - mc cp output/*.nt "bucket/${DST_S3_BUCKET}/${DST_S3_PATH}/"
+
+trigger-prod:
+  stage: trigger
+  needs:
+    - store-all
+  trigger:
+    project: stabs/indexing-trigger
+    branch: main
+  variables:
+    TRIGGERED_BY_PIPELINE: "true"
+    ENVIRONMENT: "prod"
