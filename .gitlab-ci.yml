@@ -146,7 +146,7 @@ qlever-code:
       artifacts: true
   script:
     - mkdir -p output
-    - npm run code:stdout > output/code.nt
+    - npm -s run code:stdout > output/code.nt
   artifacts:
     paths:
       - output/code.nt
@@ -163,7 +163,7 @@ qlever-mirror_swisstopo:
       artifacts: true
   script:
     - mkdir -p output
-    - npm run mirror:swisstopo:stdout > output/mirror_swisstopo.nt
+    - npm -s run mirror:swisstopo:stdout > output/mirror_swisstopo.nt
   artifacts:
     paths:
       - output/mirror_swisstopo.nt
@@ -180,7 +180,7 @@ qlever-ogd_void:
       artifacts: true
   script:
     - mkdir -p output
-    - npm run ogd-void:stdout > output/ogd_void.nt
+    - npm -s run ogd-void:stdout > output/ogd_void.nt
   artifacts:
     paths:
       - output/ogd_void.nt
@@ -197,7 +197,7 @@ qlever-raum:
       artifacts: true
   script:
     - mkdir -p output
-    - npm run raum:stdout > output/raum.nt
+    - npm -s run raum:stdout > output/raum.nt
   artifacts:
     paths:
       - output/raum.nt
@@ -214,7 +214,7 @@ qlever-static:
       artifacts: true
   script:
     - mkdir -p output
-    - npm run static:stdout > output/static.nt
+    - npm -s run static:stdout > output/static.nt
   artifacts:
     paths:
       - output/static.nt
@@ -231,7 +231,7 @@ qlever-ogd_daily:
       artifacts: true
   script:
     - mkdir -p output
-    - npm run ogd:stdout:daily > output/ogd_daily.nt
+    - npm -s run ogd:stdout:daily > output/ogd_daily.nt
   artifacts:
     paths:
       - output/ogd_daily.nt
@@ -248,7 +248,7 @@ qlever-ogd_monthly:
       artifacts: true
   script:
     - mkdir -p output
-    - npm run ogd:stdout:monthly > output/ogd_monthly.nt
+    - npm -s run ogd:stdout:monthly > output/ogd_monthly.nt
   artifacts:
     paths:
       - output/ogd_monthly.nt
@@ -265,7 +265,7 @@ qlever-ogd_weekly:
       artifacts: true
   script:
     - mkdir -p output
-    - npm run ogd:stdout:weekly > output/ogd_weekly.nt
+    - npm -s run ogd:stdout:weekly > output/ogd_weekly.nt
   artifacts:
     paths:
       - output/ogd_weekly.nt
@@ -282,7 +282,7 @@ qlever-rhein_ues_weil_corrected:
       artifacts: true
   script:
     - mkdir -p output
-    - npm run rhein-ues-weil:corrected:stdout > output/rhein_ues_weil_corrected.nt
+    - npm -s run rhein-ues-weil:corrected:stdout > output/rhein_ues_weil_corrected.nt
   artifacts:
     paths:
       - output/rhein_ues_weil_corrected.nt
@@ -299,7 +299,7 @@ qlever-rhein_ues_weil_raw:
       artifacts: true
   script:
     - mkdir -p output
-    - npm run rhein-ues-weil:raw:stdout > output/rhein_ues_weil_raw.nt
+    - npm -s run rhein-ues-weil:raw:stdout > output/rhein_ues_weil_raw.nt
   artifacts:
     paths:
       - output/rhein_ues_weil_raw.nt
