@@ -301,6 +301,7 @@ qlever-rhein_ues_weil_raw:
     - mkdir -p output
     - npm -s run rhein-ues-weil:raw:stdout > output/rhein_ues_weil_raw.nt
   artifacts:
+    when: always
     paths:
       - output/rhein_ues_weil_raw.nt
     expire_in: 1 week
