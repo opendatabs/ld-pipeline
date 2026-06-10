@@ -40,6 +40,7 @@
     "url": "git@github.com:opendatabs/ld-pipeline.git"
   },
   "dependencies": {
+    "@rdfjs/formats": "^4.0.1",
     "@rdfjs/namespace": "^1.1.0",
     "@rdfjs/term-map": "^1.0.1",
     "barnard59": "^1.1.0",
