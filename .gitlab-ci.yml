@@ -1,5 +1,15 @@
 image: node:24-alpine
 
+variables:
+  target: "store"
+
+workflow:
+  rules:
+    - if: '$CI_COMMIT_BRANCH && $CI_COMMIT_BRANCH != "main"'
+      variables:
+        target: "stdout"
+    - when: always
+
 stages:
   - deps
   - build
@@ -24,7 +34,12 @@ code:
     - job: fetch-deps
       artifacts: true
   script:
-    - npm run code:store
+    - npm run code:${target} > output/code.nt
+  artifacts:
+    paths:
+      - output/code.nt
+    expire_in: 1 week
+    when: always
   except:
     variables:
       - $CRON
@@ -36,7 +51,12 @@ mirror_swisstopo:
     - job: fetch-deps
       artifacts: true
   script:
-    - npm run mirror:swisstopo:store
+    - npm run mirror:swisstopo:${target} > output/mirror_swisstopo.nt
+  artifacts:
+    paths:
+      - output/mirror_swisstopo.nt
+    expire_in: 1 week
+    when: always
   except:
     variables:
       - $CRON
@@ -48,7 +68,12 @@ ogd_void:
     - job: fetch-deps
       artifacts: true
   script:
-    - npm run ogd-void:store
+    - npm run ogd-void:${target} > output/ogd_void.nt
+  artifacts:
+    paths:
+      - output/ogd_void.nt
+    expire_in: 1 week
+    when: always
   except:
     variables:
       - $CRON
@@ -60,7 +85,12 @@ raum:
     - job: fetch-deps
       artifacts: true
   script:
-    - npm run raum:store
+    - npm run raum:${target} > output/raum.nt
+  artifacts:
+    paths:
+      - output/raum.nt
+    expire_in: 1 week
+    when: always
   except:
     variables:
       - $CRON
@@ -72,7 +102,12 @@ static:
     - job: fetch-deps
       artifacts: true
   script:
-    - npm run static:store
+    - npm run static:${target} > output/static.nt
+  artifacts:
+    paths:
+      - output/static.nt
+    expire_in: 1 week
+    when: always
   except:
     variables:
       - $CRON
@@ -84,7 +119,12 @@ ogd_daily:
     - job: fetch-deps
       artifacts: true
   script:
-    - npm run ogd:store:daily
+    - npm run ogd:${target}:daily > output/ogd_daily.nt
+  artifacts:
+    paths:
+      - output/ogd_daily.nt
+    expire_in: 1 week
+    when: always
   only:
     variables:
       - $CRON && $CRON_OGD_DAILY
@@ -96,7 +136,12 @@ ogd_monthly:
     - job: fetch-deps
       artifacts: true
   script:
-    - npm run ogd:store:monthly
+    - npm run ogd:${target}:monthly > output/ogd_monthly.nt
+  artifacts:
+    paths:
+      - output/ogd_monthly.nt
+    expire_in: 1 week
+    when: always
   only:
     variables:
       - $CRON && $CRON_OGD_MONTHLY
@@ -108,7 +153,12 @@ ogd_weekly:
     - job: fetch-deps
       artifacts: true
   script:
-    - npm run ogd:store:weekly
+    - npm run ogd:${target}:weekly > output/ogd_weekly.nt
+  artifacts:
+    paths:
+      - output/ogd_weekly.nt
+    expire_in: 1 week
+    when: always
   only:
     variables:
       - $CRON && $CRON_OGD_WEEKLY
@@ -120,7 +170,12 @@ rhein_ues_weil_corrected:
     - job: fetch-deps
       artifacts: true
   script:
-    - npm run rhein-ues-weil:corrected:store
+    - npm run rhein-ues-weil:corrected:${target} > output/rhein_ues_weil_corrected.nt
+  artifacts:
+    paths:
+      - output/rhein_ues_weil_corrected.nt
+    expire_in: 1 week
+    when: always
   only:
     variables:
       - $CRON && $CRON_RHEIN_UES_WEIL_CORRECTED
@@ -132,7 +187,12 @@ rhein_ues_weil_raw:
     - job: fetch-deps
       artifacts: true
   script:
-    - npm run rhein-ues-weil:raw:store
+    - npm run rhein-ues-weil:raw:${target} > output/rhein_ues_weil_raw.nt
+  artifacts:
+    paths:
+      - output/rhein_ues_weil_raw.nt
+    expire_in: 1 week
+    when: always
   only:
     variables:
       - $CRON && $CRON_RHEIN_UES_WEIL_RAW
@@ -320,6 +380,9 @@ qlever-rhein_ues_weil_raw:
 
 store-all:
   stage: store
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+    - when: never
   needs:
     - job: qlever-code
       artifacts: true
