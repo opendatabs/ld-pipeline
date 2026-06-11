@@ -428,8 +428,12 @@ store-all:
 
 trigger-prod:
   stage: trigger
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+    - when: never
   needs:
-    - store-all
+    - job: store-all
+      optional: true
   trigger:
     project: stabs/indexing-trigger
     branch: main
