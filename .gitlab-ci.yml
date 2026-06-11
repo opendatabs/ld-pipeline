@@ -16,6 +16,9 @@ stages:
   - store
   - trigger
 
+before_script:
+  - mkdir -p output
+
 # Fetch dependencies once
 fetch-deps:
   stage: deps
@@ -205,7 +208,6 @@ qlever-code:
     - job: fetch-deps
       artifacts: true
   script:
-    - mkdir -p output
     - npm -s run code:stdout > output/code.nt
   artifacts:
     paths:
@@ -223,7 +225,6 @@ qlever-mirror_swisstopo:
     - job: fetch-deps
       artifacts: true
   script:
-    - mkdir -p output
     - npm -s run mirror:swisstopo:stdout > output/mirror_swisstopo.nt
   artifacts:
     paths:
@@ -241,7 +242,6 @@ qlever-ogd_void:
     - job: fetch-deps
       artifacts: true
   script:
-    - mkdir -p output
     - npm -s run ogd-void:stdout > output/ogd_void.nt
   artifacts:
     paths:
@@ -259,7 +259,6 @@ qlever-raum:
     - job: fetch-deps
       artifacts: true
   script:
-    - mkdir -p output
     - npm -s run raum:stdout > output/raum.nt
   artifacts:
     paths:
@@ -277,7 +276,6 @@ qlever-static:
     - job: fetch-deps
       artifacts: true
   script:
-    - mkdir -p output
     - npm -s run static:stdout > output/static.nt
   artifacts:
     paths:
@@ -295,7 +293,6 @@ qlever-ogd_daily:
     - job: fetch-deps
       artifacts: true
   script:
-    - mkdir -p output
     - npm -s run ogd:stdout:daily > output/ogd_daily.nt
   artifacts:
     paths:
@@ -313,7 +310,6 @@ qlever-ogd_monthly:
     - job: fetch-deps
       artifacts: true
   script:
-    - mkdir -p output
     - npm -s run ogd:stdout:monthly > output/ogd_monthly.nt
   artifacts:
     paths:
@@ -331,7 +327,6 @@ qlever-ogd_weekly:
     - job: fetch-deps
       artifacts: true
   script:
-    - mkdir -p output
     - npm -s run ogd:stdout:weekly > output/ogd_weekly.nt
   artifacts:
     paths:
@@ -349,7 +344,6 @@ qlever-rhein_ues_weil_corrected:
     - job: fetch-deps
       artifacts: true
   script:
-    - mkdir -p output
     - npm -s run rhein-ues-weil:corrected:stdout > output/rhein_ues_weil_corrected.nt
   artifacts:
     paths:
@@ -367,7 +361,6 @@ qlever-rhein_ues_weil_raw:
     - job: fetch-deps
       artifacts: true
   script:
-    - mkdir -p output
     - npm -s run rhein-ues-weil:raw:stdout > output/rhein_ues_weil_raw.nt
   artifacts:
     paths:
