@@ -236,6 +236,9 @@ trigger-prod:
   stage: trigger
   needs:
     - store-all
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+    - if: '$CRON == "true"'
   trigger:
     project: stabs/indexing-trigger
     branch: main
