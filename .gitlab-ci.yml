@@ -16,129 +16,8 @@ fetch-deps:
       - node_modules/
     expire_in: 1 week
 
-# Fuseki
+# Jobs to build each dataset in parallel
 code:
-  stage: build
-  allow_failure: true
-  needs:
-    - job: fetch-deps
-      artifacts: true
-  script:
-    - npm run code:store
-  except:
-    variables:
-      - $CRON
-
-mirror_swisstopo:
-  stage: build
-  allow_failure: true
-  needs:
-    - job: fetch-deps
-      artifacts: true
-  script:
-    - npm run mirror:swisstopo:store
-  except:
-    variables:
-      - $CRON
-
-ogd_void:
-  stage: build
-  allow_failure: true
-  needs:
-    - job: fetch-deps
-      artifacts: true
-  script:
-    - npm run ogd-void:store
-  except:
-    variables:
-      - $CRON
-
-raum:
-  stage: build
-  allow_failure: true
-  needs:
-    - job: fetch-deps
-      artifacts: true
-  script:
-    - npm run raum:store
-  except:
-    variables:
-      - $CRON
-
-static:
-  stage: build
-  allow_failure: true
-  needs:
-    - job: fetch-deps
-      artifacts: true
-  script:
-    - npm run static:store
-  except:
-    variables:
-      - $CRON
-
-ogd_daily:
-  stage: build
-  allow_failure: true
-  needs:
-    - job: fetch-deps
-      artifacts: true
-  script:
-    - npm run ogd:store:daily
-  only:
-    variables:
-      - $CRON && $CRON_OGD_DAILY
-
-ogd_monthly:
-  stage: build
-  allow_failure: true
-  needs:
-    - job: fetch-deps
-      artifacts: true
-  script:
-    - npm run ogd:store:monthly
-  only:
-    variables:
-      - $CRON && $CRON_OGD_MONTHLY
-
-ogd_weekly:
-  stage: build
-  allow_failure: true
-  needs:
-    - job: fetch-deps
-      artifacts: true
-  script:
-    - npm run ogd:store:weekly
-  only:
-    variables:
-      - $CRON && $CRON_OGD_WEEKLY
-
-rhein_ues_weil_corrected:
-  stage: build
-  allow_failure: true
-  needs:
-    - job: fetch-deps
-      artifacts: true
-  script:
-    - npm run rhein-ues-weil:corrected:store
-  only:
-    variables:
-      - $CRON && $CRON_RHEIN_UES_WEIL_CORRECTED
-
-rhein_ues_weil_raw:
-  stage: build
-  allow_failure: true
-  needs:
-    - job: fetch-deps
-      artifacts: true
-  script:
-    - npm run rhein-ues-weil:raw:store
-  only:
-    variables:
-      - $CRON && $CRON_RHEIN_UES_WEIL_RAW
-
-# QLever
-qlever-code:
   stage: build
   allow_failure: true
   needs:
@@ -155,7 +34,7 @@ qlever-code:
     variables:
       - $CRON
 
-qlever-mirror_swisstopo:
+mirror_swisstopo:
   stage: build
   allow_failure: true
   needs:
@@ -172,7 +51,7 @@ qlever-mirror_swisstopo:
     variables:
       - $CRON
 
-qlever-ogd_void:
+ogd_void:
   stage: build
   allow_failure: true
   needs:
@@ -189,7 +68,7 @@ qlever-ogd_void:
     variables:
       - $CRON
 
-qlever-raum:
+raum:
   stage: build
   allow_failure: true
   needs:
@@ -206,7 +85,7 @@ qlever-raum:
     variables:
       - $CRON
 
-qlever-static:
+static:
   stage: build
   allow_failure: true
   needs:
@@ -223,7 +102,7 @@ qlever-static:
     variables:
       - $CRON
 
-qlever-ogd_daily:
+ogd_daily:
   stage: build
   allow_failure: true
   needs:
@@ -240,7 +119,7 @@ qlever-ogd_daily:
     variables:
       - $CRON && $CRON_OGD_DAILY
 
-qlever-ogd_monthly:
+ogd_monthly:
   stage: build
   allow_failure: true
   needs:
@@ -257,7 +136,7 @@ qlever-ogd_monthly:
     variables:
       - $CRON && $CRON_OGD_MONTHLY
 
-qlever-ogd_weekly:
+ogd_weekly:
   stage: build
   allow_failure: true
   needs:
@@ -274,7 +153,7 @@ qlever-ogd_weekly:
     variables:
       - $CRON && $CRON_OGD_WEEKLY
 
-qlever-rhein_ues_weil_corrected:
+rhein_ues_weil_corrected:
   stage: build
   allow_failure: true
   needs:
@@ -291,7 +170,7 @@ qlever-rhein_ues_weil_corrected:
     variables:
       - $CRON && $CRON_RHEIN_UES_WEIL_CORRECTED
 
-qlever-rhein_ues_weil_raw:
+rhein_ues_weil_raw:
   stage: build
   allow_failure: true
   needs:
@@ -311,34 +190,34 @@ qlever-rhein_ues_weil_raw:
 store-all:
   stage: store
   needs:
-    - job: qlever-code
+    - job: code
       artifacts: true
       optional: true
-    - job: qlever-mirror_swisstopo
+    - job: mirror_swisstopo
       artifacts: true
       optional: true
-    - job: qlever-ogd_void
+    - job: ogd_void
       artifacts: true
       optional: true
-    - job: qlever-raum
+    - job: raum
       artifacts: true
       optional: true
-    - job: qlever-static
+    - job: static
       artifacts: true
       optional: true
-    - job: qlever-ogd_daily
+    - job: ogd_daily
       artifacts: true
       optional: true
-    - job: qlever-ogd_monthly
+    - job: ogd_monthly
       artifacts: true
       optional: true
-    - job: qlever-ogd_weekly
+    - job: ogd_weekly
       artifacts: true
       optional: true
-    - job: qlever-rhein_ues_weil_corrected
+    - job: rhein_ues_weil_corrected
       artifacts: true
       optional: true
-    - job: qlever-rhein_ues_weil_raw
+    - job: rhein_ues_weil_raw
       artifacts: true
       optional: true
   image:
