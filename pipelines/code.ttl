@@ -27,6 +27,7 @@
     p:stepList (
       <listCsvwMetaFiles>
       <forEachCsvwMetaFile>
+      <setGraph>
       <serialize>
     )
   ].

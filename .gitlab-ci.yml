@@ -25,10 +25,10 @@ code:
       artifacts: true
   script:
     - mkdir -p output
-    - npm -s run code:stdout > output/code.nt
+    - npm -s run code:stdout > output/code.nq
   artifacts:
     paths:
-      - output/code.nt
+      - output/code.nq
     expire_in: 1 week
   except:
     variables:
@@ -42,10 +42,10 @@ mirror_swisstopo:
       artifacts: true
   script:
     - mkdir -p output
-    - npm -s run mirror:swisstopo:stdout > output/mirror_swisstopo.nt
+    - npm -s run mirror:swisstopo:stdout > output/mirror_swisstopo.nq
   artifacts:
     paths:
-      - output/mirror_swisstopo.nt
+      - output/mirror_swisstopo.nq
     expire_in: 1 week
   except:
     variables:
@@ -59,10 +59,10 @@ ogd_void:
       artifacts: true
   script:
     - mkdir -p output
-    - npm -s run ogd-void:stdout > output/ogd_void.nt
+    - npm -s run ogd-void:stdout > output/ogd_void.nq
   artifacts:
     paths:
-      - output/ogd_void.nt
+      - output/ogd_void.nq
     expire_in: 1 week
   except:
     variables:
@@ -76,10 +76,10 @@ raum:
       artifacts: true
   script:
     - mkdir -p output
-    - npm -s run raum:stdout > output/raum.nt
+    - npm -s run raum:stdout > output/raum.nq
   artifacts:
     paths:
-      - output/raum.nt
+      - output/raum.nq
     expire_in: 1 week
   except:
     variables:
@@ -110,10 +110,10 @@ ogd_daily:
       artifacts: true
   script:
     - mkdir -p output
-    - npm -s run ogd:stdout:daily > output/ogd_daily.nt
+    - npm -s run ogd:stdout:daily > output/ogd_daily.nq
   artifacts:
     paths:
-      - output/ogd_daily.nt
+      - output/ogd_daily.nq
     expire_in: 1 week
   only:
     variables:
@@ -127,10 +127,10 @@ ogd_monthly:
       artifacts: true
   script:
     - mkdir -p output
-    - npm -s run ogd:stdout:monthly > output/ogd_monthly.nt
+    - npm -s run ogd:stdout:monthly > output/ogd_monthly.nq
   artifacts:
     paths:
-      - output/ogd_monthly.nt
+      - output/ogd_monthly.nq
     expire_in: 1 week
   only:
     variables:
@@ -144,10 +144,10 @@ ogd_weekly:
       artifacts: true
   script:
     - mkdir -p output
-    - npm -s run ogd:stdout:weekly > output/ogd_weekly.nt
+    - npm -s run ogd:stdout:weekly > output/ogd_weekly.nq
   artifacts:
     paths:
-      - output/ogd_weekly.nt
+      - output/ogd_weekly.nq
     expire_in: 1 week
   only:
     variables:
@@ -161,10 +161,10 @@ rhein_ues_weil_corrected:
       artifacts: true
   script:
     - mkdir -p output
-    - npm -s run rhein-ues-weil:corrected:stdout > output/rhein_ues_weil_corrected.nt
+    - npm -s run rhein-ues-weil:corrected:stdout > output/rhein_ues_weil_corrected.nq
   artifacts:
     paths:
-      - output/rhein_ues_weil_corrected.nt
+      - output/rhein_ues_weil_corrected.nq
     expire_in: 1 week
   only:
     variables:
@@ -178,10 +178,10 @@ rhein_ues_weil_raw:
       artifacts: true
   script:
     - mkdir -p output
-    - npm -s run rhein-ues-weil:raw:stdout > output/rhein_ues_weil_raw.nt
+    - npm -s run rhein-ues-weil:raw:stdout > output/rhein_ues_weil_raw.nq
   artifacts:
     paths:
-      - output/rhein_ues_weil_raw.nt
+      - output/rhein_ues_weil_raw.nq
     expire_in: 1 week
   only:
     variables:
@@ -230,7 +230,6 @@ store-all:
 
     # Upload files to the S3 bucket if there are any
     - mc alias set bucket "${DST_S3_ENDPOINT}" "${DST_S3_ACCESS_KEY}" "${DST_S3_SECRET_KEY}"
-    - mc cp output/*.nt "bucket/${DST_S3_BUCKET}/${DST_S3_PATH}/"
     - mc cp output/*.nq "bucket/${DST_S3_BUCKET}/${DST_S3_PATH}/"
 
 trigger-prod:

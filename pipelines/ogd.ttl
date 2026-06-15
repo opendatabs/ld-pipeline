@@ -51,6 +51,7 @@
     p:stepList (
       <listCsvwMetaFiles>
       <forEachCsvwMetaFile>
+      <setGraph>
       <serialize>
     )
   ].
@@ -72,6 +73,7 @@
     p:stepList (
       <listCsvwMetaFiles>
       <forEachCsvwMetaFile>
+      <setGraph>
       <serialize>
     )
   ].
@@ -93,6 +95,7 @@
     p:stepList (
       <listCsvwMetaFiles>
       <forEachCsvwMetaFile>
+      <setGraph>
       <serialize>
     )
   ].
