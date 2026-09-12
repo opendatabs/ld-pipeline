@@ -250,7 +250,7 @@ trigger-prod:
     - if: '$CI_COMMIT_BRANCH == "main"'
     - if: '$CRON == "true"'
   trigger:
-    project: stabs/indexing-trigger
+    project: lod.bs/indexing-trigger
     branch: main
   variables:
     TRIGGERED_BY_PIPELINE: "true"
