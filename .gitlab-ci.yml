@@ -25,12 +25,12 @@ code:
     GRAPH_NAME: "https://ld.bs.ch/graph/code"
   script:
     - mkdir -p output
-    - npm -s run code:stdout > output/code.nq
+    - npm -s run code:stdout > output/code.nt
     - |
       curl -sSf -X PUT \
-        -H "Content-Type: application/n-quads" \
+        -H "Content-Type: application/n-triples" \
         -H "Authorization: Bearer ${SPARQL_TOKEN}" \
-        -T output/code.nq \
+        -T output/code.nt \
         "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   except:
     variables:
@@ -46,12 +46,12 @@ mirror_swisstopo:
     GRAPH_NAME: "https://ld.bs.ch/graph/swisstopo"
   script:
     - mkdir -p output
-    - npm -s run mirror:swisstopo:stdout > output/mirror_swisstopo.nq
+    - npm -s run mirror:swisstopo:stdout > output/mirror_swisstopo.nt
     - |
       curl -sSf -X PUT \
-        -H "Content-Type: application/n-quads" \
+        -H "Content-Type: application/n-triples" \
         -H "Authorization: Bearer ${SPARQL_TOKEN}" \
-        -T output/mirror_swisstopo.nq \
+        -T output/mirror_swisstopo.nt \
         "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   except:
     variables:
@@ -67,12 +67,12 @@ ogd_void:
     GRAPH_NAME: "https://ld.bs.ch/graph/ogd-void"
   script:
     - mkdir -p output
-    - npm -s run ogd-void:stdout > output/ogd_void.nq
+    - npm -s run ogd-void:stdout > output/ogd_void.nt
     - |
       curl -sSf -X PUT \
-        -H "Content-Type: application/n-quads" \
+        -H "Content-Type: application/n-triples" \
         -H "Authorization: Bearer ${SPARQL_TOKEN}" \
-        -T output/ogd_void.nq \
+        -T output/ogd_void.nt \
         "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   except:
     variables:
@@ -88,12 +88,12 @@ raum:
     GRAPH_NAME: "https://ld.bs.ch/graph/geometry"
   script:
     - mkdir -p output
-    - npm -s run raum:stdout > output/raum.nq
+    - npm -s run raum:stdout > output/raum.nt
     - |
       curl -sSf -X PUT \
-        -H "Content-Type: application/n-quads" \
+        -H "Content-Type: application/n-triples" \
         -H "Authorization: Bearer ${SPARQL_TOKEN}" \
-        -T output/raum.nq \
+        -T output/raum.nt \
         "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   except:
     variables:
@@ -135,12 +135,12 @@ ogd_daily:
     GRAPH_NAME: "https://ld.bs.ch/graph/ogd-daily"
   script:
     - mkdir -p output
-    - npm -s run ogd:stdout:daily > output/ogd_daily.nq
+    - npm -s run ogd:stdout:daily > output/ogd_daily.nt
     - |
       curl -sSf -X PUT \
-        -H "Content-Type: application/n-quads" \
+        -H "Content-Type: application/n-triples" \
         -H "Authorization: Bearer ${SPARQL_TOKEN}" \
-        -T output/ogd_daily.nq \
+        -T output/ogd_daily.nt \
         "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   only:
     variables:
@@ -156,12 +156,12 @@ ogd_monthly:
     GRAPH_NAME: "https://ld.bs.ch/graph/ogd-monthly"
   script:
     - mkdir -p output
-    - npm -s run ogd:stdout:monthly > output/ogd_monthly.nq
+    - npm -s run ogd:stdout:monthly > output/ogd_monthly.nt
     - |
       curl -sSf -X PUT \
-        -H "Content-Type: application/n-quads" \
+        -H "Content-Type: application/n-triples" \
         -H "Authorization: Bearer ${SPARQL_TOKEN}" \
-        -T output/ogd_monthly.nq \
+        -T output/ogd_monthly.nt \
         "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   only:
     variables:
@@ -177,12 +177,12 @@ ogd_weekly:
     GRAPH_NAME: "https://ld.bs.ch/graph/ogd-weekly"
   script:
     - mkdir -p output
-    - npm -s run ogd:stdout:weekly > output/ogd_weekly.nq
+    - npm -s run ogd:stdout:weekly > output/ogd_weekly.nt
     - |
       curl -sSf -X PUT \
-        -H "Content-Type: application/n-quads" \
+        -H "Content-Type: application/n-triples" \
         -H "Authorization: Bearer ${SPARQL_TOKEN}" \
-        -T output/ogd_weekly.nq \
+        -T output/ogd_weekly.nt \
         "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   only:
     variables:
@@ -198,12 +198,12 @@ rhein_ues_weil_corrected:
     GRAPH_NAME: "https://ld.bs.ch/graph/rhein-ues-weil"
   script:
     - mkdir -p output
-    - npm -s run rhein-ues-weil:corrected:stdout > output/rhein_ues_weil_corrected.nq
+    - npm -s run rhein-ues-weil:corrected:stdout > output/rhein_ues_weil_corrected.nt
     - |
       curl -sSf -X PUT \
-        -H "Content-Type: application/n-quads" \
+        -H "Content-Type: application/n-triples" \
         -H "Authorization: Bearer ${SPARQL_TOKEN}" \
-        -T output/rhein_ues_weil_corrected.nq \
+        -T output/rhein_ues_weil_corrected.nt \
         "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   only:
     variables:
@@ -219,12 +219,12 @@ rhein_ues_weil_raw:
     GRAPH_NAME: "https://ld.bs.ch/graph/rhein-ues-weil-raw"
   script:
     - mkdir -p output
-    - npm -s run rhein-ues-weil:raw:stdout > output/rhein_ues_weil_raw.nq
+    - npm -s run rhein-ues-weil:raw:stdout > output/rhein_ues_weil_raw.nt
     - |
       curl -sSf -X PUT \
-        -H "Content-Type: application/n-quads" \
+        -H "Content-Type: application/n-triples" \
         -H "Authorization: Bearer ${SPARQL_TOKEN}" \
-        -T output/rhein_ues_weil_raw.nq \
+        -T output/rhein_ues_weil_raw.nt \
         "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   only:
     variables:
