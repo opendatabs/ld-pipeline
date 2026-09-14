@@ -21,9 +21,17 @@ code:
   needs:
     - job: fetch-deps
       artifacts: true
+  variables:
+    GRAPH_NAME: "https://ld.bs.ch/graph/code"
   script:
     - mkdir -p output
     - npm -s run code:stdout > output/code.nq
+    - |
+      curl -sSf -X PUT \
+        -H "Content-Type: application/n-quads" \
+        -H "Authorization: Bearer ${SPARQL_TOKEN}" \
+        -T output/code.nq \
+        "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   except:
     variables:
       - $CRON
@@ -34,9 +42,17 @@ mirror_swisstopo:
   needs:
     - job: fetch-deps
       artifacts: true
+  variables:
+    GRAPH_NAME: "https://ld.bs.ch/graph/swisstopo"
   script:
     - mkdir -p output
     - npm -s run mirror:swisstopo:stdout > output/mirror_swisstopo.nq
+    - |
+      curl -sSf -X PUT \
+        -H "Content-Type: application/n-quads" \
+        -H "Authorization: Bearer ${SPARQL_TOKEN}" \
+        -T output/mirror_swisstopo.nq \
+        "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   except:
     variables:
       - $CRON
@@ -47,9 +63,17 @@ ogd_void:
   needs:
     - job: fetch-deps
       artifacts: true
+  variables:
+    GRAPH_NAME: "https://ld.bs.ch/graph/ogd-void"
   script:
     - mkdir -p output
     - npm -s run ogd-void:stdout > output/ogd_void.nq
+    - |
+      curl -sSf -X PUT \
+        -H "Content-Type: application/n-quads" \
+        -H "Authorization: Bearer ${SPARQL_TOKEN}" \
+        -T output/ogd_void.nq \
+        "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   except:
     variables:
       - $CRON
@@ -60,9 +84,17 @@ raum:
   needs:
     - job: fetch-deps
       artifacts: true
+  variables:
+    GRAPH_NAME: "https://ld.bs.ch/graph/geometry"
   script:
     - mkdir -p output
     - npm -s run raum:stdout > output/raum.nq
+    - |
+      curl -sSf -X PUT \
+        -H "Content-Type: application/n-quads" \
+        -H "Authorization: Bearer ${SPARQL_TOKEN}" \
+        -T output/raum.nq \
+        "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   except:
     variables:
       - $CRON
@@ -76,6 +108,19 @@ static:
   script:
     - mkdir -p output
     - npm -s run static:stdout > output/static.nq
+    # The static output spans multiple named graphs (one per input file),
+    # so upload each graph separately: a graph-scoped PUT clears it first
+    - |
+      for g in $(awk '{print $(NF-1)}' output/static.nq | sort -u); do
+        graph="${g#<}"; graph="${graph%>}"
+        echo "Uploading ${graph}"
+        grep -F " ${g} ." output/static.nq | sed "s| ${g} \.$| .|" \
+          | curl -sSf -X PUT \
+              -H "Content-Type: application/n-triples" \
+              -H "Authorization: Bearer ${SPARQL_TOKEN}" \
+              --data-binary @- \
+              "${SPARQL_ENDPOINT}?graph=${graph}"
+      done
   except:
     variables:
       - $CRON
@@ -86,9 +131,17 @@ ogd_daily:
   needs:
     - job: fetch-deps
       artifacts: true
+  variables:
+    GRAPH_NAME: "https://ld.bs.ch/graph/ogd-daily"
   script:
     - mkdir -p output
     - npm -s run ogd:stdout:daily > output/ogd_daily.nq
+    - |
+      curl -sSf -X PUT \
+        -H "Content-Type: application/n-quads" \
+        -H "Authorization: Bearer ${SPARQL_TOKEN}" \
+        -T output/ogd_daily.nq \
+        "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   only:
     variables:
       - $CRON && $CRON_OGD_DAILY
@@ -99,9 +152,17 @@ ogd_monthly:
   needs:
     - job: fetch-deps
       artifacts: true
+  variables:
+    GRAPH_NAME: "https://ld.bs.ch/graph/ogd-monthly"
   script:
     - mkdir -p output
     - npm -s run ogd:stdout:monthly > output/ogd_monthly.nq
+    - |
+      curl -sSf -X PUT \
+        -H "Content-Type: application/n-quads" \
+        -H "Authorization: Bearer ${SPARQL_TOKEN}" \
+        -T output/ogd_monthly.nq \
+        "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   only:
     variables:
       - $CRON && $CRON_OGD_MONTHLY
@@ -112,9 +173,17 @@ ogd_weekly:
   needs:
     - job: fetch-deps
       artifacts: true
+  variables:
+    GRAPH_NAME: "https://ld.bs.ch/graph/ogd-weekly"
   script:
     - mkdir -p output
     - npm -s run ogd:stdout:weekly > output/ogd_weekly.nq
+    - |
+      curl -sSf -X PUT \
+        -H "Content-Type: application/n-quads" \
+        -H "Authorization: Bearer ${SPARQL_TOKEN}" \
+        -T output/ogd_weekly.nq \
+        "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   only:
     variables:
       - $CRON && $CRON_OGD_WEEKLY
@@ -125,9 +194,17 @@ rhein_ues_weil_corrected:
   needs:
     - job: fetch-deps
       artifacts: true
+  variables:
+    GRAPH_NAME: "https://ld.bs.ch/graph/rhein-ues-weil"
   script:
     - mkdir -p output
     - npm -s run rhein-ues-weil:corrected:stdout > output/rhein_ues_weil_corrected.nq
+    - |
+      curl -sSf -X PUT \
+        -H "Content-Type: application/n-quads" \
+        -H "Authorization: Bearer ${SPARQL_TOKEN}" \
+        -T output/rhein_ues_weil_corrected.nq \
+        "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   only:
     variables:
       - $CRON && $CRON_RHEIN_UES_WEIL_CORRECTED
@@ -138,9 +215,17 @@ rhein_ues_weil_raw:
   needs:
     - job: fetch-deps
       artifacts: true
+  variables:
+    GRAPH_NAME: "https://ld.bs.ch/graph/rhein-ues-weil-raw"
   script:
     - mkdir -p output
     - npm -s run rhein-ues-weil:raw:stdout > output/rhein_ues_weil_raw.nq
+    - |
+      curl -sSf -X PUT \
+        -H "Content-Type: application/n-quads" \
+        -H "Authorization: Bearer ${SPARQL_TOKEN}" \
+        -T output/rhein_ues_weil_raw.nq \
+        "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   only:
     variables:
       - $CRON && $CRON_RHEIN_UES_WEIL_RAW
