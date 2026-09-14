@@ -3,7 +3,6 @@ image: docker.io/zazukoians/node-java-jena:v6
 stages:
   - deps
   - build
-  - store
 
 # Fetch dependencies once
 fetch-deps:
@@ -25,11 +24,6 @@ code:
   script:
     - mkdir -p output
     - npm -s run code:stdout > output/code.nq
-  artifacts:
-    paths:
-      - output/code.nq
-    expire_in: 1 week
-    when: always
   except:
     variables:
       - $CRON
@@ -43,11 +37,6 @@ mirror_swisstopo:
   script:
     - mkdir -p output
     - npm -s run mirror:swisstopo:stdout > output/mirror_swisstopo.nq
-  artifacts:
-    paths:
-      - output/mirror_swisstopo.nq
-    expire_in: 1 week
-    when: always
   except:
     variables:
       - $CRON
@@ -61,11 +50,6 @@ ogd_void:
   script:
     - mkdir -p output
     - npm -s run ogd-void:stdout > output/ogd_void.nq
-  artifacts:
-    paths:
-      - output/ogd_void.nq
-    expire_in: 1 week
-    when: always
   except:
     variables:
       - $CRON
@@ -79,11 +63,6 @@ raum:
   script:
     - mkdir -p output
     - npm -s run raum:stdout > output/raum.nq
-  artifacts:
-    paths:
-      - output/raum.nq
-    expire_in: 1 week
-    when: always
   except:
     variables:
       - $CRON
@@ -97,11 +76,6 @@ static:
   script:
     - mkdir -p output
     - npm -s run static:stdout > output/static.nq
-  artifacts:
-    paths:
-      - output/static.nq
-    expire_in: 1 week
-    when: always
   except:
     variables:
       - $CRON
@@ -115,11 +89,6 @@ ogd_daily:
   script:
     - mkdir -p output
     - npm -s run ogd:stdout:daily > output/ogd_daily.nq
-  artifacts:
-    paths:
-      - output/ogd_daily.nq
-    expire_in: 1 week
-    when: always
   only:
     variables:
       - $CRON && $CRON_OGD_DAILY
@@ -133,11 +102,6 @@ ogd_monthly:
   script:
     - mkdir -p output
     - npm -s run ogd:stdout:monthly > output/ogd_monthly.nq
-  artifacts:
-    paths:
-      - output/ogd_monthly.nq
-    expire_in: 1 week
-    when: always
   only:
     variables:
       - $CRON && $CRON_OGD_MONTHLY
@@ -151,11 +115,6 @@ ogd_weekly:
   script:
     - mkdir -p output
     - npm -s run ogd:stdout:weekly > output/ogd_weekly.nq
-  artifacts:
-    paths:
-      - output/ogd_weekly.nq
-    expire_in: 1 week
-    when: always
   only:
     variables:
       - $CRON && $CRON_OGD_WEEKLY
@@ -169,11 +128,6 @@ rhein_ues_weil_corrected:
   script:
     - mkdir -p output
     - npm -s run rhein-ues-weil:corrected:stdout > output/rhein_ues_weil_corrected.nq
-  artifacts:
-    paths:
-      - output/rhein_ues_weil_corrected.nq
-    expire_in: 1 week
-    when: always
   only:
     variables:
       - $CRON && $CRON_RHEIN_UES_WEIL_CORRECTED
@@ -187,56 +141,6 @@ rhein_ues_weil_raw:
   script:
     - mkdir -p output
     - npm -s run rhein-ues-weil:raw:stdout > output/rhein_ues_weil_raw.nq
-  artifacts:
-    paths:
-      - output/rhein_ues_weil_raw.nq
-    when: always
-    expire_in: 1 week
   only:
     variables:
       - $CRON && $CRON_RHEIN_UES_WEIL_RAW
-
-store-all:
-  stage: store
-  needs:
-    - job: code
-      artifacts: true
-      optional: true
-    - job: mirror_swisstopo
-      artifacts: true
-      optional: true
-    - job: ogd_void
-      artifacts: true
-      optional: true
-    - job: raum
-      artifacts: true
-      optional: true
-    - job: static
-      artifacts: true
-      optional: true
-    - job: ogd_daily
-      artifacts: true
-      optional: true
-    - job: ogd_monthly
-      artifacts: true
-      optional: true
-    - job: ogd_weekly
-      artifacts: true
-      optional: true
-    - job: rhein_ues_weil_corrected
-      artifacts: true
-      optional: true
-    - job: rhein_ues_weil_raw
-      artifacts: true
-      optional: true
-  image:
-    name: docker.io/peakcom/s5cmd:latest
-    entrypoint: [""]
-  script:
-    # Display all files that we will upload to the S3 bucket
-    - ls -alh output
-    - if [ -z "$(ls -A output)" ]; then echo "No files to upload!"; exit 1; fi
-
-    # Upload files to the S3 bucket if there are any
-    - export AWS_ACCESS_KEY_ID="${DST_S3_ACCESS_KEY}" AWS_SECRET_ACCESS_KEY="${DST_S3_SECRET_KEY}"
-    - /s5cmd --endpoint-url "${DST_S3_ENDPOINT}" cp "output/*.nq" "s3://${DST_S3_BUCKET}/${DST_S3_PATH}/"
