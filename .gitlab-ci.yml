@@ -1,4 +1,4 @@
-image: node:24-alpine
+image: docker.io/zazukoians/node-java-jena:v6
 
 stages:
   - deps
