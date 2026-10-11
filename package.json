@@ -42,7 +42,7 @@
   "dependencies": {
     "@rdfjs/formats": "^4.0.1",
     "@rdfjs/namespace": "^1.1.0",
-    "@rdfjs/term-map": "^1.0.1",
+    "@rdfjs/term-map": "^2.0.0",
     "barnard59": "^1.1.0",
     "barnard59-base": "^1.1.0",
     "barnard59-csvw": "^0.1.0",
