@@ -1,10 +1,8 @@
-image: node:24-alpine
+image: docker.io/zazukoians/node-java-jena:v6
 
 stages:
   - deps
   - build
-  - store
-  - trigger
 
 # Fetch dependencies once
 fetch-deps:
@@ -23,14 +21,17 @@ code:
   needs:
     - job: fetch-deps
       artifacts: true
+  variables:
+    GRAPH_NAME: "https://ld.bs.ch/graph/code"
   script:
     - mkdir -p output
-    - npm -s run code:stdout > output/code.nq
-  artifacts:
-    paths:
-      - output/code.nq
-    expire_in: 1 week
-    when: always
+    - npm -s run code:stdout > output/code.nt
+    - |
+      curl -sSf -X PUT \
+        -H "Content-Type: application/n-triples" \
+        -H "Authorization: Bearer ${SPARQL_TOKEN}" \
+        -T output/code.nt \
+        "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   except:
     variables:
       - $CRON
@@ -41,14 +42,17 @@ mirror_swisstopo:
   needs:
     - job: fetch-deps
       artifacts: true
+  variables:
+    GRAPH_NAME: "https://ld.bs.ch/graph/swisstopo"
   script:
     - mkdir -p output
-    - npm -s run mirror:swisstopo:stdout > output/mirror_swisstopo.nq
-  artifacts:
-    paths:
-      - output/mirror_swisstopo.nq
-    expire_in: 1 week
-    when: always
+    - npm -s run mirror:swisstopo:stdout > output/mirror_swisstopo.nt
+    - |
+      curl -sSf -X PUT \
+        -H "Content-Type: application/n-triples" \
+        -H "Authorization: Bearer ${SPARQL_TOKEN}" \
+        -T output/mirror_swisstopo.nt \
+        "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   except:
     variables:
       - $CRON
@@ -59,14 +63,17 @@ ogd_void:
   needs:
     - job: fetch-deps
       artifacts: true
+  variables:
+    GRAPH_NAME: "https://ld.bs.ch/graph/ogd-void"
   script:
     - mkdir -p output
-    - npm -s run ogd-void:stdout > output/ogd_void.nq
-  artifacts:
-    paths:
-      - output/ogd_void.nq
-    expire_in: 1 week
-    when: always
+    - npm -s run ogd-void:stdout > output/ogd_void.nt
+    - |
+      curl -sSf -X PUT \
+        -H "Content-Type: application/n-triples" \
+        -H "Authorization: Bearer ${SPARQL_TOKEN}" \
+        -T output/ogd_void.nt \
+        "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   except:
     variables:
       - $CRON
@@ -77,14 +84,17 @@ raum:
   needs:
     - job: fetch-deps
       artifacts: true
+  variables:
+    GRAPH_NAME: "https://ld.bs.ch/graph/geometry"
   script:
     - mkdir -p output
-    - npm -s run raum:stdout > output/raum.nq
-  artifacts:
-    paths:
-      - output/raum.nq
-    expire_in: 1 week
-    when: always
+    - npm -s run raum:stdout > output/raum.nt
+    - |
+      curl -sSf -X PUT \
+        -H "Content-Type: application/n-triples" \
+        -H "Authorization: Bearer ${SPARQL_TOKEN}" \
+        -T output/raum.nt \
+        "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   except:
     variables:
       - $CRON
@@ -98,11 +108,19 @@ static:
   script:
     - mkdir -p output
     - npm -s run static:stdout > output/static.nq
-  artifacts:
-    paths:
-      - output/static.nq
-    expire_in: 1 week
-    when: always
+    # The static output spans multiple named graphs (one per input file),
+    # so upload each graph separately: a graph-scoped PUT clears it first
+    - |
+      for g in $(awk '{print $(NF-1)}' output/static.nq | sort -u); do
+        graph="${g#<}"; graph="${graph%>}"
+        echo "Uploading ${graph}"
+        grep -F " ${g} ." output/static.nq | sed "s| ${g} \.$| .|" \
+          | curl -sSf -X PUT \
+              -H "Content-Type: application/n-triples" \
+              -H "Authorization: Bearer ${SPARQL_TOKEN}" \
+              --data-binary @- \
+              "${SPARQL_ENDPOINT}?graph=${graph}"
+      done
   except:
     variables:
       - $CRON
@@ -113,14 +131,17 @@ ogd_daily:
   needs:
     - job: fetch-deps
       artifacts: true
+  variables:
+    GRAPH_NAME: "https://ld.bs.ch/graph/ogd-daily"
   script:
     - mkdir -p output
-    - npm -s run ogd:stdout:daily > output/ogd_daily.nq
-  artifacts:
-    paths:
-      - output/ogd_daily.nq
-    expire_in: 1 week
-    when: always
+    - npm -s run ogd:stdout:daily > output/ogd_daily.nt
+    - |
+      curl -sSf -X PUT \
+        -H "Content-Type: application/n-triples" \
+        -H "Authorization: Bearer ${SPARQL_TOKEN}" \
+        -T output/ogd_daily.nt \
+        "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   only:
     variables:
       - $CRON && $CRON_OGD_DAILY
@@ -131,14 +152,17 @@ ogd_monthly:
   needs:
     - job: fetch-deps
       artifacts: true
+  variables:
+    GRAPH_NAME: "https://ld.bs.ch/graph/ogd-monthly"
   script:
     - mkdir -p output
-    - npm -s run ogd:stdout:monthly > output/ogd_monthly.nq
-  artifacts:
-    paths:
-      - output/ogd_monthly.nq
-    expire_in: 1 week
-    when: always
+    - npm -s run ogd:stdout:monthly > output/ogd_monthly.nt
+    - |
+      curl -sSf -X PUT \
+        -H "Content-Type: application/n-triples" \
+        -H "Authorization: Bearer ${SPARQL_TOKEN}" \
+        -T output/ogd_monthly.nt \
+        "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   only:
     variables:
       - $CRON && $CRON_OGD_MONTHLY
@@ -149,14 +173,17 @@ ogd_weekly:
   needs:
     - job: fetch-deps
       artifacts: true
+  variables:
+    GRAPH_NAME: "https://ld.bs.ch/graph/ogd-weekly"
   script:
     - mkdir -p output
-    - npm -s run ogd:stdout:weekly > output/ogd_weekly.nq
-  artifacts:
-    paths:
-      - output/ogd_weekly.nq
-    expire_in: 1 week
-    when: always
+    - npm -s run ogd:stdout:weekly > output/ogd_weekly.nt
+    - |
+      curl -sSf -X PUT \
+        -H "Content-Type: application/n-triples" \
+        -H "Authorization: Bearer ${SPARQL_TOKEN}" \
+        -T output/ogd_weekly.nt \
+        "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   only:
     variables:
       - $CRON && $CRON_OGD_WEEKLY
@@ -167,14 +194,17 @@ rhein_ues_weil_corrected:
   needs:
     - job: fetch-deps
       artifacts: true
+  variables:
+    GRAPH_NAME: "https://ld.bs.ch/graph/rhein-ues-weil"
   script:
     - mkdir -p output
-    - npm -s run rhein-ues-weil:corrected:stdout > output/rhein_ues_weil_corrected.nq
-  artifacts:
-    paths:
-      - output/rhein_ues_weil_corrected.nq
-    expire_in: 1 week
-    when: always
+    - npm -s run rhein-ues-weil:corrected:stdout > output/rhein_ues_weil_corrected.nt
+    - |
+      curl -sSf -X PUT \
+        -H "Content-Type: application/n-triples" \
+        -H "Authorization: Bearer ${SPARQL_TOKEN}" \
+        -T output/rhein_ues_weil_corrected.nt \
+        "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   only:
     variables:
       - $CRON && $CRON_RHEIN_UES_WEIL_CORRECTED
@@ -185,73 +215,17 @@ rhein_ues_weil_raw:
   needs:
     - job: fetch-deps
       artifacts: true
+  variables:
+    GRAPH_NAME: "https://ld.bs.ch/graph/rhein-ues-weil-raw"
   script:
     - mkdir -p output
-    - npm -s run rhein-ues-weil:raw:stdout > output/rhein_ues_weil_raw.nq
-  artifacts:
-    paths:
-      - output/rhein_ues_weil_raw.nq
-    when: always
-    expire_in: 1 week
+    - npm -s run rhein-ues-weil:raw:stdout > output/rhein_ues_weil_raw.nt
+    - |
+      curl -sSf -X PUT \
+        -H "Content-Type: application/n-triples" \
+        -H "Authorization: Bearer ${SPARQL_TOKEN}" \
+        -T output/rhein_ues_weil_raw.nt \
+        "${SPARQL_ENDPOINT}?graph=${GRAPH_NAME}"
   only:
     variables:
       - $CRON && $CRON_RHEIN_UES_WEIL_RAW
-
-store-all:
-  stage: store
-  needs:
-    - job: code
-      artifacts: true
-      optional: true
-    - job: mirror_swisstopo
-      artifacts: true
-      optional: true
-    - job: ogd_void
-      artifacts: true
-      optional: true
-    - job: raum
-      artifacts: true
-      optional: true
-    - job: static
-      artifacts: true
-      optional: true
-    - job: ogd_daily
-      artifacts: true
-      optional: true
-    - job: ogd_monthly
-      artifacts: true
-      optional: true
-    - job: ogd_weekly
-      artifacts: true
-      optional: true
-    - job: rhein_ues_weil_corrected
-      artifacts: true
-      optional: true
-    - job: rhein_ues_weil_raw
-      artifacts: true
-      optional: true
-  image:
-    name: docker.io/minio/mc:latest
-    entrypoint: [""]
-  script:
-    # Display all files that we will upload to the S3 bucket
-    - ls -alh output
-    - if [ -z "$(ls -A output)" ]; then echo "No files to upload!"; exit 1; fi
-
-    # Upload files to the S3 bucket if there are any
-    - mc alias set bucket "${DST_S3_ENDPOINT}" "${DST_S3_ACCESS_KEY}" "${DST_S3_SECRET_KEY}"
-    - mc cp output/*.nq "bucket/${DST_S3_BUCKET}/${DST_S3_PATH}/"
-
-trigger-prod:
-  stage: trigger
-  needs:
-    - store-all
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "main"'
-    - if: '$CRON == "true"'
-  trigger:
-    project: lod.bs/indexing-trigger
-    branch: main
-  variables:
-    TRIGGERED_BY_PIPELINE: "true"
-    ENVIRONMENT: "prod"

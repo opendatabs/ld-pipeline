@@ -23,7 +23,6 @@
   p:steps [
     p:stepList (
       <generateVoid>
-      <setGraph>
       <serialize>
     )
   ].

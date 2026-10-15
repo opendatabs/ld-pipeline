@@ -68,7 +68,6 @@
       <toDataset>
       <toObservation>
       <flatten>
-      <setGraph>
       <serialize>
     )
   ].
@@ -96,7 +95,6 @@
       <listCsvFiles>
       <limitCsvFiles>
       <forEachCsvFile>
-      <setGraph>
       <serialize>
     )
   ].
