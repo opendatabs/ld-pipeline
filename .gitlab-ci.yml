@@ -2,7 +2,7 @@ image: docker.io/zazukoians/node-java-jena:v6
 
 default:
   tags:
-    - stati03-lod-docker
+    - stata02-lod-docker
 
 stages:
   - deps
