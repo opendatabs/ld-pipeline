@@ -50,7 +50,7 @@
     "barnard59-ftp": "^1.0.0",
     "barnard59-graph-store": "^1.0.0",
     "barnard59-rdf": "^1.0.0",
-    "barnard59-sparql": "^1.0.0",
+    "barnard59-sparql": "^2.0.0",
     "clownface": "^1.4.0",
     "glob": "^7.1.7",
     "luxon": "^1.27.0",
